@@ -1,7 +1,9 @@
 package experiments.main;
 
+import experiments.utils.Methods;
 import android.os.Bundle;
 import android.app.Activity;
+import android.view.KeyEvent;
 import android.view.Menu;
 
 public class MainActv extends Activity {
@@ -19,4 +21,24 @@ public class MainActv extends Activity {
 		return true;
 	}
 
+	@Override
+	protected void onStart() {
+		// TODO Auto-generated method stub
+		super.onStart();
+	}
+
+	@Override
+	protected void onDestroy() {
+		// TODO Auto-generated method stub
+		super.onDestroy();
+	}
+
+	@Override
+	public boolean onKeyDown(int keyCode, KeyEvent event) {
+		
+		Methods.confirm_quit(this, keyCode);
+		
+		return super.onKeyDown(keyCode, event);
+	}
+	
 }

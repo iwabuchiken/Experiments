@@ -23,6 +23,8 @@ gitk
 
 git remote add origin git@github.com:iwabuchiken/Experiments.git
 
+g p origin master
+
 git log --grep=B4 -3
 git log --grep=B5 -3
 

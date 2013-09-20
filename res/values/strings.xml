@@ -5,4 +5,12 @@
     <string name="action_settings">Settings</string>
     <string name="hello_world">Hello world!</string>
 
+    <string name="generic_bt_ok">OK</string>
+    <string name="generic_bt_cancel">キャンセル</string>
+    <string name="generic_tv_confirm">確認</string>
+    <string name="generic_tv_menu">メニュー</string>
+    <string name="generic_tv_register">登録</string>
+    <string name="generic_tv_edit">編集</string>
+    <string name="generic_tv_delete">削除</string>
+    <string name="generic_tv_upload">Upload</string>
 </resources>
