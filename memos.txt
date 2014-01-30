@@ -1,7 +1,15 @@
+# a p + gitk
+a p && pushd C:\WORKS\WS\WS_Android_20130619_090924\Experiments && gitk
+
+# Gitk / no 'a p'
+pushd C:\WORKS\WS\WS_Android_20130619_090924\Experiments && gitk
+
+
 a
 pushd C:\WORKS\WS\WS_Android_20130619_090924\Experiments
 
 pushd C:\WORKS\WS\WS_Android_20130619_090924\Experiments && gitk
+
 a p && pushd C:\WORKS\WS\WS_Android_20130619_090924\Experiments && gitk
 
 

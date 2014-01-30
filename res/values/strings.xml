@@ -17,5 +17,5 @@
 
 	    
 	<!-- MainActv -->
-	    <string name="mainactv_list_position">Position Manager</string>	
+	    <string name="mainactv_list_position">Location Manager</string>	
 </resources>
