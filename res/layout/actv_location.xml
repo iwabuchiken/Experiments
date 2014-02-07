@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/black"
     android:orientation="vertical" >
 
     <TableLayout
@@ -11,97 +12,135 @@
         <TableRow
             android:id="@+id/tableRow1"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" >
+            android:layout_height="wrap_content"
+            android:padding="10dp" >
 
             <TextView
-                android:id="@+id/textView2"
+                android:id="@+id/actv_loc_tv_longi_lbl"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="TextView" />
+                android:layout_weight=".1"
+                android:background="@color/black"
+                android:padding="10dp"
+                android:text="@string/actv_loc_tv_longi"
+                android:textColor="@color/white"
+                android:textSize="25sp" />
 
             <TextView
-                android:id="@+id/textView3"
+                android:id="@+id/actv_loc_tv_longi_str"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="TextView" />
+                android:layout_weight="1"
+                android:background="@color/white"
+                android:padding="10dp"
+                android:text="TextView"
+                android:textSize="25sp" />
 
         </TableRow>
 
         <TableRow
             android:id="@+id/tableRow2"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" >
+            android:layout_height="wrap_content"
+            android:padding="10dp" >
 
             <TextView
-                android:id="@+id/textView4"
+                android:id="@+id/actv_loc_tv_lat_lbl"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="TextView" />
+                android:layout_weight=".1"
+                android:background="@color/black"
+                android:padding="10dp"
+                android:text="@string/actv_loc_tv_lat"
+                android:textColor="@color/white"
+                android:textSize="25sp" />
 
             <TextView
-                android:id="@+id/textView5"
+                android:id="@+id/actv_loc_tv_lat_str"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="TextView" />
+                android:layout_weight="1"
+                android:background="@color/white"
+                android:padding="10dp"
+                android:text="TextView"
+                android:textSize="25sp" />
 
         </TableRow>
 
     </TableLayout>
 
     <LinearLayout
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="vertical" >
-
-        <TextView
-            android:id="@+id/textView1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="TextView" />
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical" >
+        android:layout_gravity="center_horizontal"
+        android:orientation="vertical"
+        android:padding="10dp" >
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" >
+            android:layout_height="wrap_content"
+            android:padding="10dp" >
 
             <Button
-                android:id="@+id/button1"
+                android:id="@+id/actv_loc_bt_get_data"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Button" />
+                android:layout_margin="5dp"
+                android:background="@color/blue1"
+                android:padding="5dp"
+                android:text="@string/actv_loc_tv_get_data"
+                android:textColor="@color/yello"
+                android:textSize="25sp" />
 
             <Button
                 android:id="@+id/button2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Button" />
+                android:layout_margin="5dp"
+                android:text="Button"
+                android:textSize="25sp" />
 
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" >
+            android:layout_height="wrap_content"
+            android:padding="10dp" >
 
             <Button
                 android:id="@+id/button3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Button" />
+                android:layout_margin="5dp"
+                android:text="Button"
+                android:textSize="25sp" />
 
             <Button
                 android:id="@+id/button4"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Button" />
+                android:layout_margin="5dp"
+                android:text="Button"
+                android:textSize="25sp" />
 
         </LinearLayout>
 
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:orientation="vertical" >
+
+        <TextView
+            android:id="@+id/actv_loc_tv_message"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:text="TextView"
+            android:textColor="@color/yello"
+            android:textSize="25sp" />
     </LinearLayout>
 
 </LinearLayout>

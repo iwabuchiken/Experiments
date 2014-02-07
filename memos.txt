@@ -59,6 +59,9 @@ pushd C:\WORKS\WORKSPACES_ANDROID\FM
 [svn]
 pushd C:\WORKS\WORKSPACES_ANDROID\Sample\05_Techbooster
 svn co https://techbooster.googlecode.com/svn/trunk/ContextMenu/ ContextMenu
+git svn clone https://techbooster.googlecode.com/svn/trunk/Gps/
+
+pushd C:\WORKS\WS\WS_Android_20130929_122122\techbooster
 
 [GIMP]
 pushd C:\WORKS\WORKSPACES_ANDROID\GIMP\Icons
@@ -66,3 +69,6 @@ pushd C:\WORKS\WORKSPACES_ANDROID\GIMP\Icons
 [adb]
 adb uninstall ic.main
 
+
+==================================
+antenna1.png	http://www.flaticon.com/categories/technology

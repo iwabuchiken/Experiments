@@ -44,17 +44,17 @@ public final class R {
     }
     public static final class id {
         public static final int action_settings=0x7f09000b;
-        public static final int button1=0x7f090007;
-        public static final int button2=0x7f090008;
-        public static final int button3=0x7f090009;
-        public static final int button4=0x7f09000a;
+        public static final int actv_loc_bt_get_data=0x7f090006;
+        public static final int actv_loc_tv_lat_lbl=0x7f090004;
+        public static final int actv_loc_tv_lat_str=0x7f090005;
+        public static final int actv_loc_tv_longi_lbl=0x7f090001;
+        public static final int actv_loc_tv_longi_str=0x7f090002;
+        public static final int actv_loc_tv_message=0x7f09000a;
+        public static final int button2=0x7f090007;
+        public static final int button3=0x7f090008;
+        public static final int button4=0x7f090009;
         public static final int tableRow1=0x7f090000;
         public static final int tableRow2=0x7f090003;
-        public static final int textView1=0x7f090006;
-        public static final int textView2=0x7f090001;
-        public static final int textView3=0x7f090002;
-        public static final int textView4=0x7f090004;
-        public static final int textView5=0x7f090005;
     }
     public static final class layout {
         public static final int actv_location=0x7f030000;
@@ -65,6 +65,11 @@ public final class R {
     }
     public static final class string {
         public static final int action_settings=0x7f060001;
+        public static final int actv_loc_tv_get_data=0x7f06000e;
+        public static final int actv_loc_tv_lat=0x7f06000d;
+        /**  actv_location.xml 
+         */
+        public static final int actv_loc_tv_longi=0x7f06000c;
         /**  Generics 
          */
         public static final int app_name=0x7f060000;

@@ -17,5 +17,12 @@
 
 	    
 	<!-- MainActv -->
-	    <string name="mainactv_list_position">Location Manager</string>	
+	    <string name="mainactv_list_position">Location Manager</string>
+	
+	<!-- actv_location.xml -->
+		<string name="actv_loc_tv_longi">Longitude</string>
+		<string name="actv_loc_tv_lat">Latitude</string>
+		<string name="actv_loc_tv_get_data">Get data</string>
+	
+	
 </resources>
