@@ -1,5 +1,9 @@
 package experiments.main;
 
+import exp.listeners.button.BOCL;
+import exp.listeners.button.BOTL;
+import exp.utils.CONS;
+import exp.utils.Tags;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
@@ -9,6 +13,8 @@ import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 public class LocationActv extends Activity implements LocationListener {
@@ -30,14 +36,32 @@ public class LocationActv extends Activity implements LocationListener {
         
         String provider = mLocationManager.getBestProvider(criteria, true);
         
-        // Show the obtained provider name
-        _setup_ShowProviderName(provider);
+        // Register: manager
+        mLocationManager.requestLocationUpdates(provider, 0, 0, this);
         
+        // Show the obtained provider name
+        _Setup_ShowProviderName(provider);
+        
+        // Set listeners
+        _Setup_SetListeners();
         
 	}
 
+	private void _Setup_SetListeners() {
+		/*********************************
+		 * Button: Get data
+		 *********************************/
+		Button bt_GetData = (Button) findViewById(R.id.actv_loc_bt_get_data);
+		
+		bt_GetData.setTag(Tags.ButtonTags.GetData);
+		
+		bt_GetData.setOnTouchListener(new BOTL(this));
+		bt_GetData.setOnClickListener(new BOCL(this));
+		
+	}
+
 	private void
-	_setup_ShowProviderName(String provider) {
+	_Setup_ShowProviderName(String provider) {
 		// TODO Auto-generated method stub
 		TextView tv_Longi = (TextView) findViewById(R.id.actv_loc_tv_longi_str);
 		TextView tv_Lat = (TextView) findViewById(R.id.actv_loc_tv_lat_str);
@@ -52,7 +76,8 @@ public class LocationActv extends Activity implements LocationListener {
 		Criteria criteria = new Criteria();
 
 		//Accuracyを指定
-		criteria.setAccuracy(Criteria.ACCURACY_COARSE);
+		criteria.setAccuracy(Criteria.ACCURACY_FINE);
+//		criteria.setAccuracy(Criteria.ACCURACY_COARSE);
 		
 		//PowerRequirementを指定
 		criteria.setPowerRequirement(Criteria.POWER_LOW);
@@ -131,8 +156,10 @@ public class LocationActv extends Activity implements LocationListener {
 	}
 
 	@Override
-	public void onLocationChanged(Location arg0) {
+	public void onLocationChanged(Location loc) {
 		// TODO Auto-generated method stub
+		CONS.LocData.LONGITUDE = loc.getLongitude();
+		CONS.LocData.LATITUDE = loc.getLatitude();
 		
 	}
 

@@ -2,6 +2,12 @@ package exp.utils;
 
 public class Tags {
 
+	public static enum ButtonTags {
+		
+		GetData,
+		
+	}
+	
 	public static enum ListTags {
 		// MainActivity.java
 		actv_main_lv,
