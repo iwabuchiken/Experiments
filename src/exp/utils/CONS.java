@@ -40,4 +40,32 @@ public class CONS {
 		
 	}
 
+	public static class DB {
+		/*********************************
+		 * Table: locations
+		 *********************************/
+		public static final String tname_Location	= "locations";
+		
+		public static final String[] cols_Locations_Names	= {
+				android.provider.BaseColumns._ID,	// 1
+				"created_at",						// 2
+				"modified_at",						// 3
+
+				"longitude",						// 4
+				"latitude",							// 5
+				"memo",								// 6
+		};
+		
+		public static final String[] cols_Locations_Types	= {
+				"TEXT",
+				"INTEGER",
+				"INTEGER",
+				
+				"INTEGER",
+				"INTEGER",
+				"TEXT",
+		};
+		
+		
+	}//public static class DB
 }
