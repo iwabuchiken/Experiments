@@ -24,5 +24,11 @@
 		<string name="actv_loc_tv_lat">Latitude</string>
 		<string name="actv_loc_tv_get_data">Get data</string>
 	
-	
+	<!-- preferences -->
+		<string name="prefName">pref_lm</string>
+		<string name="prefKey_ShowMemoDialog">
+		    					show_memo_dialog</string>
+		<string name="prefTitle_ShowMemoDialog">
+		    					Show memo dialog</string>
+		
 </resources>

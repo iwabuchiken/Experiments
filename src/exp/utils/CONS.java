@@ -34,4 +34,10 @@ public class CONS {
 		public static final int MaximumFractionDigits	= 9;
 		
 	}
+
+
+	public static class Prefs {
+		
+	}
+
 }

@@ -7,12 +7,15 @@ import exp.utils.Tags;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.location.Criteria;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
@@ -45,7 +48,85 @@ public class LocationActv extends Activity implements LocationListener {
         // Set listeners
         _Setup_SetListeners();
         
+        do_debugs();
+        
 	}
+
+	
+	private void do_debugs() {
+		// TODO Auto-generated method stub
+		_Debug_D_3_v_3_0__Preference();
+	}
+
+
+	private void _Debug_D_3_v_3_0__Preference() {
+		// TODO Auto-generated method stub
+		SharedPreferences prefs = 
+				this.getSharedPreferences(
+						this.getString(R.string.prefName),
+						MODE_PRIVATE);
+		
+		boolean res = prefs.getBoolean(
+						this.getString(R.string.prefKey_ShowMemoDialog),
+						false);
+		
+		// Log
+		String log_msg = this.getString(R.string.prefKey_ShowMemoDialog)
+						+ " => "
+						+ res;
+
+		Log.d("[" + "LocationActv.java : "
+				+ +Thread.currentThread().getStackTrace()[2].getLineNumber()
+				+ " : "
+				+ Thread.currentThread().getStackTrace()[2].getMethodName()
+				+ "]", log_msg);
+	}
+
+
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		// TODO Auto-generated method stub
+		getMenuInflater().inflate(R.menu.loc_actv, menu);
+		
+		return super.onCreateOptionsMenu(menu);
+	}
+
+
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		// TODO Auto-generated method stub
+		
+		switch (item.getItemId()) {
+		
+		case R.id.action_settings:
+			
+			_option_ActionSettings();
+			
+			break;
+		
+		default:
+			
+			break;
+
+		}//switch (item.getItemId())
+
+		
+		return super.onOptionsItemSelected(item);
+	}
+
+
+	private void _option_ActionSettings() {
+		// TODO Auto-generated method stub
+		Intent i = new Intent();
+		
+		i.setClass(this, Settings_LM.class);
+		
+		i.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+		
+		this.startActivity(i);
+
+	}
+
 
 	private void _Setup_SetListeners() {
 		/*********************************
@@ -143,15 +224,65 @@ public class LocationActv extends Activity implements LocationListener {
 		super.onPause();
 	}
 
+	
+	@Override
+	protected void onRestart() {
+		// TODO Auto-generated method stub
+		// Log
+		String log_msg = "onRestart()";
+
+		Log.d("[" + "LocationActv.java : "
+				+ +Thread.currentThread().getStackTrace()[2].getLineNumber()
+				+ " : "
+				+ Thread.currentThread().getStackTrace()[2].getMethodName()
+				+ "]", log_msg);
+		super.onRestart();
+	}
+
+
+	@Override
+	protected void onResume() {
+		// TODO Auto-generated method stub
+		// Log
+		String log_msg = "onResume()";
+
+		Log.d("[" + "LocationActv.java : "
+				+ +Thread.currentThread().getStackTrace()[2].getLineNumber()
+				+ " : "
+				+ Thread.currentThread().getStackTrace()[2].getMethodName()
+				+ "]", log_msg);
+		
+		super.onResume();
+	}
+
+
 	@Override
 	protected void onStart() {
 		// TODO Auto-generated method stub
+		
+		// Log
+		String log_msg = "onStart()";
+
+		Log.d("[" + "LocationActv.java : "
+				+ +Thread.currentThread().getStackTrace()[2].getLineNumber()
+				+ " : "
+				+ Thread.currentThread().getStackTrace()[2].getMethodName()
+				+ "]", log_msg);
 		super.onStart();
+		
 	}
 
 	@Override
 	protected void onStop() {
 		// TODO Auto-generated method stub
+		// Log
+		String log_msg = "onStop()";
+
+		Log.d("[" + "LocationActv.java : "
+				+ +Thread.currentThread().getStackTrace()[2].getLineNumber()
+				+ " : "
+				+ Thread.currentThread().getStackTrace()[2].getMethodName()
+				+ "]", log_msg);
 		super.onStop();
 	}
 
@@ -173,6 +304,14 @@ public class LocationActv extends Activity implements LocationListener {
 	public void onProviderEnabled(String arg0) {
 		// TODO Auto-generated method stub
 		
+		// Log
+		String log_msg = "onProviderEnabled()";
+
+		Log.d("[" + "LocationActv.java : "
+				+ +Thread.currentThread().getStackTrace()[2].getLineNumber()
+				+ " : "
+				+ Thread.currentThread().getStackTrace()[2].getMethodName()
+				+ "]", log_msg);
 	}
 
 	@Override
