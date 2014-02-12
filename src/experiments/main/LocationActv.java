@@ -20,9 +20,12 @@ import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class LocationActv extends Activity implements LocationListener {
 
+	private boolean locationObtained = false; 
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
@@ -209,6 +212,8 @@ public class LocationActv extends Activity implements LocationListener {
 		
 		this.overridePendingTransition(0, 0);
 		
+		locationObtained = false;
+		
 	}
 
 	@Override
@@ -296,6 +301,9 @@ public class LocationActv extends Activity implements LocationListener {
 				+ " : "
 				+ Thread.currentThread().getStackTrace()[2].getMethodName()
 				+ "]", log_msg);
+		
+		locationObtained = false;
+		
 		super.onStop();
 	}
 
@@ -305,7 +313,18 @@ public class LocationActv extends Activity implements LocationListener {
 		CONS.LocData.LONGITUDE = loc.getLongitude();
 		CONS.LocData.LATITUDE = loc.getLatitude();
 		
-	}
+		if (locationObtained == false
+				&& CONS.LocData.LONGITUDE != null
+				&& CONS.LocData.LATITUDE != null) {
+			
+			// debug
+			String toa_msg = "Location obtained";
+			Toast.makeText(this, toa_msg, Toast.LENGTH_SHORT).show();
+			
+			locationObtained = true;
+			
+		}
+	}//public void onLocationChanged(Location loc)
 
 	@Override
 	public void onProviderDisabled(String arg0) {
