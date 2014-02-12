@@ -30,5 +30,17 @@
 		    					show_memo_dialog</string>
 		<string name="prefTitle_ShowMemoDialog">
 		    					Show memo dialog</string>
-		
+
+	<!-- Menu: LocActv -->
+		<string name="menu_LocActv_DB_Dialog_Title">
+		    					DB Admin</string>
+		<string name="menu_LocActv_DB_Menu_Title">
+		    					DB</string>
+		<string name="menu_LocActv_Backup_Db">Backup DB</string>
+	    <string name="menu_LocActv_Refresh_Db">DBリフレッシュ</string>
+	    <string name="menu_LocActv_Restore_Db">Restore db</string>
+	    <string name="menu_LocActv_Upload_Db">Upload db</string>
+	    <string name="menu_LocActv_Exec_Sql">Exec sql</string>
+	    
+	
 </resources>

@@ -20,4 +20,16 @@ public class Tags {
 		
 	}//public static enum ListTags
 
+	public static enum DialogTags {
+		// Generics
+		dlg_generic_dismiss, dlg_generic_dismiss_second_dialog, dlg_generic_dismiss_third_dialog,
+		
+	}//public static enum DialogTags
+
+	public static enum DialogItemTags {
+		// dlg_db_admin.xml
+		Db_Admin_LV,
+		
+	}//public static enum DialogItemTags
+
 }

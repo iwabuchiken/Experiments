@@ -3,6 +3,7 @@ package experiments.main;
 import exp.listeners.button.BOCL;
 import exp.listeners.button.BOTL;
 import exp.utils.CONS;
+import exp.utils.Methods_Dlg;
 import exp.utils.Tags;
 import android.app.Activity;
 import android.content.Context;
@@ -86,7 +87,7 @@ public class LocationActv extends Activity implements LocationListener {
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// TODO Auto-generated method stub
-		getMenuInflater().inflate(R.menu.loc_actv, menu);
+		getMenuInflater().inflate(R.menu.menu_loc_actv, menu);
 		
 		return super.onCreateOptionsMenu(menu);
 	}
@@ -104,6 +105,12 @@ public class LocationActv extends Activity implements LocationListener {
 			
 			break;
 		
+		case R.id.menu_LocActv_Db:
+			
+			_option_menu_LocActv_Db();
+			
+			break;
+			
 		default:
 			
 			break;
@@ -112,6 +119,12 @@ public class LocationActv extends Activity implements LocationListener {
 
 		
 		return super.onOptionsItemSelected(item);
+	}
+
+
+	private void _option_menu_LocActv_Db() {
+		// TODO Auto-generated method stub
+		Methods_Dlg.dlg_DbAdmin(this);
 	}
 
 

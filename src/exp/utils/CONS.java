@@ -42,6 +42,11 @@ public class CONS {
 
 	public static class DB {
 		/*********************************
+		 * DB names
+		 *********************************/
+		public static final String dbName_LM = "db_LM.db";
+		
+		/*********************************
 		 * Table: locations
 		 *********************************/
 		public static final String tname_Location	= "locations";
@@ -56,14 +61,28 @@ public class CONS {
 				"memo",								// 6
 		};
 		
+		public static final String[] cols_Locations_Names_skimmed	= {
+			
+			"longitude",						// 4
+			"latitude",							// 5
+			"memo",								// 6
+			
+		};
+		
+		public static final String[] cols_Locations_Types_skimmed	= {
+			
+				"INTEGER",
+				"INTEGER",
+				"TEXT",
+		};
 		public static final String[] cols_Locations_Types	= {
-				"TEXT",
-				"INTEGER",
-				"INTEGER",
-				
-				"INTEGER",
-				"INTEGER",
-				"TEXT",
+			"TEXT",
+			"INTEGER",
+			"INTEGER",
+			
+			"INTEGER",
+			"INTEGER",
+			"TEXT",
 		};
 		
 		
