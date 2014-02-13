@@ -1,5 +1,7 @@
 package exp.utils;
 
+import java.util.Arrays;
+
 import org.apache.commons.lang.StringUtils;
 
 import android.app.Activity;
@@ -124,4 +126,93 @@ public class Methods_LM {
 		
 	}//_Sql__20140212_101940_CreateTable(Activity actv)
 
-}
+	/*********************************
+	 * @return true => Insertion succeeded
+	 *********************************/
+	public static boolean
+	save_LocData(Activity actv) {
+		// TODO Auto-generated method stub
+		DBUtils dbu = new DBUtils(actv, CONS.DB.dbName_LM);
+		
+		SQLiteDatabase wdb = dbu.getWritableDatabase();
+		
+		/*********************************
+		 * Table exists?
+		 *********************************/
+		boolean res = dbu.tableExists(wdb, CONS.DB.tname_Location);
+		
+		if (res == true) {
+			
+//			// debug
+//			String toa_msg = "Table exists => " + CONS.DB.tname_Location;
+//			Toast.makeText(actv, toa_msg, Toast.LENGTH_SHORT).show();
+			
+			// Log
+			String log_msg = "Table exists => " + CONS.DB.tname_Location;
+
+			Log.d("["
+					+ "Methods_LM.java : "
+					+ +Thread.currentThread().getStackTrace()[2]
+							.getLineNumber() + " : "
+					+ Thread.currentThread().getStackTrace()[2].getMethodName()
+					+ "]", log_msg);
+		}
+		
+		/*********************************
+		 * Exec sql
+		 *********************************/
+		String[] colNames = Arrays.copyOfRange(CONS.DB.cols_Locations_Names, 1, 5);
+//		"created_at",						// 2
+//		"modified_at",						// 3
+//
+//		"longitude",						// 4
+//		"latitude",							// 5
+//		"memo",								// 6
+		String[] values = new String[]{
+				// created_at
+				String.valueOf(
+						Methods.getTimeLabel(Methods.getMillSeconds_now())),
+				// modified_at		
+				String.valueOf(
+						Methods.getTimeLabel(Methods.getMillSeconds_now())),
+				// longitude		
+				String.valueOf(CONS.LocData.LONGITUDE),
+				// latitude
+				String.valueOf(CONS.LocData.LATITUDE),
+				// memo
+				""
+		};
+		
+		res = dbu.insertData(wdb, CONS.DB.tname_Location, colNames, values);
+		
+		// Log
+		String log_msg = "res => " + res;
+
+		Log.d("[" + "Methods_LM.java : "
+				+ +Thread.currentThread().getStackTrace()[2].getLineNumber()
+				+ " : "
+				+ Thread.currentThread().getStackTrace()[2].getMethodName()
+				+ "]", log_msg);
+		
+		if (res == true) {
+			
+			// debug
+			String toa_msg = "Location => Saved";
+			Toast.makeText(actv, toa_msg, Toast.LENGTH_SHORT).show();
+			
+		} else {//if (res == true)
+			
+			// debug
+			String toa_msg = "Location => Wasn't saved";
+			Toast.makeText(actv, toa_msg, Toast.LENGTH_SHORT).show();
+			
+		}//if (res == true)
+		
+		
+		wdb.close();
+		
+		return res;
+		
+	}//save_LocData(Activity actv)
+
+}//public class Methods_LM

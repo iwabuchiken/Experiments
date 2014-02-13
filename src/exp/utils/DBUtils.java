@@ -243,8 +243,12 @@ public class DBUtils extends SQLiteOpenHelper{
 
 	}//public boolean dropTable(String tableName) 
 
-	public boolean insertData(SQLiteDatabase db, String tableName, 
-								String[] col_names, String[] values) {
+	/*********************************
+	 * @param columnNames Timestamps => not auto-inserted
+	 *********************************/
+	public boolean insertData
+	(SQLiteDatabase db, String tableName, 
+		String[] col_names, String[] values) {
 		
 ////		String sql = "SELECT * FROM TABLE " + DBUtils.table_name_memo_patterns;
 //		String sql = "SELECT * FROM " + DBUtils.table_name_memo_patterns;
@@ -304,8 +308,12 @@ public class DBUtils extends SQLiteOpenHelper{
 		
 	}//public insertData(String tableName, String[] col_names, String[] values)
 
-	public boolean insertData(SQLiteDatabase db, String tableName, 
-											String[] columnNames, long[] values) {
+	/*********************************
+	 * @param columnNames Timestamps => not auto-inserted
+	 *********************************/
+	public boolean insertData
+	(SQLiteDatabase db, String tableName, 
+			String[] columnNames, long[] values) {
 		/*----------------------------
 		* 1. Insert data
 		----------------------------*/
@@ -345,7 +353,7 @@ public class DBUtils extends SQLiteOpenHelper{
 			return false;
 		}//try
 	}//public insertData(String tableName, String[] columnNames, String[] values)
-
+	
 	public boolean deleteData(Activity actv, SQLiteDatabase db, String tableName, long file_id) {
 		/*----------------------------
 		 * Steps

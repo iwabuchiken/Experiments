@@ -3,7 +3,9 @@ package exp.listeners.button;
 import java.text.NumberFormat;
 
 import exp.utils.CONS;
+import exp.utils.Methods_LM;
 import exp.utils.Tags;
+import experiments.main.LocationActv;
 import experiments.main.R;
 import android.app.Activity;
 import android.os.Vibrator;
@@ -46,7 +48,13 @@ public class BOCL implements OnClickListener {
 		
 		case GetData:
 			
-			case_GetData();
+			_case_GetData();
+			
+			break;
+			
+		case SaveData:
+			
+			_case_SaveData();
 			
 			break;
 			
@@ -57,7 +65,36 @@ public class BOCL implements OnClickListener {
 		
 	}//public void onClick(View v)
 
-	private void case_GetData() {
+	private void _case_SaveData() {
+		// TODO Auto-generated method stub
+		
+		// Location obtained?
+		if (LocationActv.locationObtained == false) {
+			
+			// debug
+			String toa_msg = "Location not yet obtained";
+			Toast.makeText(actv, toa_msg, Toast.LENGTH_SHORT).show();
+			
+			// Log
+			String log_msg = "Location not yet obtained";
+
+			Log.d("["
+					+ "BOCL.java : "
+					+ +Thread.currentThread().getStackTrace()[2]
+							.getLineNumber() + " : "
+					+ Thread.currentThread().getStackTrace()[2].getMethodName()
+					+ "]", log_msg);
+			
+			return;
+			
+		}//if (LocationActv.locationObtained == false)
+		
+		// If yes, save data
+		boolean res = Methods_LM.save_LocData(actv);
+		
+	}//private void _case_SaveData()
+
+	private void _case_GetData() {
 		// TODO Auto-generated method stub
 		if (CONS.LocData.LONGITUDE == null ||
 				CONS.LocData.LATITUDE == null) {

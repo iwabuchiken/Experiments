@@ -24,7 +24,7 @@ import android.widget.Toast;
 
 public class LocationActv extends Activity implements LocationListener {
 
-	private boolean locationObtained = false; 
+	public static boolean locationObtained = false; 
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -154,6 +154,16 @@ public class LocationActv extends Activity implements LocationListener {
 		
 		bt_GetData.setOnTouchListener(new BOTL(this));
 		bt_GetData.setOnClickListener(new BOCL(this));
+		
+		/*********************************
+		 * Button: Save data
+		 *********************************/
+		Button bt_SaveData = (Button) findViewById(R.id.actv_loc_bt_save_data);
+		
+		bt_SaveData.setTag(Tags.ButtonTags.SaveData);
+		
+		bt_SaveData.setOnTouchListener(new BOTL(this));
+		bt_SaveData.setOnClickListener(new BOCL(this));
 		
 	}
 

@@ -45,12 +45,12 @@ public final class R {
     public static final class id {
         public static final int action_settings=0x7f0a000e;
         public static final int actv_loc_bt_get_data=0x7f0a0006;
+        public static final int actv_loc_bt_save_data=0x7f0a0007;
         public static final int actv_loc_tv_lat_lbl=0x7f0a0004;
         public static final int actv_loc_tv_lat_str=0x7f0a0005;
         public static final int actv_loc_tv_longi_lbl=0x7f0a0001;
         public static final int actv_loc_tv_longi_str=0x7f0a0002;
         public static final int actv_loc_tv_message=0x7f0a000a;
-        public static final int button2=0x7f0a0007;
         public static final int button3=0x7f0a0008;
         public static final int button4=0x7f0a0009;
         public static final int dlg_tmpl_list_cancel_bt_cancel=0x7f0a000c;
@@ -78,6 +78,7 @@ public final class R {
         /**  actv_location.xml 
          */
         public static final int actv_loc_tv_longi=0x7f07000c;
+        public static final int actv_loc_tv_save_data=0x7f07000f;
         /**  Generics 
          */
         public static final int app_name=0x7f070000;
@@ -93,20 +94,20 @@ public final class R {
         /**  MainActv 
          */
         public static final int mainactv_list_position=0x7f07000b;
-        public static final int menu_LocActv_Backup_Db=0x7f070014;
+        public static final int menu_LocActv_Backup_Db=0x7f070015;
         /**  Menu: LocActv 
          */
-        public static final int menu_LocActv_DB_Dialog_Title=0x7f070012;
-        public static final int menu_LocActv_DB_Menu_Title=0x7f070013;
-        public static final int menu_LocActv_Exec_Sql=0x7f070018;
-        public static final int menu_LocActv_Refresh_Db=0x7f070015;
-        public static final int menu_LocActv_Restore_Db=0x7f070016;
-        public static final int menu_LocActv_Upload_Db=0x7f070017;
-        public static final int prefKey_ShowMemoDialog=0x7f070010;
+        public static final int menu_LocActv_DB_Dialog_Title=0x7f070013;
+        public static final int menu_LocActv_DB_Menu_Title=0x7f070014;
+        public static final int menu_LocActv_Exec_Sql=0x7f070019;
+        public static final int menu_LocActv_Refresh_Db=0x7f070016;
+        public static final int menu_LocActv_Restore_Db=0x7f070017;
+        public static final int menu_LocActv_Upload_Db=0x7f070018;
+        public static final int prefKey_ShowMemoDialog=0x7f070011;
         /**  preferences 
          */
-        public static final int prefName=0x7f07000f;
-        public static final int prefTitle_ShowMemoDialog=0x7f070011;
+        public static final int prefName=0x7f070010;
+        public static final int prefTitle_ShowMemoDialog=0x7f070012;
     }
     public static final class style {
         /** 
