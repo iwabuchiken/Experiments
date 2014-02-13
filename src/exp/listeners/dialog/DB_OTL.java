@@ -54,7 +54,7 @@ public class DB_OTL implements OnTouchListener {
 					v.setBackgroundColor(Color.GRAY);
 					
 					break;
-			}//switch (tag_name)
+				}//switch (tag_name)
 		
 			break;//case MotionEvent.ACTION_DOWN:
 			

@@ -13,6 +13,7 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Toast;
 
+//DB=DialogButton
 public class DB_OCL implements OnClickListener {
 	/*----------------------------
 	 * Fields

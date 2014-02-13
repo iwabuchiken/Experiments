@@ -13,10 +13,7 @@ public class Tags {
 		actv_main_lv,
 		
 		// Main
-		main_list_adapter,
-		
-		// TNActv
-		actv_tn_lv,
+		dbadmin_adapter,
 		
 	}//public static enum ListTags
 

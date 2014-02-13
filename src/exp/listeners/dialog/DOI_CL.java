@@ -1,6 +1,7 @@
 package exp.listeners.dialog;
 
 import exp.utils.CONS;
+import exp.utils.Methods;
 import exp.utils.Methods_LM;
 import exp.utils.Tags;
 import experiments.main.R;
@@ -53,7 +54,7 @@ public class DOI_CL implements OnItemClickListener {
 			_case_Db_Admin_LV(item);
 			
 			break;//case Db_Admin_LV
-		
+			
 		default:
 			break;
 		}//switch (tag)
@@ -77,6 +78,13 @@ public class DOI_CL implements OnItemClickListener {
 			
 			Methods_LM.execSql(actv);
 			
+		} else if (item.equals(
+				actv.getString(R.string.menu_LocActv_Backup_Db))){//if (item.equals(R.string.menu_LocActv_Exec_Sql))
+			
+			_case_Db_Admin_LV__BackupDb();
+			
+//			Methods.backupDb(actv, CONS.DB.dbName_LM, CONS.DB.dpath_Db_Backup);
+			
 		} else {//if (item.equals(R.string.menu_LocActv_Exec_Sql))
 			
 //			// Log
@@ -99,5 +107,31 @@ public class DOI_CL implements OnItemClickListener {
 		
 		
 	}//_case_Db_Admin_LV(String item)
+
+	private void _case_Db_Admin_LV__BackupDb() {
+		// TODO Auto-generated method stub
+		int res = Methods.backupDb(
+						actv,
+						CONS.DB.dbName_LM,
+						CONS.DB.dpath_Db_Backup);
+
+		if (res == CONS.ReturnValues.DB_BACKUP_SUCCESSFUL) {
+			
+			dlg1.dismiss();
+			
+			// debug
+			String toa_msg = "Backup => Done";
+			Toast.makeText(actv, toa_msg, Toast.LENGTH_SHORT).show();
+			
+		} else {//if (res == CONS.ReturnValues.DB_BACKUP_SUCCESSFUL)
+			
+			// debug
+			String toa_msg = "Backup => Failed";
+			Toast.makeText(actv, toa_msg, Toast.LENGTH_SHORT).show();
+			
+		}//if (res == CONS.ReturnValues.DB_BACKUP_SUCCESSFUL)
+		
+		
+	}//private void _case_Db_Admin_LV__BackupDb()
 
 }

@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import exp.adapters.DBAdminAdapter;
 import exp.listeners.dialog.DB_OCL;
 import exp.listeners.dialog.DB_OTL;
 import exp.listeners.dialog.DOI_CL;
@@ -46,13 +47,21 @@ public class Methods_Dlg {
 		/*----------------------------
 		 * 3. Adapter
 			----------------------------*/
-		ArrayAdapter<String> adapter = new ArrayAdapter<String>(
+		DBAdminAdapter adapter = new DBAdminAdapter(
 				actv,
 //				R.layout.dlg_db_admin,
 				R.layout.list_row_simple_1,
 //				android.R.layout.simple_list_item_1,
-				list
+				list,
+				dlg
 				);
+//		ArrayAdapter<String> adapter = new ArrayAdapter<String>(
+//						actv,
+////				R.layout.dlg_db_admin,
+//						R.layout.list_row_simple_1,
+////				android.R.layout.simple_list_item_1,
+//						list
+//						);
 
 		ListView lv = (ListView) dlg.findViewById(R.id.dlg_tmpl_list_cancel_lv);
 		
