@@ -23,6 +23,7 @@
 		<string name="actv_loc_tv_longi">Longitude</string>
 		<string name="actv_loc_tv_lat">Latitude</string>
 		<string name="actv_loc_tv_get_data">Get data</string>
+		<string name="actv_loc_tv_save_data">Save data</string>
 	
 	<!-- preferences -->
 		<string name="prefName">pref_lm</string>

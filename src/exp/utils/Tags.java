@@ -6,6 +6,8 @@ public class Tags {
 		
 		GetData,
 		
+		SaveData,
+		
 	}
 	
 	public static enum ListTags {

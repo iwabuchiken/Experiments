@@ -52,29 +52,17 @@ public class CONS {
 		public static final String tname_Location	= "locations";
 		
 		public static final String[] cols_Locations_Names	= {
-				android.provider.BaseColumns._ID,	// 1
-				"created_at",						// 2
-				"modified_at",						// 3
+				android.provider.BaseColumns._ID,	// 0
+				"created_at",						// 1
+				"modified_at",						// 2
 
-				"longitude",						// 4
-				"latitude",							// 5
-				"memo",								// 6
+				"longitude",						// 3
+				"latitude",							// 4
+				"memo",								// 5
+				
+				"uploaded_at"						// 6
 		};
 		
-		public static final String[] cols_Locations_Names_skimmed	= {
-			
-			"longitude",						// 4
-			"latitude",							// 5
-			"memo",								// 6
-			
-		};
-		
-		public static final String[] cols_Locations_Types_skimmed	= {
-			
-				"INTEGER",
-				"INTEGER",
-				"TEXT",
-		};
 		public static final String[] cols_Locations_Types	= {
 			"TEXT",
 			"INTEGER",
@@ -83,6 +71,25 @@ public class CONS {
 			"INTEGER",
 			"INTEGER",
 			"TEXT",
+		};
+		
+		public static final String[] cols_Locations_Names_skimmed	= {
+			
+			"longitude",						// 0
+			"latitude",							// 1
+			"memo",								// 2
+			
+			"uploaded_at"						// 3
+			
+		};
+		
+		public static final String[] cols_Locations_Types_skimmed	= {
+			
+				"INTEGER",				// 0
+				"INTEGER",				// 1
+				"TEXT",					// 2
+				
+				"INTEGER",				// 3
 		};
 		
 		/*********************************
