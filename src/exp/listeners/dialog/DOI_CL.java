@@ -1,6 +1,7 @@
 package exp.listeners.dialog;
 
 import exp.utils.CONS;
+import exp.utils.DBUtils;
 import exp.utils.Methods;
 import exp.utils.Methods_LM;
 import exp.utils.Tags;
@@ -85,6 +86,13 @@ public class DOI_CL implements OnItemClickListener {
 			
 //			Methods.backupDb(actv, CONS.DB.dbName_LM, CONS.DB.dpath_Db_Backup);
 			
+		} else if (item.equals(
+				actv.getString(R.string.menu_LocActv_Restore_Db))){//if (item.equals(R.string.menu_LocActv_Exec_Sql))
+			
+			_case_Db_Admin_LV__RestoreDb();
+			
+//			Methods.backupDb(actv, CONS.DB.dbName_LM, CONS.DB.dpath_Db_Backup);
+			
 		} else {//if (item.equals(R.string.menu_LocActv_Exec_Sql))
 			
 //			// Log
@@ -107,6 +115,35 @@ public class DOI_CL implements OnItemClickListener {
 		
 		
 	}//_case_Db_Admin_LV(String item)
+
+	private void _case_Db_Admin_LV__RestoreDb() {
+		// TODO Auto-generated method stub
+		int res = DBUtils.restore_Db(actv);
+		
+		// Log
+		String log_msg = "res => " + res;
+
+		Log.d("[" + "DOI_CL.java : "
+				+ +Thread.currentThread().getStackTrace()[2].getLineNumber()
+				+ " : "
+				+ Thread.currentThread().getStackTrace()[2].getMethodName()
+				+ "]", log_msg);
+		
+		if (res == CONS.ReturnValues.DB_RESTORE_SUCCESSFUL) {
+			
+			// debug
+			String toa_msg = "DB => Restored";
+			Toast.makeText(actv, toa_msg, Toast.LENGTH_SHORT).show();
+			
+		} else {
+
+			// debug
+			String toa_msg = "Restore DB => Failed";
+			Toast.makeText(actv, toa_msg, Toast.LENGTH_SHORT).show();
+			
+		}//if (res == CONS.ReturnValues.DB_RESTORE_SUCCESSFUL)
+		
+	}//private void _case_Db_Admin_LV__RestoreDb()
 
 	private void _case_Db_Admin_LV__BackupDb() {
 		// TODO Auto-generated method stub

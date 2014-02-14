@@ -116,6 +116,8 @@ public class CONS {
 		 *********************************/
 		public static final int DB_BACKUP_SUCCESSFUL	= 10;
 		
+		public static final int DB_RESTORE_SUCCESSFUL	= 11;
+		
 		/*********************************
 		 * Operation failed: -10 ~
 		 *********************************/
@@ -140,9 +142,11 @@ public class CONS {
 		/*********************************
 		 * DB-related: -20 ~
 		 *********************************/
-		public static final int DB_DOESNT_EXIST		= -20;
+		public static final int DB_DOESNT_EXIST			= -20;
 		
 		public static final int DB_CANT_CREATE_FOLDER	= -21;
+		
+		public static final int DB_RESTORE_FAILED		= -22;
 		
 		/*********************************
 		 * File-related: -30 ~

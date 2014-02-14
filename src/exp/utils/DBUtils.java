@@ -1,8 +1,16 @@
 package exp.utils;
 
+
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.nio.channels.FileChannel;
 import java.util.ArrayList;
 import java.util.List;
+
+import org.apache.commons.lang.StringUtils;
 
 import android.app.Activity;
 import android.content.ContentValues;
@@ -686,6 +694,170 @@ public class DBUtils extends SQLiteOpenHelper{
 		
 //		return null;
 	}//get_Column_List
+
+	/*********************************
+	 * @return
+	 * false => 1. FileNotFoundException<br>
+	 * 2. IOException
+	 *********************************/
+	public static boolean restore_Db
+	(Activity actv, String src, String dst) {
+		/*********************************
+		 * 1. Setup db
+		 * 2. Setup: File paths
+		 * 3. Setup: File objects
+		 * 4. Copy file
+		 * 
+		 *********************************/
+		// Log
+		Log.d("DBUtils.java" + "["
+				+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+				+ ":"
+				+ Thread.currentThread().getStackTrace()[2].getMethodName()
+				+ "]",
+				"src=" + src
+				+ "/"
+				+ "dst=" + dst);
+		
+		/*********************************
+		 * 4. Copy file
+		 *********************************/
+		try {
+			FileChannel iChannel = new FileInputStream(src).getChannel();
+			FileChannel oChannel = new FileOutputStream(dst).getChannel();
+			iChannel.transferTo(0, iChannel.size(), oChannel);
+			iChannel.close();
+			oChannel.close();
+			
+			// Log
+			Log.d("DBUtils.java" + "["
+					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+					+ ":"
+					+ Thread.currentThread().getStackTrace()[2].getMethodName()
+					+ "]", "File copied: " + src);
+			
+			// debug
+			Toast.makeText(actv, "DB restoration => Done", Toast.LENGTH_LONG).show();
+			
+			return true;
+	
+		} catch (FileNotFoundException e) {
+
+			// Log
+			Log.d("DBUtils.java" + "["
+					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+					+ ":"
+					+ Thread.currentThread().getStackTrace()[2].getMethodName()
+					+ "]", "Exception: " + e.toString());
+			
+			return false;
+			
+		} catch (IOException e) {
+
+			// Log
+			Log.d("DBUtils.java" + "["
+					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+					+ ":"
+					+ Thread.currentThread().getStackTrace()[2].getMethodName()
+					+ "]", "Exception: " + e.toString());
+			
+			return false;
+			
+		}//try
+		
+	}//public static boolean restore_Db
+
+	public static int restore_Db(Activity actv) {
+    	
+    	// Log
+		Log.d("DBUtils.java" + "["
+				+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+				+ "]", "Starting: restore_db()");
+
+		/*********************************
+		 * Get the absolute path of the latest backup file
+		 *********************************/
+		// Get the most recently-created db file
+//		String src_dir = "/mnt/sdcard-ext/IFM9_backup";
+		String src_dir = CONS.DB.dpath_Db_Backup;
+		
+		File f_dir = new File(src_dir);
+		
+		File[] src_dir_files = f_dir.listFiles();
+		
+		// If no files in the src dir, quit the method
+		if (src_dir_files.length < 1) {
+			
+			// Log
+			Log.d("Methods.java" + "["
+					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+					+ "]", "No files in the dir: " + src_dir);
+			
+			return CONS.ReturnValues.FileNotFoundException;
+			
+		}//if (src_dir_files.length == condition)
+		
+		// Latest file
+		File f_src_latest = src_dir_files[0];
+		
+		
+		for (File file : src_dir_files) {
+			
+			if (f_src_latest.lastModified() < file.lastModified()) {
+						
+				f_src_latest = file;
+				
+			}//if (variable == condition)
+			
+		}//for (File file : src_dir_files)
+		
+		// Show the path of the latest file
+		// Log
+		Log.d("Methods.java" + "["
+				+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+				+ "]", "f_src_latest=" + f_src_latest.getAbsolutePath());
+		
+		/*********************************
+		 * Restore file
+		 *********************************/
+		String src = f_src_latest.getAbsolutePath();
+		String dst = StringUtils.join(
+						new String[]{
+//							"/data/data/ifm9.main/databases",
+							CONS.DB.dpath_Db,
+							CONS.DB.dbName_LM},
+						File.separator);
+
+		// Log
+		String log_msg = "src=" + src
+						+ "||"
+						+ "dst=" + dst;
+
+		Log.d("[" + "DBUtils.java : "
+				+ +Thread.currentThread().getStackTrace()[2].getLineNumber()
+				+ " : "
+				+ Thread.currentThread().getStackTrace()[2].getMethodName()
+				+ "]", log_msg);
+		
+		boolean res = DBUtils.restore_Db(actv, src, dst);
+		
+		// Log
+		Log.d("DBUtils.java" + "["
+				+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+				+ "]", "res=" + res);
+		
+		if (res == true) {
+			
+			return CONS.ReturnValues.DB_RESTORE_SUCCESSFUL;
+			
+		} else {//if (res == true)
+			
+			return CONS.ReturnValues.DB_RESTORE_FAILED;
+			
+		}//if (res == true)
+		
+		
+	}//private void restore_db()
 
 }//public class DBUtils
 
