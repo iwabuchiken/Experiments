@@ -512,5 +512,180 @@ public class DBUtils extends SQLiteOpenHelper{
 
 	}//public static boolean update_data_table_name
 
+	/*********************************
+	 * @return
+	 * false => 1. Column already exists<br>
+	 * 			2. SQLException
+	 *********************************/
+	public static boolean
+	add_Column_To_Table
+	(Activity actv,
+			String dbName, String tableName,
+			String column_name, String data_type) {
+		/*********************************
+		 * 1. Column already exists?
+		 * 2. db setup
+		 * 
+		 * 3. Build sql
+		 * 4. Exec sql
+		 * 
+		 * 5. Close db
+		 *********************************/
+		/*********************************
+		 * 1. Column already exists?
+		 *********************************/
+		String[] cols = DBUtils.get_Column_List(actv, dbName, tableName);
+		
+		//debug
+		for (String col_name : cols) {
+
+			// Log
+			Log.d("DBUtils.java" + "["
+					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+					+ "]", "col: " + col_name);
+			
+		}//for (String col_name : cols)
+
+		
+		for (String col_name : cols) {
+			
+			if (col_name.equals(column_name)) {
+				
+				// debug
+				Toast.makeText(actv, "Column exists: " + column_name, Toast.LENGTH_SHORT).show();
+				
+				// Log
+				Log.d("DBUtils.java"
+						+ "["
+						+ Thread.currentThread().getStackTrace()[2]
+								.getLineNumber() + "]", "Column exists: " + column_name);
+				
+				return false;
+				
+			}
+			
+		}//for (String col_name : cols)
+		
+		// debug
+		Toast.makeText(actv, "Column doesn't exist: " + column_name, Toast.LENGTH_SHORT).show();
+		
+		/*********************************
+		 * 2. db setup
+		 *********************************/
+		DBUtils dbu = new DBUtils(actv, dbName);
+		
+		SQLiteDatabase wdb = dbu.getWritableDatabase();
+		
+		/*********************************
+		 * 3. Build sql
+		 *********************************/
+		// REF[20121001_140817] => http://stackoverflow.com/questions/8291673/how-to-add-new-column-to-android-sqlite-database
+		
+		String sql = "ALTER TABLE " + tableName + 
+					" ADD COLUMN " + column_name + 
+					" " + data_type;
+		
+		/*********************************
+		 * 4. Exec sql
+		 *********************************/
+		try {
+//			db.execSQL(sql);
+			wdb.execSQL(sql);
+			
+			// Log
+			Log.d(actv.getClass().getName() + 
+					"["
+					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+					+ "]", "Column added => " + column_name);
+
+			/*********************************
+			 * 5. Close db
+			 *********************************/
+			wdb.close();
+			
+			return true;
+			
+		} catch (SQLException e) {
+			// Log
+			Log.e(actv.getClass().getName() + 
+					"[" + Thread.currentThread().getStackTrace()[2].getLineNumber() + "]", 
+					"Exception => " + e.toString());
+			
+			/*********************************
+			 * 5. Close db
+			 *********************************/
+			wdb.close();
+
+			return false;
+		}//try
+
+		/*********************************
+		 * 5. Close db
+		 *********************************/
+
+
+		
+	}//add_Column_To_Table
+
+	public static String[]
+	get_Column_List
+	(Activity actv, String dbName, String tableName) {
+		/*********************************
+		 * 1. Set up db
+		 * 2. Cursor null?
+		 * 3. Get names
+		 * 
+		 * 4. Close db
+		 * 5. Return
+		 *********************************/
+		DBUtils dbu = new DBUtils(actv, dbName);
+		
+		SQLiteDatabase rdb = dbu.getReadableDatabase();
+
+		//=> source: http://stackoverflow.com/questions/4681744/android-get-list-of-tables : "Just had to do the same. This seems to work:"
+		String q = "SELECT * FROM " + tableName;
+		
+		/*********************************
+		 * 2. Cursor null?
+		 *********************************/
+		Cursor c = null;
+		
+		try {
+			c = rdb.rawQuery(q, null);
+			
+			// Log
+			Log.d("DBUtils.java" + "["
+					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+					+ "]", "c.getCount(): " + c.getCount());
+
+		} catch (Exception e) {
+			// Log
+			Log.d("DBUtils.java" + "["
+					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+					+ "]", "Exception => " + e.toString());
+			
+			rdb.close();
+			
+			return null;
+		}
+		
+		/*********************************
+		 * 3. Get names
+		 *********************************/
+		String[] column_names = c.getColumnNames();
+		
+		/*********************************
+		 * 4. Close db
+		 *********************************/
+		rdb.close();
+		
+		/*********************************
+		 * 5. Return
+		 *********************************/
+		return column_names;
+		
+//		return null;
+	}//get_Column_List
+
 }//public class DBUtils
 

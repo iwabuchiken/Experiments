@@ -15,12 +15,25 @@ public class Methods_LM {
 	public static void execSql(Activity actv) {
 		// TODO Auto-generated method stub
 		
-		boolean res = _Mig__20140212_101940_CreateTable(actv);
+		boolean res = _Mig__20140214_084333_AddColUploadedAt(actv);
+//		boolean res = _Mig__20140212_101940_CreateTable(actv);
 //		String sql = _Sql__20140212_101940_CreateTable(actv);
 		
 		
 		
 	}
+
+	private static boolean
+	_Mig__20140214_084333_AddColUploadedAt(Activity actv) {
+
+		
+		return DBUtils.add_Column_To_Table(
+				actv,
+				CONS.DB.dbName_LM, CONS.DB.tname_Location,
+				CONS.DB.cols_Locations_Names_skimmed[3],
+				CONS.DB.cols_Locations_Types_skimmed[3]);
+		
+	}//_Mig__20140214_084333_AddColUploadedAt(Activity actv)
 
 	private static boolean
 	_Mig__20140212_101940_CreateTable(Activity actv) {
@@ -50,7 +63,7 @@ public class Methods_LM {
 		
 		return false;
 	}
-
+	
 	private static String
 	_Sql__20140212_101940_CreateTable(Activity actv) {
 		// TODO Auto-generated method stub
