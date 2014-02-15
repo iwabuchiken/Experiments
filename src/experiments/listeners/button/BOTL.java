@@ -1,7 +1,7 @@
-package exp.listeners.button;
+package experiments.listeners.button;
 
-import exp.utils.Tags;
 import experiments.main.R;
+import experiments.utils.Tags;
 import android.app.Activity;
 import android.content.Context;
 import android.graphics.Color;
@@ -41,6 +41,15 @@ public class BOTL implements OnTouchListener {
 				
 				break;
 				
+			case PostData:
+				
+				v.setBackgroundColor(Color.GRAY);
+				
+//				v.setBackgroundColor(
+//						actv.getResources().getColor(R.color.gray1));
+				
+				break;
+				
 			case SaveData:
 				
 //				v.setBackgroundColor(actv.getResources().getColor(R.color.darkgreen));
@@ -77,7 +86,14 @@ public class BOTL implements OnTouchListener {
 				v.setBackgroundColor(Color.BLUE);
 				
 				break;
+
+			case PostData:
 				
+				v.setBackgroundColor(
+						actv.getResources().getColor(R.color.brown));
+				
+				break;
+
 			case SaveData:
 				
 				v.setBackgroundColor(actv.getResources().getColor(R.color.darkgreen));

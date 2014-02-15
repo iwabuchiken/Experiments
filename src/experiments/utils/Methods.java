@@ -1,4 +1,4 @@
-package exp.utils;
+package experiments.utils;
 
 import java.io.BufferedWriter;
 import java.io.File;
@@ -63,7 +63,7 @@ import android.os.Looper;
 import org.apache.commons.lang.StringUtils;
 import org.apache.commons.net.ftp.FTPClient;
 
-import exp.listeners.dialog.DialogListener;
+import experiments.listeners.dialog.DialogListener;
 import experiments.main.R;
 
 // REF=> http://commons.apache.org/net/download_net.cgi

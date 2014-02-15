@@ -1,6 +1,6 @@
 package experiments.main;
 
-import exp.utils.CONS;
+import experiments.utils.CONS;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.res.Resources;

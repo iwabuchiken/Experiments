@@ -1,12 +1,12 @@
-package exp.adapters;
+package experiments.adapters;
 
 import java.util.List;
 
-import exp.listeners.List_OCL;
-import exp.listeners.List_OTL;
-import exp.listeners.dialog.DOI_CL;
-import exp.utils.Tags;
+import experiments.listeners.List_OCL;
+import experiments.listeners.List_OTL;
+import experiments.listeners.dialog.DOI_CL;
 import experiments.main.R;
+import experiments.utils.Tags;
 
 import android.app.Activity;
 import android.app.Dialog;

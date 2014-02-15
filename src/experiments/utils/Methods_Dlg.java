@@ -1,15 +1,15 @@
-package exp.utils;
+package experiments.utils;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import exp.adapters.DBAdminAdapter;
-import exp.listeners.dialog.DB_OCL;
-import exp.listeners.dialog.DB_OTL;
-import exp.listeners.dialog.DOI_CL;
-import exp.utils.Tags.DialogTags;
+import experiments.adapters.DBAdminAdapter;
+import experiments.listeners.dialog.DB_OCL;
+import experiments.listeners.dialog.DB_OTL;
+import experiments.listeners.dialog.DOI_CL;
 import experiments.main.R;
+import experiments.utils.Tags.DialogTags;
 import android.app.Activity;
 import android.app.Dialog;
 import android.widget.ArrayAdapter;

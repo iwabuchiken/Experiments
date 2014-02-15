@@ -1,8 +1,8 @@
-package exp.listeners.dialog;
+package experiments.listeners.dialog;
 
-import exp.utils.CONS;
-import exp.utils.Tags;
 import experiments.main.R;
+import experiments.utils.CONS;
+import experiments.utils.Tags;
 import android.app.Activity;
 import android.app.Dialog;
 import android.os.Vibrator;

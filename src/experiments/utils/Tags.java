@@ -1,4 +1,4 @@
-package exp.utils;
+package experiments.utils;
 
 public class Tags {
 
@@ -7,6 +7,8 @@ public class Tags {
 		GetData,
 		
 		SaveData,
+		
+		PostData,
 		
 	}
 	

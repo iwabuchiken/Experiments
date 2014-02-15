@@ -1,10 +1,10 @@
 package experiments.main;
 
-import exp.listeners.button.BOCL;
-import exp.listeners.button.BOTL;
-import exp.utils.CONS;
-import exp.utils.Methods_Dlg;
-import exp.utils.Tags;
+import experiments.listeners.button.BOCL;
+import experiments.listeners.button.BOTL;
+import experiments.utils.CONS;
+import experiments.utils.Methods_Dlg;
+import experiments.utils.Tags;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
@@ -165,7 +165,17 @@ public class LocationActv extends Activity implements LocationListener {
 		bt_SaveData.setOnTouchListener(new BOTL(this));
 		bt_SaveData.setOnClickListener(new BOCL(this));
 		
-	}
+		/*********************************
+		 * Button: Post data
+		 *********************************/
+		Button bt_PostData = (Button) findViewById(R.id.actv_loc_bt_post_data);
+		
+		bt_PostData.setTag(Tags.ButtonTags.PostData);
+		
+		bt_PostData.setOnTouchListener(new BOTL(this));
+		bt_PostData.setOnClickListener(new BOCL(this));
+		
+	}//private void _Setup_SetListeners()
 
 	private void
 	_Setup_ShowProviderName(String provider) {

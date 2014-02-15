@@ -1,12 +1,13 @@
-package exp.listeners.button;
+package experiments.listeners.button;
 
 import java.text.NumberFormat;
 
-import exp.utils.CONS;
-import exp.utils.Methods_LM;
-import exp.utils.Tags;
 import experiments.main.LocationActv;
 import experiments.main.R;
+import experiments.tasks.Task_PostLoc;
+import experiments.utils.CONS;
+import experiments.utils.Methods_LM;
+import experiments.utils.Tags;
 import android.app.Activity;
 import android.os.Vibrator;
 import android.util.Log;
@@ -58,12 +59,30 @@ public class BOCL implements OnClickListener {
 			
 			break;
 			
+		case PostData:
+			
+			_case_PostData();
+			
+			break;
+			
 		default:
 			break;
 			
 		}//switch (tag)
 		
 	}//public void onClick(View v)
+
+	private void _case_PostData() {
+		// TODO Auto-generated method stub
+		Task_PostLoc task_ = new Task_PostLoc(actv);
+		
+		// debug
+		Toast.makeText(actv, "Starting a task...", Toast.LENGTH_LONG)
+				.show();
+		
+		task_.execute(CONS.TaskData.TaskItems.PostLoc.toString());
+
+	}
 
 	private void _case_SaveData() {
 		// TODO Auto-generated method stub

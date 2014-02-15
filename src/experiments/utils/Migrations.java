@@ -1,4 +1,4 @@
-package exp.utils;
+package experiments.utils;
 
 public class Migrations {
 

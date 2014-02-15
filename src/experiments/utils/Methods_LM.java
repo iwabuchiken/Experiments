@@ -1,4 +1,4 @@
-package exp.utils;
+package experiments.utils;
 
 import java.util.Arrays;
 
@@ -227,5 +227,12 @@ public class Methods_LM {
 		return res;
 		
 	}//save_LocData(Activity actv)
+
+	public static int post_Loc(Activity actv) {
+		// TODO Auto-generated method stub
+		
+		return CONS.ReturnValues.NOP;
+		
+	}
 
 }//public class Methods_LM

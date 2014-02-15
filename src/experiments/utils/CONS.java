@@ -1,4 +1,4 @@
-package exp.utils;
+package experiments.utils;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -169,4 +169,88 @@ public class CONS {
 		
 	}//public static class ReturnValues
 
-}
+	public static class HTTPData {
+		
+		public static String UrlPostSI
+//				= "http://cosmos-jqm-1.herokuapp.com/items/new";
+					= "http://cosmos-jqm-1.herokuapp.com/sl/items/new";
+		
+		// http://cosmos-jqm-1.herokuapp.com/items/new
+		
+		public static String[] siKeys = {
+			
+					"lm_mobile_id",
+					"lm_mobile_created_at",
+					"lm_mobile_modified_at",
+					
+					"lm_longitude",
+					"lm_latitude",
+					
+					"lm_memo"
+					
+		};
+		
+		public static String[] Keys_PurHistory = {
+			
+			"sl_BoughtItemIds",
+			
+			"sl_PurHistory_Time",
+			
+			"sl_PurHistory_Store"
+			
+		};
+		
+		/*********************************
+		 * Posting data => Types
+		 *********************************/
+		public static enum registerChoice {
+			single_item,
+			
+			pur_history,
+		};
+		
+		/*********************************
+		 * Passwords
+		 *********************************/
+		public static final String PASSWD_LM_Key		= "passwd_lm";
+		
+		public static final String PASSWD_LM_NewLoc		= "sl_NewItem";
+		
+		/*********************************
+		 * Others
+		 *********************************/
+		public static final String PostItems_SeparatorString
+					= " ";
+		
+	}//public static class HTTPData
+
+	public static class HTTPResponse {
+		/*********************************
+		 * 2xx
+		 *********************************/
+		public static final int ServiceReady	= 220;
+		
+		/*********************************
+		 * 4xx
+		 *********************************/
+		public static final int BadRequest	= 400;
+		
+		public static final int NotFound		= 404;
+		
+		/*********************************
+		 * 5xx
+		 *********************************/
+		public static final int ServerError	= 500;
+	}
+
+	public static class TaskData {
+		
+		public static enum TaskItems {
+			
+			PostLoc,
+			
+		}
+		
+	}//public static class TaskData
+	
+}//public class CONS
