@@ -5,6 +5,7 @@ import experiments.utils.CONS;
 import experiments.utils.DBUtils;
 import experiments.utils.Methods;
 import experiments.utils.Methods_LM;
+import experiments.utils.Migrations;
 import experiments.utils.Tags;
 import android.app.Activity;
 import android.app.Dialog;
@@ -77,7 +78,8 @@ public class DOI_CL implements OnItemClickListener {
 		if (item.equals(
 				actv.getString(R.string.menu_LocActv_Exec_Sql))) {
 			
-			Methods_LM.execSql(actv);
+			Migrations.execSql(actv);
+//			Methods_LM.execSql(actv);
 			
 		} else if (item.equals(
 				actv.getString(R.string.menu_LocActv_Backup_Db))){//if (item.equals(R.string.menu_LocActv_Exec_Sql))

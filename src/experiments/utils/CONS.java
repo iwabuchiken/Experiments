@@ -64,13 +64,15 @@ public class CONS {
 		};
 		
 		public static final String[] cols_Locations_Types	= {
-			"TEXT",
-			"INTEGER",
-			"INTEGER",
+			"INTEGER",			// 0
+			"TEXT",			// 1
+			"TEXT",			// 2
 			
-			"INTEGER",
-			"INTEGER",
-			"TEXT",
+			"INTEGER",		// 3
+			"INTEGER",		// 4
+			"TEXT",			// 5
+			
+			"TEXT",			// 6
 		};
 		
 		public static final String[] cols_Locations_Names_skimmed	= {
@@ -85,11 +87,11 @@ public class CONS {
 		
 		public static final String[] cols_Locations_Types_skimmed	= {
 			
-				"INTEGER",				// 0
-				"INTEGER",				// 1
-				"TEXT",					// 2
+				"TEXT",				// 0
+				"TEXT",				// 1
+				"TEXT",				// 2
 				
-				"INTEGER",				// 3
+				"TEXT",				// 3
 		};
 		
 		/*********************************
@@ -107,6 +109,15 @@ public class CONS {
 		public static String dpath_Db_Backup = 
 							dpath_ExternalStorage + "/LM_backup";
 
+		/*********************************
+		 * SQL
+		 *********************************/
+		public static String SQLToken_ID = 
+							android.provider.BaseColumns._ID
+							+ " INTEGER PRIMARY KEY AUTOINCREMENT, ";
+		
+		public static String SQLToken_TimeStamps = 
+							"created_at TEXT, modified_at TEXT, ";
 		
 	}//public static class DB
 
@@ -171,13 +182,13 @@ public class CONS {
 
 	public static class HTTPData {
 		
-		public static String UrlPostSI
+		public static String UrlPostLM
 //				= "http://cosmos-jqm-1.herokuapp.com/items/new";
 					= "http://cosmos-jqm-1.herokuapp.com/sl/items/new";
 		
 		// http://cosmos-jqm-1.herokuapp.com/items/new
 		
-		public static String[] siKeys = {
+		public static String[] lmKeys = {
 			
 					"lm_mobile_id",
 					"lm_mobile_created_at",
@@ -188,16 +199,6 @@ public class CONS {
 					
 					"lm_memo"
 					
-		};
-		
-		public static String[] Keys_PurHistory = {
-			
-			"sl_BoughtItemIds",
-			
-			"sl_PurHistory_Time",
-			
-			"sl_PurHistory_Store"
-			
 		};
 		
 		/*********************************
@@ -214,7 +215,7 @@ public class CONS {
 		 *********************************/
 		public static final String PASSWD_LM_Key		= "passwd_lm";
 		
-		public static final String PASSWD_LM_NewLoc		= "sl_NewItem";
+		public static final String PASSWD_LM_NewLoc		= "lm_NewLoc";
 		
 		/*********************************
 		 * Others

@@ -119,11 +119,13 @@ public class DBUtils extends SQLiteOpenHelper{
 		StringBuilder sb = new StringBuilder();
 		
 		sb.append("CREATE TABLE " + tableName + " (");
-		sb.append(android.provider.BaseColumns._ID +
-							" INTEGER PRIMARY KEY AUTOINCREMENT, ");
+		sb.append(CONS.DB.SQLToken_ID);
+//		sb.append(android.provider.BaseColumns._ID +
+//				" INTEGER PRIMARY KEY AUTOINCREMENT, ");
 		
 		// created_at, modified_at
-		sb.append("created_at INTEGER, modified_at INTEGER, ");
+		sb.append(CONS.DB.SQLToken_TimeStamps);
+//		sb.append("created_at INTEGER, modified_at INTEGER, ");
 		
 		int i = 0;
 		for (i = 0; i < columns.length - 1; i++) {
