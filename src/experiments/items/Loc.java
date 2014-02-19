@@ -5,7 +5,7 @@ public class Loc {
 
 	public Loc(Builder builder) {
 		super();
-		this.id				= id;
+		this.id				= builder.id;
 		this.created_at		= builder.created_at;
 		this.modified_at	= builder.modified_at;
 		this.longitude		= builder.longitude;

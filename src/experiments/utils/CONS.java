@@ -149,6 +149,8 @@ public class CONS {
 		public static final int ClientError		= -17;
 		
 		public static final int ParamVariableNull	= -18;
+		
+		public static final int BuildLocsFailed		= -19;
 
 		/*********************************
 		 * DB-related: -20 ~
@@ -253,5 +255,17 @@ public class CONS {
 		}
 		
 	}//public static class TaskData
+
+	public static class Others {
+		
+		public static enum TimeLabelTypes {
+			
+			Readable,
+			Serial,
+			
+		}
+
+		public static String SpaceChar		= " ";
+	}//public static class Others
 	
 }//public class CONS

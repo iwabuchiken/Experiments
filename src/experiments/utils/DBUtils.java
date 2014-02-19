@@ -12,6 +12,8 @@ import java.util.List;
 
 import org.apache.commons.lang.StringUtils;
 
+import experiments.items.Loc;
+
 import android.app.Activity;
 import android.content.ContentValues;
 import android.content.Context;
@@ -860,6 +862,118 @@ public class DBUtils extends SQLiteOpenHelper{
 		
 		
 	}//private void restore_db()
+
+	/*********************************
+	 * updateData_LM_Uploaded(Loc loc)
+	 * 
+	 * @return true => update successful<br>
+	 * 	false =>
+	 * 	<pre>1. Transaction unsuccessful
+	 * 2. Exception</pre>
+	 *********************************/
+	public boolean updateData_LM_Uploaded(Loc loc) {
+		// TODO Auto-generated method stub
+		/***************************************
+		 * Build value set
+		 ***************************************/
+		ContentValues cv = new ContentValues();
+
+//		android.provider.BaseColumns._ID,	// 0
+//		"created_at",						// 1
+//		"modified_at",						// 2
+//
+//		"longitude",						// 3
+//		"latitude",							// 4
+//		"memo",								// 5
+//		
+//		"uploaded_at"						// 6
+		
+		cv.put(CONS.DB.cols_Locations_Names[0], loc.getId());
+		cv.put(CONS.DB.cols_Locations_Names[1], loc.getCreated_at());
+		cv.put(CONS.DB.cols_Locations_Names[2], loc.getModified_at());
+		
+		cv.put(CONS.DB.cols_Locations_Names[3], loc.getLongitude());
+		cv.put(CONS.DB.cols_Locations_Names[4], loc.getLatitude());
+		cv.put(CONS.DB.cols_Locations_Names[5], loc.getMemo());
+		
+		cv.put(CONS.DB.cols_Locations_Names[6],
+				Methods.getTimeLabel(Methods.getMillSeconds_now()));
+		
+		/***************************************
+		 * Setup db
+		 ***************************************/
+		SQLiteDatabase wdb = this.getWritableDatabase();
+		
+		try {
+			//
+			wdb.beginTransaction();
+			
+			// Insert data
+//			long res = wdb.insert(CONS.tableName, null, cv);
+			long res = wdb.update(
+					CONS.DB.tname_Location,
+					cv,
+					android.provider.BaseColumns._ID + " = ?",
+					new String[]{String.valueOf(loc.getId())});
+			
+			// Log
+			String log_msg = "loc.getId() => " + String.valueOf(loc.getId());
+
+			Log.d("["
+					+ "DBUtils.java : "
+					+ +Thread.currentThread().getStackTrace()[2]
+							.getLineNumber() + " : "
+					+ Thread.currentThread().getStackTrace()[2].getMethodName()
+					+ "]", log_msg);
+			
+			if (res < 1) {
+				
+				// Log
+				Log.d("DBUtils.java"
+						+ "["
+						+ Thread.currentThread().getStackTrace()[2]
+							.getLineNumber()
+							+ ":"
+							+ Thread.currentThread().getStackTrace()[2]
+									.getMethodName() + "]",
+						"Update => Returned less than 1");
+				
+				wdb.close();
+				
+				return false;
+				
+			}	
+			
+			// Set as successful
+			wdb.setTransactionSuccessful();
+			
+			// End transaction
+			wdb.endTransaction();
+			
+			// Log
+			Log.d("DBUtils.java" + "["
+					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+					+ ":"
+					+ Thread.currentThread().getStackTrace()[2].getMethodName()
+					+ "]", "Update => Successful");
+			
+			wdb.close();
+			
+			return true;
+			
+		} catch (Exception e) {
+			// Log
+			Log.e("DBUtils.java" + "["
+					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+					+ "]", "Exception => " + e.toString());
+			
+			wdb.close();
+			
+			return false;
+			
+		}//try
+		
+	}//public boolean updateData_SI_all_V2(ShoppingItem si)
 
 }//public class DBUtils
 

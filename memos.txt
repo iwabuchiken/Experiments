@@ -69,6 +69,8 @@ pushd C:\WORKS\WORKSPACES_ANDROID\GIMP\Icons
 [adb]
 adb uninstall ic.main
 
+[sqlite]
+pragma table_info(locations);
 
 ==================================
 antenna1.png	http://www.flaticon.com/categories/technology

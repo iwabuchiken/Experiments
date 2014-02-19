@@ -253,6 +253,9 @@ public class Methods {
 	
 	}//backupDb
 
+	/*********************************
+	 * @return "yyyy/MM/dd HH:mm:ss"
+	 *********************************/
 	public static String getTimeLabel(long millSec) {
 		
 		 SimpleDateFormat sdf1 = new SimpleDateFormat("yyyyMMdd_HHmmss");
@@ -260,6 +263,40 @@ public class Methods {
 		return sdf1.format(new Date(millSec));
 		
 	}//public static String get_TimeLabel(long millSec)
+	
+	/*********************************
+	 * @return "yyyy/MM/dd HH:mm:ss"
+	 *********************************/
+	public static String
+	getTimeLabel(long millSec, CONS.Others.TimeLabelTypes type) {
+		
+		SimpleDateFormat sdf1 = null;
+		
+		switch(type) {
+		
+		case Readable:
+			
+			sdf1 = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+			
+			break;
+			
+		case Serial:
+			
+			sdf1 = new SimpleDateFormat("yyyyMMdd_HHmmss");
+			
+			break;
+			
+		default:
+			
+			sdf1 = new SimpleDateFormat("yyyyMMdd_HHmmss");
+			
+			break;
+			
+		}//switch(type)
+		
+		return sdf1.format(new Date(millSec));
+		
+	}//getTimeLabel(long millSec, CONS.Others.TimeLabelTypes type)
 
 	public static long getMillSeconds_now() {
 		

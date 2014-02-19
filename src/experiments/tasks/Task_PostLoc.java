@@ -3,7 +3,9 @@ package experiments.tasks;
 import experiments.utils.CONS;
 import experiments.utils.Methods_LM;
 import android.app.Activity;
+import android.content.Context;
 import android.os.AsyncTask;
+import android.os.Vibrator;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -11,11 +13,14 @@ public class Task_PostLoc extends AsyncTask<String, Integer, Integer> {
 
 	Activity actv;
 	
-	
+	Vibrator vib;
 	
 	public Task_PostLoc(Activity actv) {
 		super();
 		this.actv = actv;
+		
+		vib = (Vibrator) actv.getSystemService(Context.VIBRATOR_SERVICE);
+		
 	}
 
 	@Override
@@ -60,6 +65,19 @@ public class Task_PostLoc extends AsyncTask<String, Integer, Integer> {
 	protected void onPostExecute(Integer result) {
 		// TODO Auto-generated method stub
 		super.onPostExecute(result);
+		
+		vib.vibrate(CONS.Admin.VIB_LENGTH);
+		
+		// Log
+		String log_msg = "Post loc => Done (Result="
+				+ String.valueOf(result.intValue())
+				+ ")";
+		
+		Log.d("[" + "Task_PostLoc.java : "
+				+ +Thread.currentThread().getStackTrace()[2].getLineNumber()
+				+ " : "
+				+ Thread.currentThread().getStackTrace()[2].getMethodName()
+				+ "]", log_msg);
 		
 		// debug
 		String toa_msg = "Post loc => Done (Result="

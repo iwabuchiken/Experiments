@@ -117,13 +117,42 @@ public class Methods_LM {
 		
 	}//save_LocData(Activity actv)
 
+	/*********************************
+	 * Post locations whose "uploaded_at" value is null<br>
+	 * @return Errors<br>
+	 * 1. CONS.ReturnValues.BuildHttpPostFailed	=> -13<br>
+	 * 2. CONS.ReturnValues.HttpPostFailed	=> -14<br>
+	 * 3. CONS.ReturnValues.ServerError	=> -16<br>
+	 * 4. CONS.ReturnValues.ClientError	=> -17<br>
+	 * 
+	 * Success<br>
+	 * 1. Number of locs posted + MAGINITUDE_ONE
+	 *********************************/
 	public static int post_Loc(Activity actv) {
 		// TODO Auto-generated method stub
 		
 		List<Loc> locs = Methods_LM.get_Locs(actv);
 		
-		Loc loc = locs.get(0);
+		int counter = 0;
+		
+//		Loc loc = locs.get(3);
 
+		if (locs == null) {
+			
+			// Log
+			String log_msg = "locs => null";
+
+			Log.d("["
+					+ "Methods_LM.java : "
+					+ +Thread.currentThread().getStackTrace()[2]
+							.getLineNumber() + " : "
+					+ Thread.currentThread().getStackTrace()[2].getMethodName()
+					+ "]", log_msg);
+			
+			return CONS.ReturnValues.BuildLocsFailed;
+			
+		}
+		
 		// Log
 		String log_msg = "locs => " + locs.size();
 
@@ -133,6 +162,41 @@ public class Methods_LM {
 				+ Thread.currentThread().getStackTrace()[2].getMethodName()
 				+ "]", log_msg);
 		
+		/*********************************
+		 * Post locs
+		 *********************************/
+		for (Loc loc : locs) {
+			
+			int result = _post_Loc_Each(actv, loc);
+			
+			if (result == CONS.ReturnValues.OK) {
+				
+				counter += 1;
+				
+			}
+			
+		}
+		
+//		int result = CONS.ReturnValues.NOP;
+		
+		return counter + CONS.ReturnValues.MAGINITUDE_ONE;
+		
+	}//public static int post_Loc(Activity actv)
+
+	/*********************************
+	 * @return Errors<br>
+	 * 1. CONS.ReturnValues.BuildHttpPostFailed	=> -13<br>
+	 * 2. CONS.ReturnValues.HttpPostFailed	=> -14<br>
+	 * 3. CONS.ReturnValues.ServerError	=> -16<br>
+	 * 4. CONS.ReturnValues.ClientError	=> -17<br>
+	 * 5. CONS.ReturnValues.PostedButNotUpdated	=> -15<br>
+	 * <br>
+	 * Success<br>
+	 * 1. CONS.ReturnValues.OK
+	 *********************************/
+	private static int
+	_post_Loc_Each(Activity actv, Loc loc) {
+		// TODO Auto-generated method stub
 		/*********************************
 		 * JSONBody
 		 *********************************/
@@ -193,21 +257,24 @@ public class Methods_LM {
 		}
 
 		return CONS.ReturnValues.OK;
-//		return CONS.ReturnValues.NOP;
-		
-	}//public static int post_Loc(Activity actv)
+
+	}//_post_Loc_Each(Activity actv, Loc loc)
 
 	public static boolean
 	update_LM(Activity actv, Loc loc) {
 		
-//		DBUtils dbu = new DBUtils(actv);
-//		
-//		return dbu.updateData_SI_all_V2(loc);
+		DBUtils dbu = new DBUtils(actv);
 		
-		return false;
+		return dbu.updateData_LM_Uploaded(loc);
 		
 	}//update_SI(Activity actv, ShoppingItem si)
 
+	/*********************************
+	 * @return Errors<br>
+	 * 1. CONS.ReturnValues.HttpPostFailed	=> -14<br>
+	 * 2. CONS.ReturnValues.ServerError	=> -16<br>
+	 * 3. CONS.ReturnValues.ClientError	=> -17
+	 *********************************/
 	private static int
 	_doInBackground__4_PostData(HttpPost httpPost) {
 		// TODO Auto-generated method stub
@@ -271,6 +338,11 @@ public class Methods_LM {
 		
 	}//_doInBackground__4_PostData(HttpPost httpPost)
 
+	/*********************************
+	 * @return Errors<br>
+	 * 1. CONS.ReturnValues.ServerError	=> -16<br>
+	 * 2. CONS.ReturnValues.ClientError	=> -17
+	 *********************************/
 	private static int 
 	_doInBackground__3_CheckHTTPCodes(HttpResponse hr) {
 		// TODO Auto-generated method stub
@@ -476,6 +548,12 @@ public class Methods_LM {
 	}//_post_Loc_Build_JsonBody_LM
 	
 
+	/*********************************
+	 * Collect locations where "uploaded_at" is null<br>
+	 * @return Errors => null<br>
+	 * 1. Exception<br>
+	 * 2. No entry<br>
+	 *********************************/
 	private static List<Loc>
 	get_Locs(Activity actv) {
 		// TODO Auto-generated method stub
@@ -489,14 +567,47 @@ public class Methods_LM {
 		
 		try {
 			
-			c = rdb.query(
-					CONS.DB.tname_Location, 
-					CONS.DB.cols_Locations_Names,
-//					CONS.columns_with_index2,
-					null, null, null, null, null);
+			String sql = StringUtils.join(
+						new String[]{
+							"SELECT * FROM",
+							CONS.DB.tname_Location,
+							"WHERE",
+							CONS.DB.cols_Locations_Names[6],
+							"is null"
+						},
+						CONS.Others.SpaceChar);
 			
 			// Log
-			String log_msg = "query => done";
+			String log_msg = "sql=" + sql;
+
+			Log.d("["
+					+ "Methods_LM.java : "
+					+ +Thread.currentThread().getStackTrace()[2]
+							.getLineNumber() + " : "
+					+ Thread.currentThread().getStackTrace()[2].getMethodName()
+					+ "]", log_msg);
+			
+			c = rdb.rawQuery(sql, null);
+			
+//			c = rdb.query(
+//					CONS.DB.tname_Location, 
+//					CONS.DB.cols_Locations_Names,
+////					CONS.columns_with_index2,
+//					
+//					CONS.DB.cols_Locations_Names[6] + " is ?",
+//					new String[]{""},
+////					new String[]{null},
+////					new String[]{"null"},
+//					
+////					CONS.DB.cols_Locations_Names[6] + " = ?",
+////					new String[]{" "},
+////					new String[]{"null"},
+////					new String[]{"0"},
+////					null, null,
+//					null, null, null);
+			
+			// Log
+			log_msg = "query => done";
 
 			Log.d("["
 					+ "Methods_LM.java : "
@@ -564,6 +675,7 @@ public class Methods_LM {
 //			0									1		2		3		4			5
 //			{android.provider.BaseColumns._ID, "name", "yomi", "genre", "store", "price"}
 			Loc loc = new Loc.Builder()
+//						.setId			(c.getInt(0))
 						.setId			(c.getLong(0))
 						.setCreated_at	(c.getString(1))
 						.setModified_at	(c.getString(2))
