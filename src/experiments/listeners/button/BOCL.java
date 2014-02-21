@@ -4,11 +4,14 @@ import java.text.NumberFormat;
 
 import experiments.main.LocationActv;
 import experiments.main.R;
+import experiments.main.Settings_LM;
+import experiments.main.ShowMapActv;
 import experiments.tasks.Task_PostLoc;
 import experiments.utils.CONS;
 import experiments.utils.Methods_LM;
 import experiments.utils.Tags;
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Vibrator;
 import android.util.Log;
 import android.view.View;
@@ -65,12 +68,32 @@ public class BOCL implements OnClickListener {
 			
 			break;
 			
+		case ShowMap:
+			
+			_case_ShowMap();
+			
+			break;
+			
 		default:
 			break;
 			
 		}//switch (tag)
 		
 	}//public void onClick(View v)
+
+	private void _case_ShowMap() {
+		// TODO Auto-generated method stub
+		
+		Intent i = new Intent();
+		
+		i.setClass(actv, ShowMapActv.class);
+		
+		i.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+		
+		actv.startActivity(i);
+		
+		
+	}
 
 	private void _case_PostData() {
 		// TODO Auto-generated method stub

@@ -175,6 +175,16 @@ public class LocationActv extends Activity implements LocationListener {
 		bt_PostData.setOnTouchListener(new BOTL(this));
 		bt_PostData.setOnClickListener(new BOCL(this));
 		
+		/*********************************
+		 * Button: Show map
+		 *********************************/
+		Button bt_ShowMap = (Button) findViewById(R.id.actv_loc_bt_show_map);
+		
+		bt_ShowMap.setTag(Tags.ButtonTags.ShowMap);
+		
+		bt_ShowMap.setOnTouchListener(new BOTL(this));
+		bt_ShowMap.setOnClickListener(new BOCL(this));
+		
 	}//private void _Setup_SetListeners()
 
 	private void

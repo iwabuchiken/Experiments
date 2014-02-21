@@ -36,12 +36,8 @@ public class BOTL implements OnTouchListener {
 			switch (tag) {
 			
 			case GetData:
-				
-				v.setBackgroundColor(Color.GRAY);
-				
-				break;
-				
 			case PostData:
+			case ShowMap:
 				
 				v.setBackgroundColor(Color.GRAY);
 				
@@ -98,6 +94,13 @@ public class BOTL implements OnTouchListener {
 				
 				v.setBackgroundColor(actv.getResources().getColor(R.color.darkgreen));
 //				v.setBackgroundColor(Color.GREEN);
+				
+				break;
+				
+			case ShowMap:
+				
+				v.setBackgroundColor(
+						actv.getResources().getColor(R.color.gold2));
 				
 				break;
 				

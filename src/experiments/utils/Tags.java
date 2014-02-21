@@ -10,6 +10,8 @@ public class Tags {
 		
 		PostData,
 		
+		ShowMap,
+		
 	}
 	
 	public static enum ListTags {
