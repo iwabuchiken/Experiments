@@ -1,30 +1,55 @@
 package experiments.main;
 
+import com.google.android.gms.maps.CameraUpdate;
+import com.google.android.gms.maps.CameraUpdateFactory;
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.LatLng;
+
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 
 public class ShowMapActv extends FragmentActivity {
 //	public class ShowMapActv extends Activity {
 
 	public static boolean locationObtained = false; 
+
+//	private GoogleMap googleMap;
+	private GoogleMap gm;
+	private SupportMapFragment smf;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
-		
+
 		setContentView(R.layout.actv_show_map);
-        
-//        this.setTitle(this.getClass().getName());
-        
-//        do_debugs();
-        
+
+		Fragment fr = this.getSupportFragmentManager().findFragmentById(
+				R.id.map);
+
+		smf = (SupportMapFragment) fr;
+
+		gm = smf.getMap();
+
+		//REF http://stackoverflow.com/questions/14074129/google-maps-v2-set-both-my-location-and-zoom-in answered Dec 28 '12 at 19:51
+		CameraUpdate center = CameraUpdateFactory.newLatLng(new LatLng(
+				40.76793169992044, -73.98180484771729));
+		CameraUpdate zoom = CameraUpdateFactory.zoomTo(15);
+
+		gm.moveCamera(center);
+		gm.animateCamera(zoom);
+
+		// this.setTitle(this.getClass().getName());
+
+		// do_debugs();
+
 	}
 
-	
 	private void do_debugs() {
 		// TODO Auto-generated method stub
 	}
@@ -132,7 +157,8 @@ public class ShowMapActv extends FragmentActivity {
 				+ "]", log_msg);
 		
 		super.onResume();
-	}
+		
+	}//protected void onResume()
 
 
 	@Override
