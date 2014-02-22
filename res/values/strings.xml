@@ -45,5 +45,8 @@
 	    <string name="menu_LocActv_Upload_Db">Upload db</string>
 	    <string name="menu_LocActv_Exec_Sql">Exec sql</string>
 	    
-	
+	<!-- Intent names -->
+		<string name="intent_showmap_longitude">showmap_Longitude</string>
+		<string name="intent_showmap_latitude">showmap_Latitude</string>
+		
 </resources>

@@ -4,6 +4,7 @@ import experiments.listeners.button.BOCL;
 import experiments.listeners.button.BOTL;
 import experiments.utils.CONS;
 import experiments.utils.Methods_Dlg;
+import experiments.utils.Methods_LM;
 import experiments.utils.Tags;
 import android.app.Activity;
 import android.content.Context;
@@ -25,6 +26,8 @@ import android.widget.Toast;
 public class LocationActv extends Activity implements LocationListener {
 
 	public static boolean locationObtained = false; 
+
+	private LocationManager mLocationManager;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -35,7 +38,34 @@ public class LocationActv extends Activity implements LocationListener {
         
         this.setTitle(this.getClass().getName());
         
-        LocationManager mLocationManager =
+        _Setup_LocationManager();
+        
+//        LocationManager mLocationManager =
+//        		(LocationManager) getSystemService(Context.LOCATION_SERVICE);
+//        
+//        // Setup: Criteria
+//        Criteria criteria = _setup_SetCriteria();
+//        
+//        String provider = mLocationManager.getBestProvider(criteria, true);
+//        
+//        // Register: manager
+//        mLocationManager.requestLocationUpdates(provider, 0, 0, this);
+//        
+//        // Show the obtained provider name
+//        _Setup_ShowProviderName(provider);
+        
+        // Set listeners
+        _Setup_SetListeners();
+        
+        do_debugs();
+        
+	}
+
+	
+	private void _Setup_LocationManager() {
+		// TODO Auto-generated method stub
+		mLocationManager =
+//				LocationManager mLocationManager =
         		(LocationManager) getSystemService(Context.LOCATION_SERVICE);
         
         // Setup: Criteria
@@ -49,14 +79,9 @@ public class LocationActv extends Activity implements LocationListener {
         // Show the obtained provider name
         _Setup_ShowProviderName(provider);
         
-        // Set listeners
-        _Setup_SetListeners();
-        
-        do_debugs();
-        
-	}
+	}//private void _Setup_LocationManager()
 
-	
+
 	private void do_debugs() {
 		// TODO Auto-generated method stub
 		_Debug_D_3_v_3_0__Preference();
@@ -244,7 +269,19 @@ public class LocationActv extends Activity implements LocationListener {
 		
 		locationObtained = false;
 		
-	}
+		//REF http://stackoverflow.com/questions/4197478/how-to-stop-location-manager asked Nov 16 '10 at 18:14
+		this.mLocationManager.removeUpdates(this);
+		
+		// Log
+		log_msg = "LocationManager => Updates removed";
+
+		Log.d("[" + "LocationActv.java : "
+				+ +Thread.currentThread().getStackTrace()[2].getLineNumber()
+				+ " : "
+				+ Thread.currentThread().getStackTrace()[2].getMethodName()
+				+ "]", log_msg);
+		
+	}//protected void onDestroy()
 
 	@Override
 	public void onBackPressed() {

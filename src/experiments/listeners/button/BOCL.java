@@ -82,18 +82,62 @@ public class BOCL implements OnClickListener {
 	}//public void onClick(View v)
 
 	private void _case_ShowMap() {
-		// TODO Auto-generated method stub
+		// Data obtained?
+		// If yes, get the values from the views
+		// Set the values into intent data
+		// Start an intent
+		
+		// Data obtained?
+		if (CONS.LocData.LONGITUDE == null) {
+			
+			// Log
+			String log_msg = "CONS.LocData.LONGITUDE => null";
+
+			Log.d("["
+					+ "BOCL.java : "
+					+ +Thread.currentThread().getStackTrace()[2]
+							.getLineNumber() + " : "
+					+ Thread.currentThread().getStackTrace()[2].getMethodName()
+					+ "]", log_msg);
+			
+			// debug
+			String toa_msg = "Data is not obtained, yet";
+			Toast.makeText(actv, toa_msg, Toast.LENGTH_SHORT).show();
+			
+			return;
+			
+		}//if (CONS.LocData.LONGITUDE == null)
 		
 		Intent i = new Intent();
 		
 		i.setClass(actv, ShowMapActv.class);
 		
+		i.putExtra(CONS.IntentData.iName_Showmap_Longitude,
+					CONS.LocData.LONGITUDE);
+		
+		i.putExtra(CONS.IntentData.iName_Showmap_Latitude,
+					CONS.LocData.LATITUDE);
+		
+		// Log
+		String log_msg = "CONS.IntentData.iName_Showmap_Latitude="
+					+ String.valueOf(i.getDoubleExtra(
+						CONS.IntentData.iName_Showmap_Latitude,
+						CONS.IntentData.Showmap_DefaultValue))
+					+ "/"
+					+ "CONS.LocData.LONGITUDE="
+					+ String.valueOf(CONS.LocData.LONGITUDE);
+
+		Log.d("[" + "BOCL.java : "
+				+ +Thread.currentThread().getStackTrace()[2].getLineNumber()
+				+ " : "
+				+ Thread.currentThread().getStackTrace()[2].getMethodName()
+				+ "]", log_msg);
+		
 		i.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
 		
 		actv.startActivity(i);
 		
-		
-	}
+	}//private void _case_ShowMap()
 
 	private void _case_PostData() {
 		// TODO Auto-generated method stub

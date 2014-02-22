@@ -5,7 +5,11 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MarkerOptions;
 
+import experiments.utils.CONS;
+
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -22,6 +26,9 @@ public class ShowMapActv extends FragmentActivity {
 	private GoogleMap gm;
 	private SupportMapFragment smf;
 	
+	private double longitude;
+	private double latitude;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
@@ -29,6 +36,57 @@ public class ShowMapActv extends FragmentActivity {
 
 		setContentView(R.layout.actv_show_map);
 
+		_Setup_GetLocData();
+		
+		_Setup_SetMap();
+		
+//		Fragment fr = this.getSupportFragmentManager().findFragmentById(
+//				R.id.map);
+//
+//		smf = (SupportMapFragment) fr;
+//
+//		gm = smf.getMap();
+//
+//		//REF http://stackoverflow.com/questions/14074129/google-maps-v2-set-both-my-location-and-zoom-in answered Dec 28 '12 at 19:51
+//		CameraUpdate center = CameraUpdateFactory.newLatLng(new LatLng(
+//				40.76793169992044, -73.98180484771729));
+//		CameraUpdate zoom = CameraUpdateFactory.zoomTo(15);
+//
+//		gm.moveCamera(center);
+//		gm.animateCamera(zoom);
+
+		// this.setTitle(this.getClass().getName());
+
+		// do_debugs();
+
+	}
+
+	private void _Setup_GetLocData() {
+		// TODO Auto-generated method stub
+		// Log
+		String log_msg = "CONS.LocData.LONGITUDE="
+					+ String.valueOf(CONS.LocData.LONGITUDE);
+
+		Log.d("[" + "ShowMapActv.java : "
+				+ +Thread.currentThread().getStackTrace()[2].getLineNumber()
+				+ " : "
+				+ Thread.currentThread().getStackTrace()[2].getMethodName()
+				+ "]", log_msg);
+		
+		Intent i = this.getIntent();
+		
+		this.longitude	= i.getDoubleExtra(
+							CONS.IntentData.iName_Showmap_Longitude,
+							CONS.IntentData.Showmap_DefaultValue);
+		
+		this.latitude	= i.getDoubleExtra(
+				CONS.IntentData.iName_Showmap_Latitude,
+				CONS.IntentData.Showmap_DefaultValue);
+		
+	}//private void _Setup_GetLocData()
+
+	private void _Setup_SetMap() {
+		// TODO Auto-generated method stub
 		Fragment fr = this.getSupportFragmentManager().findFragmentById(
 				R.id.map);
 
@@ -36,19 +94,54 @@ public class ShowMapActv extends FragmentActivity {
 
 		gm = smf.getMap();
 
+		LatLng ll = null;
+		
+		if (this.longitude != CONS.IntentData.Showmap_DefaultValue) {
+			
+			ll = new LatLng(this.latitude, this.longitude);
+//			ll = new LatLng(this.longitude, this.latitude);
+			
+		} else {//if (locationObtained)
+			
+			ll = new LatLng(
+						CONS.IntentData.default_Longitude,
+						CONS.IntentData.default_Latitude);
+			
+		}//if (locationObtained)
+		
+		// Log
+		String log_msg = "longitude=" + String.valueOf(this.longitude);
+
+		Log.d("[" + "ShowMapActv.java : "
+				+ +Thread.currentThread().getStackTrace()[2].getLineNumber()
+				+ " : "
+				+ Thread.currentThread().getStackTrace()[2].getMethodName()
+				+ "]", log_msg);
+		
 		//REF http://stackoverflow.com/questions/14074129/google-maps-v2-set-both-my-location-and-zoom-in answered Dec 28 '12 at 19:51
-		CameraUpdate center = CameraUpdateFactory.newLatLng(new LatLng(
-				40.76793169992044, -73.98180484771729));
+		CameraUpdate center = CameraUpdateFactory.newLatLng(ll);
+//		40.76793169992044,
+//		-73.98180484771729));
+		
 		CameraUpdate zoom = CameraUpdateFactory.zoomTo(15);
 
 		gm.moveCamera(center);
 		gm.animateCamera(zoom);
-
-		// this.setTitle(this.getClass().getName());
-
-		// do_debugs();
-
-	}
+		
+		MarkerOptions mo = new MarkerOptions()
+					.position(ll)
+					.title("Here");
+		//REF https://developers.google.com/maps/documentation/android/marker#add_a_marker
+		gm.addMarker(mo);
+		
+		//My location
+		//REF http://www.androidhive.info/2013/08/android-working-with-google-maps-v2/
+		gm.setMyLocationEnabled(true);
+		
+		gm.getUiSettings().setMyLocationButtonEnabled(true);
+		
+		
+	}//private void _Setup_SetMap()
 
 	private void do_debugs() {
 		// TODO Auto-generated method stub

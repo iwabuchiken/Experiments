@@ -393,6 +393,10 @@ containing a value of this type.
         public static final int generic_tv_register=0x7f070021;
         public static final int generic_tv_upload=0x7f070024;
         public static final int hello_world=0x7f07001c;
+        public static final int intent_showmap_latitude=0x7f070037;
+        /**  Intent names 
+         */
+        public static final int intent_showmap_longitude=0x7f070036;
         /**  MainActv 
          */
         public static final int mainactv_list_position=0x7f070025;

@@ -267,5 +267,22 @@ public class CONS {
 
 		public static String SpaceChar		= " ";
 	}//public static class Others
-	
+
+	public static class IntentData {
+		/*********************************
+		 * Locatioin Manager
+		 *********************************/
+		public static long Showmap_DefaultValue	= -300;
+		
+		public static String iName_Showmap_Longitude
+									= "experiments.main.showmap_Longitude";
+		
+		public static String iName_Showmap_Latitude
+									= "experiments.main.showmap_Latitude";
+		
+		public static long default_Longitude	= 135;
+		
+		public static long default_Latitude		= 30;
+		
+	}
 }//public class CONS
