@@ -244,6 +244,7 @@ containing a value of this type.
         public static final int actv_loc_bt_post_data=0x7f06000d;
         public static final int actv_loc_bt_save_data=0x7f06000c;
         public static final int actv_loc_bt_show_map=0x7f06000e;
+        public static final int actv_loc_lv=0x7f060010;
         public static final int actv_loc_tv_lat_lbl=0x7f060009;
         public static final int actv_loc_tv_lat_str=0x7f06000a;
         public static final int actv_loc_tv_longi_lbl=0x7f060006;
@@ -252,8 +253,12 @@ containing a value of this type.
         public static final int dlg_tmpl_list_cancel_bt_cancel=0x7f060013;
         public static final int dlg_tmpl_list_cancel_lv=0x7f060012;
         public static final int hybrid=0x7f060004;
-        public static final int listView1=0x7f060010;
         public static final int list_row_simple_1_tv=0x7f060019;
+        public static final int listrow_loc_list_tv_date=0x7f060014;
+        public static final int listrow_loc_list_tv_lat=0x7f060017;
+        public static final int listrow_loc_list_tv_longi=0x7f060016;
+        public static final int listrow_loc_list_tv_memo=0x7f060018;
+        public static final int listrow_loc_list_tv_time=0x7f060015;
         public static final int map=0x7f060011;
         public static final int menu_LocActv_Db=0x7f06001b;
         public static final int none=0x7f060000;
@@ -262,11 +267,6 @@ containing a value of this type.
         public static final int tableRow1=0x7f060005;
         public static final int tableRow2=0x7f060008;
         public static final int terrain=0x7f060003;
-        public static final int textView1=0x7f060014;
-        public static final int textView2=0x7f060015;
-        public static final int textView3=0x7f060018;
-        public static final int textView4=0x7f060016;
-        public static final int textView5=0x7f060017;
     }
     public static final class integer {
         public static final int google_play_services_version=0x7f080000;

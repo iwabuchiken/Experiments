@@ -1,11 +1,16 @@
 package experiments.main;
 
+import java.util.List;
+
+import experiments.adapters.Adp_Loc;
+import experiments.items.Loc;
 import experiments.listeners.button.BOCL;
 import experiments.listeners.button.BOTL;
 import experiments.utils.CONS;
 import experiments.utils.Methods_Dlg;
 import experiments.utils.Methods_LM;
 import experiments.utils.Tags;
+
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
@@ -14,12 +19,13 @@ import android.location.Criteria;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
+
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
-import android.widget.ImageButton;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -57,11 +63,41 @@ public class LocationActv extends Activity implements LocationListener {
         // Set listeners
         _Setup_SetListeners();
         
+        
+        _Setup_LocList();
+        
         do_debugs();
         
 	}
 
 	
+	private void _Setup_LocList() {
+		// TODO Auto-generated method stub
+		List<Loc> loc_List = Methods_LM.get_Locs_All(this);
+		
+		Adp_Loc adp_LocList = new Adp_Loc(
+						this,
+						R.layout.list_row_loc_list,
+						loc_List
+		);
+		
+		// Log
+		String log_msg = "loc_List.size() => " + loc_List.size();
+
+		Log.d("[" + "LocationActv.java : "
+				+ +Thread.currentThread().getStackTrace()[2].getLineNumber()
+				+ " : "
+				+ Thread.currentThread().getStackTrace()[2].getMethodName()
+				+ "]", log_msg);
+		
+		// Set adapter to the list view
+		ListView lv = (ListView) findViewById(R.id.actv_loc_lv);
+		
+		lv.setAdapter(adp_LocList);
+		
+	}
+
+
 	private void _Setup_LocationManager() {
 		// TODO Auto-generated method stub
 		mLocationManager =

@@ -145,16 +145,18 @@
             android:id="@+id/actv_loc_tv_message"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:padding="10dp"
+            android:padding="5dp"
             android:text="TextView"
             android:textColor="@color/yello"
             android:textSize="25sp" />
     </LinearLayout>
 
     <ListView
-        android:id="@+id/listView1"
+        android:id="@+id/actv_loc_lv"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
+        android:layout_height="wrap_content"
+        android:padding="3dp" >
+
     </ListView>
 
 </LinearLayout>

@@ -1,0 +1,115 @@
+package experiments.adapters;
+
+import java.util.List;
+
+import experiments.items.Loc;
+import experiments.main.R;
+
+import android.content.Context;
+import android.graphics.Color;
+import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+
+public class Adp_Loc extends ArrayAdapter<Loc> {
+
+	//
+	private int resourceId; 
+	
+	public Adp_Loc
+	(Context context, int textViewResourceId, List<Loc> list) {
+		super(context, textViewResourceId, list);
+		// TODO �����������ꂽ�R���X�g���N�^�[�E�X�^�u
+		
+		this.resourceId = textViewResourceId;
+		
+		
+	}//public Adp_Loc
+
+	@Override
+	public View getView(int position, View v, ViewGroup parent) {
+		/*----------------------------
+		 * Steps
+		 * 1. Inflate
+		 * 2. Get views
+		 * 3. Get item
+		 * 4. Set values
+		 * 
+		 * 5. Set background
+			----------------------------*/
+		
+		// TODO �����������ꂽ���\�b�h�E�X�^�u
+		
+        if (v == null) {
+        	
+            LayoutInflater inflater = 
+            		(LayoutInflater) getContext()
+    					.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            
+            v = inflater.inflate(resourceId, null);
+        }
+
+        Loc loc = (Loc) getItem(position);
+
+        _getView_SetTexts(v, loc);
+
+		return v;
+//		return super.getView(position, convertView, parent);
+	}//public View getView(int position, View convertView, ViewGroup parent)
+
+	private void
+	_getView_SetTexts(View v, Loc loc) {
+		/*********************************
+		 * Day
+		 *********************************/
+		// Get views
+		TextView tv_Date = (TextView) v.findViewById(R.id.listrow_loc_list_tv_date);
+		
+		// Get data
+		String date = loc.getCreated_at();
+		
+		String day = date.split("_")[0];
+		
+		tv_Date.setText(day);
+		
+		/*********************************
+		 * Time
+		 *********************************/
+		// Get views
+		TextView tv_Time = (TextView) v.findViewById(R.id.listrow_loc_list_tv_time);
+		
+		// Get data
+		String time = date.split("_")[1];
+		
+		tv_Time.setText(time);
+		
+		/*********************************
+		 * Longitude
+		 *********************************/
+		// Get views
+		TextView tv_Longi = (TextView) v.findViewById(R.id.listrow_loc_list_tv_longi);
+		
+		// Get data
+		String longi = loc.getLongitude();
+		
+		tv_Longi.setText(longi);
+		
+		/*********************************
+		 * Latitude
+		 *********************************/
+		// Get views
+		TextView tv_Lat = (TextView) v.findViewById(R.id.listrow_loc_list_tv_lat);
+		
+		// Get data
+		String lat = loc.getLatitude();
+		
+		tv_Lat.setText(lat);
+		
+		
+	}//_getView_SetTexts(View convertView, Loc loc)
+
+}//public class ItemListAdapter extends ArrayAdapter<ShoppingItem>

@@ -703,4 +703,141 @@ public class Methods_LM {
 		return locs;
 	}
 
+	/*********************************
+	 * Collect locations where "uploaded_at" is null<br>
+	 * @return Errors => null<br>
+	 * 1. Exception<br>
+	 * 2. No entry<br>
+	 *********************************/
+	public static List<Loc>
+	get_Locs_All(Activity actv) {
+		// TODO Auto-generated method stub
+		List<Loc> locs = new ArrayList<Loc>();
+		
+		DBUtils dbm = new DBUtils(actv);
+		
+		SQLiteDatabase rdb = dbm.getReadableDatabase();
+		
+		Cursor c = null;
+		
+		try {
+			
+			String sql = StringUtils.join(
+					new String[]{
+							"SELECT * FROM",
+							CONS.DB.tname_Location
+							
+					},
+					CONS.Others.SpaceChar);
+			
+			// Log
+			String log_msg = "sql=" + sql;
+			
+			Log.d("["
+					+ "Methods_LM.java : "
+					+ +Thread.currentThread().getStackTrace()[2]
+							.getLineNumber() + " : "
+							+ Thread.currentThread().getStackTrace()[2].getMethodName()
+							+ "]", log_msg);
+			
+			c = rdb.rawQuery(sql, null);
+			
+			// Log
+			log_msg = "query => done";
+			
+			Log.d("["
+					+ "Methods_LM.java : "
+					+ +Thread.currentThread().getStackTrace()[2]
+							.getLineNumber() + " : "
+							+ Thread.currentThread().getStackTrace()[2].getMethodName()
+							+ "]", log_msg);
+			
+		} catch (Exception e) {
+			
+			// Log
+			String log_msg = e.toString();
+			
+			Log.d("["
+					+ "Methods_LM.java : "
+					+ +Thread.currentThread().getStackTrace()[2]
+							.getLineNumber() + " : "
+							+ Thread.currentThread().getStackTrace()[2].getMethodName()
+							+ "]", log_msg);
+			
+			rdb.close();
+			
+			return null;
+			
+		}//try
+		
+		/*********************************
+		 * No entry?
+		 *********************************/
+		if (c.getCount() < 1) {
+			
+			// Log
+			String log_msg = "No entry";
+			
+			Log.d("["
+					+ "Methods_LM.java : "
+					+ +Thread.currentThread().getStackTrace()[2]
+							.getLineNumber() + " : "
+							+ Thread.currentThread().getStackTrace()[2].getMethodName()
+							+ "]", log_msg);
+			
+			rdb.close();
+			
+			return null;
+			
+		}
+		
+		/*********************************
+		 * Build list
+		 *********************************/
+		c.moveToFirst();
+		
+//		android.provider.BaseColumns._ID,	// 0
+//		"created_at",						// 1
+//		"modified_at",						// 2
+//
+//		"longitude",						// 3
+//		"latitude",							// 4
+//		"memo",								// 5
+//		
+//		"uploaded_at"						// 6
+		
+		for (int i = 0; i < c.getCount(); i++) {
+			
+//			0									1		2		3		4			5
+//			{android.provider.BaseColumns._ID, "name", "yomi", "genre", "store", "price"}
+			Loc loc = new Loc.Builder()
+//						.setId			(c.getInt(0))
+			.setId			(c.getLong(0))
+			.setCreated_at	(c.getString(1))
+			.setModified_at	(c.getString(2))
+			
+			.setLongitude	(c.getString(3))
+			.setLatitude	(c.getString(4))
+			.setMemo		(c.getString(5))
+			
+			.setUploaded_at	(c.getString(6))
+			
+			.build();
+			
+			//
+			locs.add(loc);
+			
+			//
+			c.moveToNext();
+			
+		}//for (int i = 0; i < c.getCount(); i++)
+		
+		//
+		rdb.close();
+		
+		
+		return locs;
+		
+	}//get_Locs_All(Activity actv)
+	
 }//public class Methods_LM
