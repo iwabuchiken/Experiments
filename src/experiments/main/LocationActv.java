@@ -307,6 +307,30 @@ public class LocationActv extends Activity implements LocationListener {
 	protected void onPause() {
 		// TODO Auto-generated method stub
 		super.onPause();
+		
+		// Log
+		String log_msg = "onPause()";
+
+		Log.d("[" + "LocationActv.java : "
+				+ +Thread.currentThread().getStackTrace()[2].getLineNumber()
+				+ " : "
+				+ Thread.currentThread().getStackTrace()[2].getMethodName()
+				+ "]", log_msg);
+		
+		// Reset location data
+		this.locationObtained	= false;
+		CONS.LocData.LONGITUDE	= null;
+		CONS.LocData.LATITUDE	= null;
+		
+		// Log
+		log_msg = "locationObtained => false";
+
+		Log.d("[" + "LocationActv.java : "
+				+ +Thread.currentThread().getStackTrace()[2].getLineNumber()
+				+ " : "
+				+ Thread.currentThread().getStackTrace()[2].getMethodName()
+				+ "]", log_msg);
+		
 	}
 
 	
@@ -384,11 +408,17 @@ public class LocationActv extends Activity implements LocationListener {
 				&& CONS.LocData.LONGITUDE != null
 				&& CONS.LocData.LATITUDE != null) {
 			
+			locationObtained = true;
+			
+			// Button "Get data" => bg --> blue
+			Button bt_GetData = (Button) findViewById(R.id.actv_loc_bt_get_data);
+			
+			bt_GetData.setBackgroundColor(
+					this.getResources().getColor(R.color.blue1));
+			
 			// debug
 			String toa_msg = "Location obtained";
 			Toast.makeText(this, toa_msg, Toast.LENGTH_SHORT).show();
-			
-			locationObtained = true;
 			
 		}
 	}//public void onLocationChanged(Location loc)
