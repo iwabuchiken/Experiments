@@ -83,6 +83,17 @@ public class ShowMapActv extends FragmentActivity {
 				CONS.IntentData.iName_Showmap_Latitude,
 				CONS.IntentData.Showmap_DefaultValue);
 		
+		// Log
+		log_msg = "this.latitude=" + String.valueOf(this.latitude)
+						+ "/"
+						+ "this.longitude=" + String.valueOf(this.longitude);
+
+		Log.d("[" + "ShowMapActv.java : "
+				+ +Thread.currentThread().getStackTrace()[2].getLineNumber()
+				+ " : "
+				+ Thread.currentThread().getStackTrace()[2].getMethodName()
+				+ "]", log_msg);
+		
 	}//private void _Setup_GetLocData()
 
 	private void _Setup_SetMap() {

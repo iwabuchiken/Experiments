@@ -10,17 +10,17 @@ import android.os.Vibrator;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.Toast;
-import android.widget.AdapterView.OnItemLongClickListener;
 
-public class Custom_ILCL
-implements OnItemLongClickListener {
+public class List_ICL
+implements OnItemClickListener {
 
 	Activity actv;
 	static Vibrator vib;
 
 	
-	public Custom_ILCL(Activity actv) {
+	public List_ICL(Activity actv) {
 		
 		this.actv = actv;
 		vib = (Vibrator) actv.getSystemService(actv.VIBRATOR_SERVICE);
@@ -28,7 +28,7 @@ implements OnItemLongClickListener {
 	}
 
 	@Override
-	public boolean onItemLongClick
+	public void onItemClick
 	(AdapterView<?> parent, View v, int position, long id) {
 		// TODO Auto-generated method stub
 		
@@ -38,15 +38,9 @@ implements OnItemLongClickListener {
 
 		switch (tag) {
 		
-		case actv_main_lv://-----------------------------
-
-			case_actv_main_lv(parent, position);
-			
-			break;// case actv_main_lv
-			
 		case actv_main_lv_locs://-----------------------------
 			
-			case_Actv_main_lv_locs(parent, position);
+			_case_Actv_main_lv_locs(parent, position);
 			
 			break;// case actv_main_lv_locs
 			
@@ -54,11 +48,12 @@ implements OnItemLongClickListener {
 			break;
 		}//switch (tag) {
 		
-		return false;
+		return;
+		
 	}//public boolean onItemLongClick
 
 	private void
-	case_Actv_main_lv_locs(AdapterView<?> parent, int position) {
+	_case_Actv_main_lv_locs(AdapterView<?> parent, int position) {
 		// TODO Auto-generated method stub
 		Loc loc = (Loc) parent.getItemAtPosition(position);
 		
@@ -70,7 +65,7 @@ implements OnItemLongClickListener {
 			String log_msg = "loc data => null";
 			
 			Log.d("["
-					+ "BOCL.java : "
+					+ "List_ICL.java : "
 					+ +Thread.currentThread().getStackTrace()[2]
 							.getLineNumber() + " : "
 							+ Thread.currentThread().getStackTrace()[2].getMethodName()
@@ -84,15 +79,15 @@ implements OnItemLongClickListener {
 			
 		}//if (CONS.LocData.LONGITUDE == null)
 		
-		float longi = Float.valueOf(loc.getLongitude());
-		float lat = Float.valueOf(loc.getLatitude());
+		double longi = Double.valueOf(loc.getLongitude());
+		double lat = Double.valueOf(loc.getLatitude());
 		
 		// Log
 		String log_msg = "longi=" + String.valueOf(longi)
 						+ "/"
 						+ "lat=" + String.valueOf(lat);
 
-		Log.d("[" + "Custom_ILCL.java : "
+		Log.d("[" + "List_ICL.java : "
 				+ +Thread.currentThread().getStackTrace()[2].getLineNumber()
 				+ " : "
 				+ Thread.currentThread().getStackTrace()[2].getMethodName()
@@ -113,15 +108,5 @@ implements OnItemLongClickListener {
 		actv.startActivity(i);
 		
 	}//case_Actv_main_lv_locs(AdapterView<?> parent, int position)
-
-	private void case_actv_main_lv
-	(AdapterView<?> parent, int position) {
-		
-		String itemName = (String) parent.getItemAtPosition(position);
-		
-		// debug
-		Toast.makeText(actv, itemName, Toast.LENGTH_LONG).show();
-		
-	}//private void case_actv_main_lv
 
 }//public class Custom_ILCL

@@ -280,9 +280,9 @@ public class CONS {
 		public static String iName_Showmap_Latitude
 									= "experiments.main.showmap_Latitude";
 		
-		public static long default_Longitude	= 135;
+		public static double default_Longitude		= 135;
 		
-		public static long default_Latitude		= 30;
+		public static double default_Latitude		= 30;
 		
 	}
 }//public class CONS

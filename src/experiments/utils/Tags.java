@@ -21,6 +21,8 @@ public class Tags {
 		// Main
 		dbadmin_adapter,
 		
+		actv_main_lv_locs,
+		
 	}//public static enum ListTags
 
 	public static enum DialogTags {

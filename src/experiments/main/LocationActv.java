@@ -4,6 +4,7 @@ import java.util.List;
 
 import experiments.adapters.Adp_Loc;
 import experiments.items.Loc;
+import experiments.listeners.List_ICL;
 import experiments.listeners.button.BOCL;
 import experiments.listeners.button.BOTL;
 import experiments.utils.CONS;
@@ -95,7 +96,13 @@ public class LocationActv extends Activity implements LocationListener {
 		
 		lv.setAdapter(adp_LocList);
 		
-	}
+		// Set: tag
+		lv.setTag(Tags.ListTags.actv_main_lv_locs);
+		
+		// Set: listener => long click
+		lv.setOnItemClickListener(new List_ICL(this));
+		
+	}//private void _Setup_LocList()
 
 
 	private void _Setup_LocationManager() {
