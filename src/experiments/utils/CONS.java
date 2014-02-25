@@ -3,6 +3,8 @@ package experiments.utils;
 import java.io.File;
 import java.util.ArrayList;
 
+import experiments.adapters.Adp_Loc;
+
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Vibrator;
 import android.provider.MediaStore;
@@ -37,6 +39,17 @@ public class CONS {
 
 
 	public static class Prefs {
+		
+		public static final String pName_LM	= "pref_lm";
+		
+		public static final String pKey_CurrentItemPosition
+									= "current_item_position";
+		
+		public static int pVal_CurrentItemPosition;
+		
+		
+		public static final String pKey_ShowMemoDialog
+									= "show_memo_dialog";
 		
 	}
 
@@ -285,4 +298,11 @@ public class CONS {
 		public static double default_Latitude		= 30;
 		
 	}
+
+	public static class Adapters {
+		
+		public static Adp_Loc adp_LocList = null;
+		
+	}
+
 }//public class CONS

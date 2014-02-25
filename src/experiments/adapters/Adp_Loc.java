@@ -4,8 +4,11 @@ import java.util.List;
 
 import experiments.items.Loc;
 import experiments.main.R;
+import experiments.utils.CONS;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -18,12 +21,15 @@ import android.widget.TextView;
 public class Adp_Loc extends ArrayAdapter<Loc> {
 
 	//
-	private int resourceId; 
+	private int resourceId;
+	
+	Context con;
 	
 	public Adp_Loc
 	(Context context, int textViewResourceId, List<Loc> list) {
 		super(context, textViewResourceId, list);
 		// TODO �����������ꂽ�R���X�g���N�^�[�E�X�^�u
+		this.con		= context;
 		
 		this.resourceId = textViewResourceId;
 		
@@ -55,14 +61,14 @@ public class Adp_Loc extends ArrayAdapter<Loc> {
 
         Loc loc = (Loc) getItem(position);
 
-        _getView_SetTexts(v, loc);
+        _getView_SetTexts(v, loc, position);
 
 		return v;
 //		return super.getView(position, convertView, parent);
 	}//public View getView(int position, View convertView, ViewGroup parent)
 
 	private void
-	_getView_SetTexts(View v, Loc loc) {
+	_getView_SetTexts(View v, Loc loc, int position) {
 		/*********************************
 		 * Day
 		 *********************************/
@@ -108,7 +114,38 @@ public class Adp_Loc extends ArrayAdapter<Loc> {
 		String lat = loc.getLatitude();
 		
 		tv_Lat.setText(lat);
+
+		/*********************************
+		 * Background
+		 *********************************/
+		// TODO Auto-generated method stub
+		SharedPreferences prefs = ((Activity)con).getSharedPreferences(
+				CONS.Prefs.pName_LM,
+				Context.MODE_PRIVATE);
 		
+		int savedPosition = prefs.getInt(
+				CONS.Prefs.pKey_CurrentItemPosition,
+				-1);
+
+		if (savedPosition == position) {
+			
+			tv_Longi.setBackgroundResource(R.color.gold2);
+			tv_Longi.setTextColor(Color.BLACK);
+			
+			tv_Lat.setBackgroundResource(R.color.gold2);
+			tv_Lat.setTextColor(Color.BLACK);
+			
+		} else if (savedPosition == -1) {//if (savedPosition == position)
+			
+		} else {//if (savedPosition == position)
+			
+			tv_Longi.setBackgroundColor(Color.BLACK);
+			tv_Longi.setTextColor(Color.WHITE);
+			
+			tv_Lat.setBackgroundColor(Color.BLACK);
+			tv_Lat.setTextColor(Color.WHITE);
+			
+		}//if (savedPosition == position)
 		
 	}//_getView_SetTexts(View convertView, Loc loc)
 

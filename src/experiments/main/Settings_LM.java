@@ -23,7 +23,8 @@ public class Settings_LM extends PreferenceActivity {
 		setContentView(R.layout.pref_lm);
 		
 		getPreferenceManager()
-			.setSharedPreferencesName(this.getString(R.string.prefName));
+			.setSharedPreferencesName(CONS.Prefs.pName_LM);
+//		.setSharedPreferencesName(this.getString(R.string.prefName));
 		
 		addPreferencesFromResource(R.xml.preferences);
 		

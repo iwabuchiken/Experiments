@@ -5,7 +5,9 @@ import experiments.main.ShowMapActv;
 import experiments.utils.CONS;
 import experiments.utils.Tags;
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Vibrator;
 import android.util.Log;
 import android.view.View;
@@ -31,7 +33,27 @@ implements OnItemClickListener {
 	public void onItemClick
 	(AdapterView<?> parent, View v, int position, long id) {
 		// TODO Auto-generated method stub
+		/*********************************
+		 * Set: Preference value for position
+		 *********************************/
+		SharedPreferences prefs = actv.getSharedPreferences(
+								CONS.Prefs.pName_LM,
+								Context.MODE_PRIVATE);
 		
+		SharedPreferences.Editor editor = prefs.edit();
+		
+		editor.putInt(CONS.Prefs.pKey_CurrentItemPosition, position);
+		editor.commit();
+		
+		if (CONS.Adapters.adp_LocList != null) {
+			
+			CONS.Adapters.adp_LocList.notifyDataSetChanged();
+			
+		}
+		
+		/*********************************
+		 * Main processes
+		 *********************************/
 		Tags.ListTags tag = (Tags.ListTags) parent.getTag();
 		
 		vib.vibrate(40);

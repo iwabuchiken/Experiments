@@ -76,7 +76,8 @@ public class LocationActv extends Activity implements LocationListener {
 		// TODO Auto-generated method stub
 		List<Loc> loc_List = Methods_LM.get_Locs_All(this);
 		
-		Adp_Loc adp_LocList = new Adp_Loc(
+		CONS.Adapters.adp_LocList = new Adp_Loc(
+//				Adp_Loc adp_LocList = new Adp_Loc(
 						this,
 						R.layout.list_row_loc_list,
 						loc_List
@@ -94,13 +95,29 @@ public class LocationActv extends Activity implements LocationListener {
 		// Set adapter to the list view
 		ListView lv = (ListView) findViewById(R.id.actv_loc_lv);
 		
-		lv.setAdapter(adp_LocList);
-		
-		// Set: tag
-		lv.setTag(Tags.ListTags.actv_main_lv_locs);
-		
-		// Set: listener => long click
-		lv.setOnItemClickListener(new List_ICL(this));
+		if (CONS.Adapters.adp_LocList == null) {
+			
+			// Log
+			log_msg = "CONS.Adapters.adp_LocList => null";
+
+			Log.d("["
+					+ "LocationActv.java : "
+					+ +Thread.currentThread().getStackTrace()[2]
+							.getLineNumber() + " : "
+					+ Thread.currentThread().getStackTrace()[2].getMethodName()
+					+ "]", log_msg);
+			
+		} else {//if (CONS.Adapters.adp_LocList == null)
+			
+			lv.setAdapter(CONS.Adapters.adp_LocList);
+			
+			// Set: tag
+			lv.setTag(Tags.ListTags.actv_main_lv_locs);
+			
+			// Set: listener => long click
+			lv.setOnItemClickListener(new List_ICL(this));
+			
+		}//if (CONS.Adapters.adp_LocList == null)
 		
 	}//private void _Setup_LocList()
 
