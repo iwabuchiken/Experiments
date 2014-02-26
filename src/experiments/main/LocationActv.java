@@ -5,6 +5,7 @@ import java.util.List;
 import experiments.adapters.Adp_Loc;
 import experiments.items.Loc;
 import experiments.listeners.List_ICL;
+import experiments.listeners.List_ILCL;
 import experiments.listeners.button.BOCL;
 import experiments.listeners.button.BOTL;
 import experiments.utils.CONS;
@@ -46,20 +47,6 @@ public class LocationActv extends Activity implements LocationListener {
         this.setTitle(this.getClass().getName());
         
         _Setup_LocationManager();
-        
-//        LocationManager mLocationManager =
-//        		(LocationManager) getSystemService(Context.LOCATION_SERVICE);
-//        
-//        // Setup: Criteria
-//        Criteria criteria = _setup_SetCriteria();
-//        
-//        String provider = mLocationManager.getBestProvider(criteria, true);
-//        
-//        // Register: manager
-//        mLocationManager.requestLocationUpdates(provider, 0, 0, this);
-//        
-//        // Show the obtained provider name
-//        _Setup_ShowProviderName(provider);
         
         // Set listeners
         _Setup_SetListeners();
@@ -117,6 +104,9 @@ public class LocationActv extends Activity implements LocationListener {
 			// Set: listener => long click
 			lv.setOnItemClickListener(new List_ICL(this));
 			
+			// Set: listener => item long click
+			lv.setOnItemLongClickListener(new List_ILCL(this));
+			
 		}//if (CONS.Adapters.adp_LocList == null)
 		
 	}//private void _Setup_LocList()
@@ -133,11 +123,20 @@ public class LocationActv extends Activity implements LocationListener {
         
         String provider = mLocationManager.getBestProvider(criteria, true);
         
+        // Log
+		String log_msg = "provider=" + provider;
+
+		Log.d("[" + "LocationActv.java : "
+				+ +Thread.currentThread().getStackTrace()[2].getLineNumber()
+				+ " : "
+				+ Thread.currentThread().getStackTrace()[2].getMethodName()
+				+ "]", log_msg);
+        
         // Register: manager
         mLocationManager.requestLocationUpdates(provider, 0, 0, this);
         
         // Show the obtained provider name
-        _Setup_ShowProviderName(provider);
+//        _Setup_ShowProviderName(provider);
         
 	}//private void _Setup_LocationManager()
 
@@ -275,11 +274,11 @@ public class LocationActv extends Activity implements LocationListener {
 	private void
 	_Setup_ShowProviderName(String provider) {
 		// TODO Auto-generated method stub
-		TextView tv_Longi = (TextView) findViewById(R.id.actv_loc_tv_longi_str);
-		TextView tv_Lat = (TextView) findViewById(R.id.actv_loc_tv_lat_str);
-		TextView tv_Message = (TextView) findViewById(R.id.actv_loc_tv_message);
-		
-		tv_Message.setText("Provider=" + provider);
+//		TextView tv_Longi = (TextView) findViewById(R.id.actv_loc_tv_longi_str);
+//		TextView tv_Lat = (TextView) findViewById(R.id.actv_loc_tv_lat_str);
+//		TextView tv_Message = (TextView) findViewById(R.id.actv_loc_tv_message);
+//		
+//		tv_Message.setText("Provider=" + provider);
 		
 	}
 
@@ -327,6 +326,9 @@ public class LocationActv extends Activity implements LocationListener {
 		
 		this.overridePendingTransition(0, 0);
 		
+		/*********************************
+		 * Variables => reset
+		 *********************************/
 		locationObtained = false;
 		
 		//REF http://stackoverflow.com/questions/4197478/how-to-stop-location-manager asked Nov 16 '10 at 18:14
@@ -334,6 +336,32 @@ public class LocationActv extends Activity implements LocationListener {
 		
 		// Log
 		log_msg = "LocationManager => Updates removed";
+
+		Log.d("[" + "LocationActv.java : "
+				+ +Thread.currentThread().getStackTrace()[2].getLineNumber()
+				+ " : "
+				+ Thread.currentThread().getStackTrace()[2].getMethodName()
+				+ "]", log_msg);
+		
+		// Current position
+		SharedPreferences prefs = this.getSharedPreferences(
+				CONS.Prefs.pName_LM,
+				Context.MODE_PRIVATE);
+
+		SharedPreferences.Editor editor = prefs.edit();
+		
+		editor.putInt(
+					CONS.Prefs.pKey_CurrentItemPosition,
+					CONS.Prefs.pVal_CurrentItemPosition_Initial);
+		
+		editor.commit();
+		
+		// Log
+		log_msg = "CurrentItemPosition => set to the inital value"
+						+ "("
+						+ String.valueOf(
+								CONS.Prefs.pVal_CurrentItemPosition_Initial)
+						+ ")";
 
 		Log.d("[" + "LocationActv.java : "
 				+ +Thread.currentThread().getStackTrace()[2].getLineNumber()

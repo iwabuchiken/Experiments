@@ -102,6 +102,12 @@ public class Adp_Loc extends ArrayAdapter<Loc> {
 		// Get data
 		String longi = loc.getLongitude();
 		
+		if (longi.length() > 12) {
+			
+			longi = longi.substring(0, 12);
+			
+		}
+		
 		tv_Longi.setText(longi);
 		
 		/*********************************
@@ -113,8 +119,27 @@ public class Adp_Loc extends ArrayAdapter<Loc> {
 		// Get data
 		String lat = loc.getLatitude();
 		
+		if (lat.length() > 12) {
+					
+			lat = lat.substring(0, 12);
+			
+		}
+		
 		tv_Lat.setText(lat);
 
+		/*********************************
+		 * Memo
+		 *********************************/
+		String memo = loc.getMemo();
+		
+		TextView tv_Memo = (TextView) v.findViewById(R.id.listrow_loc_list_tv_memo);
+		
+		if (memo != null) {
+			
+			tv_Memo.setText(memo);
+			
+		}
+		
 		/*********************************
 		 * Background
 		 *********************************/

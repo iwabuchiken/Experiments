@@ -4,7 +4,10 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import org.apache.commons.lang.StringUtils;
+
 import experiments.adapters.DBAdminAdapter;
+import experiments.items.Loc;
 import experiments.listeners.dialog.DB_OCL;
 import experiments.listeners.dialog.DB_OTL;
 import experiments.listeners.dialog.DOI_CL;
@@ -12,9 +15,11 @@ import experiments.main.R;
 import experiments.utils.Tags.DialogTags;
 import android.app.Activity;
 import android.app.Dialog;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.TextView;
 
 public class Methods_Dlg {
 
@@ -129,5 +134,93 @@ public class Methods_Dlg {
 		return dlg;
 	
 	}//public static Dialog dlg_template_okCancel()
+
+	public static boolean
+	dlg_EditLoc
+	(Activity actv, Loc loc, AdapterView<?> parent, int position) {
+		// TODO Auto-generated method stub
+		Dialog dlg = new Dialog(actv);
+		
+		//
+		dlg.setContentView(R.layout.dlg_edit_locs);
+		
+		// Title
+		dlg.setTitle(actv.getString(R.string.dlg_edit_locs_title));
+		
+		/*********************************
+		 * Set: values
+		 *********************************/
+		// Date
+		TextView tv_Date = (TextView) dlg.findViewById(
+								R.id.dlg_edit_locs_tv_date_val);
+		
+		//REF return http://stackoverflow.com/questions/16601585/add-new-line-character-in-string answered May 17 '13 at 4:53
+		String date = StringUtils.join(loc.getCreated_at().split("_"), "\n");
+		
+		if (loc.getCreated_at() != null) {
+			
+			tv_Date.setText(date);
+//			tv_Date.setText(loc.getCreated_at());
+			
+		}
+		
+		// Longi
+		TextView tv_Longi = (TextView) dlg.findViewById(
+				R.id.dlg_edit_locs_tv_longi_val);
+		
+		String longi = loc.getLongitude();
+		
+		if (longi == null) {
+			
+			longi = "";
+			
+		} else if (longi.length() > CONS.Others.Default_LocStringLength) {
+			
+			longi = longi.substring(0, CONS.Others.Default_LocStringLength);
+			
+		}
+		
+		tv_Longi.setText(longi);
+		
+		// Lat
+		TextView tv_Lat = (TextView) dlg.findViewById(
+				R.id.dlg_edit_locs_tv_lat_val);
+		
+		String lat = loc.getLatitude();
+		
+		if (lat == null) {
+			
+			lat = "";
+			
+		} else if (lat.length() > CONS.Others.Default_LocStringLength) {
+			
+			lat = lat.substring(0, CONS.Others.Default_LocStringLength);
+			
+		}
+		
+		tv_Lat.setText(lat);
+		
+		/*********************************
+		 * Set: Listeners
+		 *********************************/
+		/* Cancel */
+		Button btn_cancel = (Button) dlg.findViewById(R.id.dlg_edit_locs_btn_cancel);
+		
+		//
+		btn_cancel.setTag(Tags.DialogTags.dlg_generic_dismiss);
+		
+		//
+		btn_cancel.setOnTouchListener(new DB_OTL(actv, dlg));
+		//
+		btn_cancel.setOnClickListener(new DB_OCL(actv, dlg));
+		
+		/*********************************
+		 * Show
+		 *********************************/
+		dlg.show();
+		
+		return false;
+		
+	}//dlg_EditLoc
 
 }

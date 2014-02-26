@@ -164,6 +164,9 @@ containing a value of this type.
         public static final int zOrderOnTop=0x7f010010;
     }
     public static final class color {
+        /**  REF color names http://www.workwithcolor.com/color-chart-full-01.htm 
+         */
+        public static final int Arsenic=0x7f050016;
         public static final int black=0x7f05000b;
         public static final int blue1=0x7f05000c;
         public static final int brown=0x7f050015;
@@ -179,8 +182,8 @@ containing a value of this type.
         public static final int common_signin_btn_light_text_disabled=0x7f050006;
         public static final int common_signin_btn_light_text_focused=0x7f050007;
         public static final int common_signin_btn_light_text_pressed=0x7f050005;
-        public static final int common_signin_btn_text_dark=0x7f050016;
-        public static final int common_signin_btn_text_light=0x7f050017;
+        public static final int common_signin_btn_text_dark=0x7f050017;
+        public static final int common_signin_btn_text_light=0x7f050018;
         public static final int darkgreen=0x7f05000d;
         public static final int darkolivegreen4=0x7f05000f;
         public static final int gold2=0x7f050011;
@@ -239,28 +242,38 @@ containing a value of this type.
         public static final int ic_plusone_tall_off_client=0x7f02001d;
     }
     public static final class id {
-        public static final int action_settings=0x7f06001a;
+        public static final int action_settings=0x7f060024;
         public static final int actv_loc_bt_get_data=0x7f06000b;
         public static final int actv_loc_bt_post_data=0x7f06000d;
         public static final int actv_loc_bt_save_data=0x7f06000c;
         public static final int actv_loc_bt_show_map=0x7f06000e;
-        public static final int actv_loc_lv=0x7f060010;
+        public static final int actv_loc_lv=0x7f06000f;
         public static final int actv_loc_tv_lat_lbl=0x7f060009;
         public static final int actv_loc_tv_lat_str=0x7f06000a;
         public static final int actv_loc_tv_longi_lbl=0x7f060006;
         public static final int actv_loc_tv_longi_str=0x7f060007;
-        public static final int actv_loc_tv_message=0x7f06000f;
-        public static final int dlg_tmpl_list_cancel_bt_cancel=0x7f060013;
-        public static final int dlg_tmpl_list_cancel_lv=0x7f060012;
+        public static final int dlg_edit_locs_btn_cancel=0x7f06001b;
+        public static final int dlg_edit_locs_btn_ok=0x7f06001a;
+        public static final int dlg_edit_locs_et_price_label=0x7f060019;
+        public static final int dlg_edit_locs_tl=0x7f060011;
+        public static final int dlg_edit_locs_tv_date_label=0x7f060012;
+        public static final int dlg_edit_locs_tv_date_val=0x7f060013;
+        public static final int dlg_edit_locs_tv_lat_label=0x7f060016;
+        public static final int dlg_edit_locs_tv_lat_val=0x7f060017;
+        public static final int dlg_edit_locs_tv_longi_label=0x7f060014;
+        public static final int dlg_edit_locs_tv_longi_val=0x7f060015;
+        public static final int dlg_edit_locs_tv_memo_label=0x7f060018;
+        public static final int dlg_tmpl_list_cancel_bt_cancel=0x7f06001d;
+        public static final int dlg_tmpl_list_cancel_lv=0x7f06001c;
         public static final int hybrid=0x7f060004;
-        public static final int list_row_simple_1_tv=0x7f060019;
-        public static final int listrow_loc_list_tv_date=0x7f060014;
-        public static final int listrow_loc_list_tv_lat=0x7f060017;
-        public static final int listrow_loc_list_tv_longi=0x7f060016;
-        public static final int listrow_loc_list_tv_memo=0x7f060018;
-        public static final int listrow_loc_list_tv_time=0x7f060015;
-        public static final int map=0x7f060011;
-        public static final int menu_LocActv_Db=0x7f06001b;
+        public static final int list_row_simple_1_tv=0x7f060023;
+        public static final int listrow_loc_list_tv_date=0x7f06001e;
+        public static final int listrow_loc_list_tv_lat=0x7f060021;
+        public static final int listrow_loc_list_tv_longi=0x7f060020;
+        public static final int listrow_loc_list_tv_memo=0x7f060022;
+        public static final int listrow_loc_list_tv_time=0x7f06001f;
+        public static final int map=0x7f060010;
+        public static final int menu_LocActv_Db=0x7f060025;
         public static final int none=0x7f060000;
         public static final int normal=0x7f060001;
         public static final int satellite=0x7f060002;
@@ -275,10 +288,11 @@ containing a value of this type.
         public static final int actv_location=0x7f030000;
         public static final int actv_main=0x7f030001;
         public static final int actv_show_map=0x7f030002;
-        public static final int dlg_tmpl_list_cancel=0x7f030003;
-        public static final int list_row_loc_list=0x7f030004;
-        public static final int list_row_simple_1=0x7f030005;
-        public static final int pref_lm=0x7f030006;
+        public static final int dlg_edit_locs=0x7f030003;
+        public static final int dlg_tmpl_list_cancel=0x7f030004;
+        public static final int list_row_loc_list=0x7f030005;
+        public static final int list_row_simple_1=0x7f030006;
+        public static final int pref_lm=0x7f030007;
     }
     public static final class menu {
         public static final int main_actv=0x7f0b0000;
@@ -391,6 +405,11 @@ containing a value of this type.
         /**  Long form sign-in button text [CHAR LIMIT=30] 
          */
         public static final int common_signin_button_text_long=0x7f070013;
+        public static final int dlg_edit_locs_date_title=0x7f07003a;
+        public static final int dlg_edit_locs_memo_title=0x7f070039;
+        /**  dlg_edit_locs.xml 
+         */
+        public static final int dlg_edit_locs_title=0x7f070038;
         public static final int generic_bt_cancel=0x7f07001e;
         public static final int generic_bt_ok=0x7f07001d;
         public static final int generic_tv_confirm=0x7f07001f;

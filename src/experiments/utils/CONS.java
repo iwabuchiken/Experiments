@@ -45,6 +45,9 @@ public class CONS {
 		public static final String pKey_CurrentItemPosition
 									= "current_item_position";
 		
+		public static final int pVal_CurrentItemPosition_Initial
+									= -1;
+		
 		public static int pVal_CurrentItemPosition;
 		
 		
@@ -279,6 +282,9 @@ public class CONS {
 		}
 
 		public static String SpaceChar		= " ";
+		
+		public static final int Default_LocStringLength	= 12;
+		
 	}//public static class Others
 
 	public static class IntentData {

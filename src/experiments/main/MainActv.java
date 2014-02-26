@@ -2,7 +2,7 @@ package experiments.main;
 
 import java.util.ArrayList;
 
-import experiments.listeners.Custom_ILCL;
+import experiments.listeners.List_ILCL;
 import experiments.utils.CONS;
 import experiments.utils.Methods;
 import experiments.utils.Tags;
@@ -113,7 +113,7 @@ public class MainActv extends ListActivity {
 //		lv.setTag(Methods.ItemTags.dir_list);
 		lv.setTag(Tags.ListTags.actv_main_lv);
 		
-		lv.setOnItemLongClickListener(new Custom_ILCL(this));
+		lv.setOnItemLongClickListener(new List_ILCL(this));
 		
 		/*********************************
 		 * 2. On touch

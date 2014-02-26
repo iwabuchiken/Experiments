@@ -3,6 +3,7 @@ package experiments.listeners;
 import experiments.items.Loc;
 import experiments.main.ShowMapActv;
 import experiments.utils.CONS;
+import experiments.utils.Methods_Dlg;
 import experiments.utils.Tags;
 import android.app.Activity;
 import android.content.Intent;
@@ -13,14 +14,14 @@ import android.widget.AdapterView;
 import android.widget.Toast;
 import android.widget.AdapterView.OnItemLongClickListener;
 
-public class Custom_ILCL
+public class List_ILCL
 implements OnItemLongClickListener {
 
 	Activity actv;
 	static Vibrator vib;
 
 	
-	public Custom_ILCL(Activity actv) {
+	public List_ILCL(Activity actv) {
 		
 		this.actv = actv;
 		vib = (Vibrator) actv.getSystemService(actv.VIBRATOR_SERVICE);
@@ -54,7 +55,8 @@ implements OnItemLongClickListener {
 			break;
 		}//switch (tag) {
 		
-		return false;
+		return true;
+//		return false;
 	}//public boolean onItemLongClick
 
 	private void
@@ -62,55 +64,11 @@ implements OnItemLongClickListener {
 		// TODO Auto-generated method stub
 		Loc loc = (Loc) parent.getItemAtPosition(position);
 		
-		// Data obtained?
-		if (loc.getLongitude() == null ||
-				loc.getLatitude() == null) {
-			
-			// Log
-			String log_msg = "loc data => null";
-			
-			Log.d("["
-					+ "BOCL.java : "
-					+ +Thread.currentThread().getStackTrace()[2]
-							.getLineNumber() + " : "
-							+ Thread.currentThread().getStackTrace()[2].getMethodName()
-							+ "]", log_msg);
-			
-			// debug
-			String toa_msg = "Loc data is null";
-			Toast.makeText(actv, toa_msg, Toast.LENGTH_SHORT).show();
-			
-			return;
-			
-		}//if (CONS.LocData.LONGITUDE == null)
+		// Show dialog
+		boolean res = Methods_Dlg.dlg_EditLoc(actv, loc, parent, position);
 		
-		float longi = Float.valueOf(loc.getLongitude());
-		float lat = Float.valueOf(loc.getLatitude());
-		
-		// Log
-		String log_msg = "longi=" + String.valueOf(longi)
-						+ "/"
-						+ "lat=" + String.valueOf(lat);
-
-		Log.d("[" + "Custom_ILCL.java : "
-				+ +Thread.currentThread().getStackTrace()[2].getLineNumber()
-				+ " : "
-				+ Thread.currentThread().getStackTrace()[2].getMethodName()
-				+ "]", log_msg);
-		
-		Intent i = new Intent();
-		
-		i.setClass(actv, ShowMapActv.class);
-		
-		i.putExtra(CONS.IntentData.iName_Showmap_Longitude,
-					longi);
-		
-		i.putExtra(CONS.IntentData.iName_Showmap_Latitude,
-					lat);
-		
-		i.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
-		
-		actv.startActivity(i);
+		// If updated, update the data in the loc list, as well
+		//	=> execute in the dialog process
 		
 	}//case_Actv_main_lv_locs(AdapterView<?> parent, int position)
 

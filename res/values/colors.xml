@@ -23,4 +23,7 @@
 	
 	<color name="brown">#521515</color>
 	
+	<!-- REF color names http://www.workwithcolor.com/color-chart-full-01.htm -->
+	<color name="Arsenic">#3B444B</color>
+	
 </resources>
