@@ -254,7 +254,6 @@ containing a value of this type.
         public static final int actv_loc_tv_longi_str=0x7f060007;
         public static final int dlg_edit_locs_btn_cancel=0x7f06001b;
         public static final int dlg_edit_locs_btn_ok=0x7f06001a;
-        public static final int dlg_edit_locs_et_price_label=0x7f060019;
         public static final int dlg_edit_locs_tl=0x7f060011;
         public static final int dlg_edit_locs_tv_date_label=0x7f060012;
         public static final int dlg_edit_locs_tv_date_val=0x7f060013;
@@ -263,6 +262,7 @@ containing a value of this type.
         public static final int dlg_edit_locs_tv_longi_label=0x7f060014;
         public static final int dlg_edit_locs_tv_longi_val=0x7f060015;
         public static final int dlg_edit_locs_tv_memo_label=0x7f060018;
+        public static final int dlg_edit_locs_tv_memo_val=0x7f060019;
         public static final int dlg_tmpl_list_cancel_bt_cancel=0x7f06001d;
         public static final int dlg_tmpl_list_cancel_lv=0x7f06001c;
         public static final int hybrid=0x7f060004;

@@ -79,21 +79,24 @@
 	            android:id="@+id/dlg_edit_locs_tv_memo_label"
 	            android:layout_width="wrap_content"
 	            android:layout_height="wrap_content"
+	            android:background="@color/Arsenic"
+	            android:gravity="center_horizontal"
 	            android:padding="5dp"
 	            android:text="@string/dlg_edit_locs_memo_title"
-	            android:textColor="@color/white"
+	            android:textColor="@color/yello"
 	            android:textSize="25sp" />
 	
 	        <EditText
-	            android:id="@+id/dlg_edit_locs_et_price_label"
+	            android:id="@+id/dlg_edit_locs_tv_memo_val"
 	            android:layout_width="wrap_content"
 	            android:layout_height="wrap_content"
 	            android:layout_margin="3dp"
 	            android:layout_weight="1"
-	            android:inputType="number"
-	            android:lines="4"
-	            android:minLines="3"
+	            android:gravity="top|left"
+	            android:lines="3"
 	            android:minWidth="200dp"
+	            android:scrollHorizontally="true"
+	            android:shadowColor="@color/Arsenic"
 	            android:textSize="25sp" />
 
 	    </TableRow>

@@ -2,8 +2,10 @@ package experiments.utils;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.List;
 
 import experiments.adapters.Adp_Loc;
+import experiments.items.Loc;
 
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Vibrator;
@@ -24,6 +26,8 @@ public class CONS {
 	public static class Main {
 		
 		public static ArrayAdapter mainAdapter;
+		
+		public static List<Loc> loc_List;
 		
 	}
 	

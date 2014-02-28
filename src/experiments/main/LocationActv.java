@@ -61,23 +61,40 @@ public class LocationActv extends Activity implements LocationListener {
 	
 	private void _Setup_LocList() {
 		// TODO Auto-generated method stub
-		List<Loc> loc_List = Methods_LM.get_Locs_All(this);
+		CONS.Main.loc_List = Methods_LM.get_Locs_All(this);
+//		List<Loc> loc_List = Methods_LM.get_Locs_All(this);
 		
 		CONS.Adapters.adp_LocList = new Adp_Loc(
 //				Adp_Loc adp_LocList = new Adp_Loc(
 						this,
 						R.layout.list_row_loc_list,
-						loc_List
+						CONS.Main.loc_List
+//						loc_List
 		);
 		
 		// Log
-		String log_msg = "loc_List.size() => " + loc_List.size();
-
-		Log.d("[" + "LocationActv.java : "
-				+ +Thread.currentThread().getStackTrace()[2].getLineNumber()
-				+ " : "
-				+ Thread.currentThread().getStackTrace()[2].getMethodName()
-				+ "]", log_msg);
+		if (CONS.Main.loc_List != null) {
+			
+			String log_msg = "loc_List.size() => " + CONS.Main.loc_List.size();
+			
+			Log.d("[" + "LocationActv.java : "
+					+ +Thread.currentThread().getStackTrace()[2].getLineNumber()
+					+ " : "
+					+ Thread.currentThread().getStackTrace()[2].getMethodName()
+					+ "]", log_msg);
+			
+		} else {//if (locationObtained)
+			
+			String log_msg = "CONS.Main.loc_List != null";
+			
+			Log.d("[" + "LocationActv.java : "
+					+ +Thread.currentThread().getStackTrace()[2].getLineNumber()
+					+ " : "
+					+ Thread.currentThread().getStackTrace()[2].getMethodName()
+					+ "]", log_msg);
+			
+		}//if (locationObtained)
+		
 		
 		// Set adapter to the list view
 		ListView lv = (ListView) findViewById(R.id.actv_loc_lv);
@@ -85,7 +102,7 @@ public class LocationActv extends Activity implements LocationListener {
 		if (CONS.Adapters.adp_LocList == null) {
 			
 			// Log
-			log_msg = "CONS.Adapters.adp_LocList => null";
+			String log_msg = "CONS.Adapters.adp_LocList => null";
 
 			Log.d("["
 					+ "LocationActv.java : "
@@ -143,7 +160,7 @@ public class LocationActv extends Activity implements LocationListener {
 
 	private void do_debugs() {
 		// TODO Auto-generated method stub
-		_Debug_D_3_v_3_0__Preference();
+//		_Debug_D_3_v_3_0__Preference();
 	}
 
 

@@ -50,6 +50,7 @@ public class DB_OTL implements OnTouchListener {
 				case dlg_generic_dismiss:
 				case dlg_generic_dismiss_third_dialog:
 				case dlg_generic_dismiss_second_dialog:
+				case dlg_edit_locs_btn_ok:
 					
 					v.setBackgroundColor(Color.GRAY);
 					
@@ -64,6 +65,7 @@ public class DB_OTL implements OnTouchListener {
 			case dlg_generic_dismiss:
 			case dlg_generic_dismiss_second_dialog:
 			case dlg_generic_dismiss_third_dialog:
+			case dlg_edit_locs_btn_ok:
 
 				v.setBackgroundColor(Color.WHITE);
 					

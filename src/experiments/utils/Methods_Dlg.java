@@ -18,6 +18,7 @@ import android.app.Dialog;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -200,6 +201,13 @@ public class Methods_Dlg {
 		
 		tv_Lat.setText(lat);
 		
+		// Memo
+		EditText et_Memo = (EditText) dlg.findViewById(R.id.dlg_edit_locs_tv_memo_val);
+		
+		String original_Memo = loc.getMemo();
+		
+		et_Memo.setText(original_Memo);
+		
 		/*********************************
 		 * Set: Listeners
 		 *********************************/
@@ -213,6 +221,21 @@ public class Methods_Dlg {
 		btn_cancel.setOnTouchListener(new DB_OTL(actv, dlg));
 		//
 		btn_cancel.setOnClickListener(new DB_OCL(actv, dlg));
+		
+		/* Ok */
+		Button btn_Ok = (Button) dlg.findViewById(R.id.dlg_edit_locs_btn_ok);
+		
+		//
+		btn_Ok.setTag(Tags.DialogTags.dlg_edit_locs_btn_ok);
+		
+		//
+		btn_Ok.setOnTouchListener(new DB_OTL(actv, dlg));
+		
+		// Get the current memo value
+		
+		// Pass the value to OnClickListener
+		btn_Ok.setOnClickListener(new DB_OCL(
+				actv, dlg, loc, parent, position, original_Memo));
 		
 		/*********************************
 		 * Show

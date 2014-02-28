@@ -138,6 +138,10 @@ public class Adp_Loc extends ArrayAdapter<Loc> {
 			
 			tv_Memo.setText(memo);
 			
+		} else {
+			
+			tv_Memo.setText("");
+			
 		}
 		
 		/*********************************

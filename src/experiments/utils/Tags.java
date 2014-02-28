@@ -33,6 +33,8 @@ public class Tags {
 		
 		dlg_generic_dismiss_third_dialog,
 		
+		dlg_edit_locs_btn_ok,
+		
 	}//public static enum DialogTags
 
 	public static enum DialogItemTags {
