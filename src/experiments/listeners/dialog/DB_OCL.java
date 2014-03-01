@@ -3,6 +3,7 @@ package experiments.listeners.dialog;
 import experiments.items.Loc;
 import experiments.main.R;
 import experiments.utils.CONS;
+import experiments.utils.DBUtils;
 import experiments.utils.Tags;
 import android.app.Activity;
 import android.app.Dialog;
@@ -132,7 +133,9 @@ public class DB_OCL implements OnClickListener {
 	}//public void onClick(View v)
 
 	private void case_Dlg_EditLocs_Btn_Ok() {
-		// TODO Auto-generated method stub
+		/*********************************
+		 * Update: Location list
+		 *********************************/
 		// Compare the current and the new memo value
 		EditText et_Memo = (EditText) dlg1.findViewById(
 								R.id.dlg_edit_locs_tv_memo_val);
@@ -185,7 +188,44 @@ public class DB_OCL implements OnClickListener {
 					+ Thread.currentThread().getStackTrace()[2].getMethodName()
 					+ "]", log_msg);
 			
+			/*********************************
+			 * Update: db
+			 *********************************/
+			boolean res = DBUtils.update_Loc_Memo(actv, loc);
+					
+			// Log
+			log_msg = "res => " + res;
+
+			Log.d("["
+					+ "DB_OCL.java : "
+					+ +Thread.currentThread().getStackTrace()[2]
+							.getLineNumber() + " : "
+					+ Thread.currentThread().getStackTrace()[2].getMethodName()
+					+ "]", log_msg);
+			
+			if (res == false) {
+				
+				// Log
+				log_msg = "DB upate => Failed";
+
+				Log.d("["
+						+ "DB_OCL.java : "
+						+ +Thread.currentThread().getStackTrace()[2]
+								.getLineNumber()
+						+ " : "
+						+ Thread.currentThread().getStackTrace()[2]
+								.getMethodName() + "]", log_msg);
+				
+				// debug
+				String toa_msg = "DB upate => Failed";
+				Toast.makeText(actv, toa_msg, Toast.LENGTH_SHORT).show();
+				
+				return;
+				
+			}
+			
 		}//if (original_Memo.equals(new_Memo))
+		
 		
 		// Close dialog
 		dlg1.dismiss();

@@ -285,6 +285,12 @@ public class CONS {
 			
 		}
 
+		public static enum SortTypes {
+			
+			LocList_Time_Desc,
+			
+		}
+		
 		public static String SpaceChar		= " ";
 		
 		public static final int Default_LocStringLength	= 12;

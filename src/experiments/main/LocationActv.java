@@ -64,6 +64,11 @@ public class LocationActv extends Activity implements LocationListener {
 		CONS.Main.loc_List = Methods_LM.get_Locs_All(this);
 //		List<Loc> loc_List = Methods_LM.get_Locs_All(this);
 		
+		Methods_LM.sort_LocList(
+						this,
+						CONS.Main.loc_List,
+						CONS.Others.SortTypes.LocList_Time_Desc);
+		
 		CONS.Adapters.adp_LocList = new Adp_Loc(
 //				Adp_Loc adp_LocList = new Adp_Loc(
 						this,

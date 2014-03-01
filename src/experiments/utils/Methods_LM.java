@@ -5,6 +5,8 @@ import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 import org.apache.commons.lang.StringUtils;
@@ -17,6 +19,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import experiments.items.Loc;
+import experiments.utils.CONS.Others.SortTypes;
 
 import android.app.Activity;
 import android.database.Cursor;
@@ -839,5 +842,38 @@ public class Methods_LM {
 		return locs;
 		
 	}//get_Locs_All(Activity actv)
+
+	public static void
+	sort_LocList
+	(Activity actv, List<Loc> loc_List,
+			final SortTypes sortType) {
+		// TODO Auto-generated method stub
+		Collections.sort(loc_List, new Comparator<Loc>(){
+			
+			public int compare(Loc x1, Loc x2) {
+				
+				int res;
+				
+				switch(sortType) {
+				
+				case LocList_Time_Desc:
+					
+					res = (int) (x2.getCreated_at()
+									.compareToIgnoreCase(x1.getCreated_at()));
+					
+				default:
+					
+					res = (int) (x2.getCreated_at()
+							.compareToIgnoreCase(x1.getCreated_at()));
+					
+				}//switch(sortType)
+				
+				return res;
+				
+			}//public int compare(Loc x1, Loc x2)
+			
+		});//Collections.sort(loc_List, new Comparator<Loc>(){
+		
+	}//sort_LocList
 	
 }//public class Methods_LM
