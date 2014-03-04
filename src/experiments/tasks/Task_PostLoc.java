@@ -1,5 +1,6 @@
 package experiments.tasks;
 
+import experiments.items.Loc;
 import experiments.utils.CONS;
 import experiments.utils.Methods_LM;
 import android.app.Activity;
@@ -13,11 +14,22 @@ public class Task_PostLoc extends AsyncTask<String, Integer, Integer> {
 
 	Activity actv;
 	
+	Loc loc;
+	
 	Vibrator vib;
 	
 	public Task_PostLoc(Activity actv) {
 		super();
 		this.actv = actv;
+		
+		vib = (Vibrator) actv.getSystemService(Context.VIBRATOR_SERVICE);
+		
+	}
+
+	public Task_PostLoc(Activity actv, Loc loc) {
+		// TODO Auto-generated constructor stub
+		this.actv	= actv;
+		this.loc	= loc;
 		
 		vib = (Vibrator) actv.getSystemService(Context.VIBRATOR_SERVICE);
 		
@@ -39,10 +51,19 @@ public class Task_PostLoc extends AsyncTask<String, Integer, Integer> {
 						+ Thread.currentThread().getStackTrace()[2].getMethodName()
 						+ "]", log_msg);
 		
-		if (params[0].equals(CONS.TaskData.TaskItems.PostLoc.toString())) {
+		if (params[0].equals(
+				CONS.TaskData.TaskItems.PostLoc.toString())) {
 			
 			result = Methods_LM.post_Loc(actv);
 
+			
+		} else if (params[0].equals(
+				CONS.TaskData.TaskItems.PostLoc_Update.toString())) {//if (params[0].equals(CONS.TaskData.TaskItems.PostLoc.toString()))
+			
+			result = Methods_LM.post_Loc_Single(
+								actv,
+								loc,
+								CONS.HTTPData.PostContent_LM.UpdateMemo);
 			
 		} else {//if (params[0].equals(CONS.TaskData.TaskItems.PostLoc.toString()))
 			

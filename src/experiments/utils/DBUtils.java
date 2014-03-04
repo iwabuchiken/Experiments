@@ -1098,6 +1098,10 @@ public class DBUtils extends SQLiteOpenHelper{
 		*/
 		
 		cv.put(CONS.DB.cols_Locations_Names[5], loc.getMemo());
+		cv.put(CONS.DB.cols_Locations_Names[2], 
+					Methods.getTimeLabel(
+						Methods.getMillSeconds_now(),
+						CONS.Others.TimeLabelTypes.Serial));
 		
 		return cv;
 		

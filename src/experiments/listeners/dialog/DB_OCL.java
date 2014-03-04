@@ -2,6 +2,7 @@ package experiments.listeners.dialog;
 
 import experiments.items.Loc;
 import experiments.main.R;
+import experiments.tasks.Task_PostLoc;
 import experiments.utils.CONS;
 import experiments.utils.DBUtils;
 import experiments.utils.Tags;
@@ -172,64 +173,81 @@ public class DB_OCL implements OnClickListener {
 			
 		} else {//if (original_Memo.equals(new_Memo))
 			
-			Loc loc = CONS.Main.loc_List.get(position);
-			
-			loc.setMemo(new_Memo);
-			
-			CONS.Adapters.adp_LocList.notifyDataSetChanged();
-			
-			// Log
-			String log_msg = "CONS.Adapters.adp_LocList => notified";
-
-			Log.d("["
-					+ "DB_OCL.java : "
-					+ +Thread.currentThread().getStackTrace()[2]
-							.getLineNumber() + " : "
-					+ Thread.currentThread().getStackTrace()[2].getMethodName()
-					+ "]", log_msg);
-			
-			/*********************************
-			 * Update: db
-			 *********************************/
-			boolean res = DBUtils.update_Loc_Memo(actv, loc);
-					
-			// Log
-			log_msg = "res => " + res;
-
-			Log.d("["
-					+ "DB_OCL.java : "
-					+ +Thread.currentThread().getStackTrace()[2]
-							.getLineNumber() + " : "
-					+ Thread.currentThread().getStackTrace()[2].getMethodName()
-					+ "]", log_msg);
-			
-			if (res == false) {
-				
-				// Log
-				log_msg = "DB upate => Failed";
-
-				Log.d("["
-						+ "DB_OCL.java : "
-						+ +Thread.currentThread().getStackTrace()[2]
-								.getLineNumber()
-						+ " : "
-						+ Thread.currentThread().getStackTrace()[2]
-								.getMethodName() + "]", log_msg);
-				
-				// debug
-				String toa_msg = "DB upate => Failed";
-				Toast.makeText(actv, toa_msg, Toast.LENGTH_SHORT).show();
-				
-				return;
-				
-			}
+			_case_Dlg_EditLocs_Btn_Ok_UpdateMemo(new_Memo);
 			
 		}//if (original_Memo.equals(new_Memo))
-		
 		
 		// Close dialog
 		dlg1.dismiss();
 		
 	}//private void case_Dlg_EditLocs_Btn_Ok()
+
+	private void
+	_case_Dlg_EditLocs_Btn_Ok_UpdateMemo(String new_Memo) {
+		// TODO Auto-generated method stub
+		Loc loc = CONS.Main.loc_List.get(position);
+		
+		loc.setMemo(new_Memo);
+		
+		CONS.Adapters.adp_LocList.notifyDataSetChanged();
+		
+		// Log
+		String log_msg = "CONS.Adapters.adp_LocList => notified";
+
+		Log.d("["
+				+ "DB_OCL.java : "
+				+ +Thread.currentThread().getStackTrace()[2]
+						.getLineNumber() + " : "
+				+ Thread.currentThread().getStackTrace()[2].getMethodName()
+				+ "]", log_msg);
+		
+		/*********************************
+		 * Update: db
+		 *********************************/
+		boolean res = DBUtils.update_Loc_Memo(actv, loc);
+				
+		// Log
+		log_msg = "res => " + res;
+
+		Log.d("["
+				+ "DB_OCL.java : "
+				+ +Thread.currentThread().getStackTrace()[2]
+						.getLineNumber() + " : "
+				+ Thread.currentThread().getStackTrace()[2].getMethodName()
+				+ "]", log_msg);
+		
+		if (res == false) {
+			
+			// Log
+			log_msg = "DB upate => Failed";
+
+			Log.d("["
+					+ "DB_OCL.java : "
+					+ +Thread.currentThread().getStackTrace()[2]
+							.getLineNumber()
+					+ " : "
+					+ Thread.currentThread().getStackTrace()[2]
+							.getMethodName() + "]", log_msg);
+			
+			// debug
+			String toa_msg = "DB upate => Failed";
+			Toast.makeText(actv, toa_msg, Toast.LENGTH_SHORT).show();
+			
+			return;
+			
+		}//if (res == false)
+
+		/*********************************
+		 * Post to remote for update
+		 *********************************/
+		Task_PostLoc task_ = new Task_PostLoc(actv, loc);
+		
+		// debug
+		Toast.makeText(actv, "Starting a task...", Toast.LENGTH_LONG)
+				.show();
+		
+		task_.execute(CONS.TaskData.TaskItems.PostLoc_Update.toString());
+		
+	}//_case_Dlg_EditLocs_Btn_Ok_UpdateMemo(String new_Memo)
 
 }//DialogButtonOnClickListener

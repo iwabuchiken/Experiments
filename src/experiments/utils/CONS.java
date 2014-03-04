@@ -212,24 +212,24 @@ public class CONS {
 		
 		public static String[] lmKeys = {
 			
-					"lm_mobile_id",
-					"lm_mobile_created_at",
-					"lm_mobile_modified_at",
+					"lm_mobile_id",				// 0
+					"lm_mobile_created_at",		// 1
+					"lm_mobile_modified_at",	// 2
 					
-					"lm_longitude",
-					"lm_latitude",
+					"lm_longitude",				// 3
+					"lm_latitude",				// 4
 					
-					"lm_memo"
+					"lm_memo"					// 5
 					
 		};
 		
 		/*********************************
 		 * Posting data => Types
 		 *********************************/
-		public static enum registerChoice {
-			single_item,
+		public static enum PostContent_LM {
 			
-			pur_history,
+			UpdateMemo,
+			
 		};
 		
 		/*********************************
@@ -238,6 +238,8 @@ public class CONS {
 		public static final String PASSWD_LM_Key		= "passwd_lm";
 		
 		public static final String PASSWD_LM_NewLoc		= "lm_NewLoc";
+		
+		public static final String PASSWD_LM_VAL_UpdateLoc	= "lm_UpdateLoc";
 		
 		/*********************************
 		 * Others
@@ -271,6 +273,8 @@ public class CONS {
 		public static enum TaskItems {
 			
 			PostLoc,
+			
+			PostLoc_Update,
 			
 		}
 		

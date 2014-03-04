@@ -185,6 +185,76 @@ public class Methods_LM {
 		return counter + CONS.ReturnValues.MAGINITUDE_ONE;
 		
 	}//public static int post_Loc(Activity actv)
+	
+	/*********************************
+	 * Post locations whose "uploaded_at" value is null<br>
+	 * @param loc 
+	 * @return Errors<br>
+	 * 1. CONS.ReturnValues.BuildHttpPostFailed	=> -13<br>
+	 * 2. CONS.ReturnValues.HttpPostFailed	=> -14<br>
+	 * 3. CONS.ReturnValues.ServerError	=> -16<br>
+	 * 4. CONS.ReturnValues.ClientError	=> -17<br>
+	 * 
+	 * Success<br>
+	 * 1. Number of locs posted + MAGINITUDE_ONE
+	 *********************************/
+	public static int
+	post_Loc_Single
+	(Activity actv, Loc loc, CONS.HTTPData.PostContent_LM postContent) {
+		// TODO Auto-generated method stub
+		
+		switch(postContent) {
+		
+		case UpdateMemo://---------------------------
+			
+			return _post_Loc_Single__UpdateMemo(actv, loc);
+			
+			// case UpdateMemo
+			
+		default://-------------------------------------
+			
+			return CONS.ReturnValues.FAILED;
+		
+		}
+		
+//		int counter = 0;
+//		
+//		/*********************************
+//		 * Post locs
+//		 *********************************/
+//		int result = _post_Loc_Each__UpdateMemo(actv, loc);
+////		int result = _post_Loc_Each(actv, loc);
+//		
+//		if (result == CONS.ReturnValues.OK) {
+//			
+//			counter += 1;
+//			
+//		}
+//			
+//		return counter + CONS.ReturnValues.MAGINITUDE_ONE;
+		
+	}//public static int post_Loc(Activity actv)
+
+	private static int
+	_post_Loc_Single__UpdateMemo
+	(Activity actv, Loc loc) {
+		// TODO Auto-generated method stub
+		int counter = 0;
+		
+		/*********************************
+		 * Post locs
+		 *********************************/
+		int result = _post_Loc_Each__UpdateMemo(actv, loc);
+//		int result = _post_Loc_Each(actv, loc);
+		
+		if (result == CONS.ReturnValues.OK) {
+			
+			counter += 1;
+			
+		}
+			
+		return counter + CONS.ReturnValues.MAGINITUDE_ONE;
+	}
 
 	/*********************************
 	 * @return Errors<br>
@@ -261,6 +331,88 @@ public class Methods_LM {
 
 		return CONS.ReturnValues.OK;
 
+	}//_post_Loc_Each(Activity actv, Loc loc)
+	
+	/*********************************
+	 * @return Errors<br>
+	 * 1. CONS.ReturnValues.BuildHttpPostFailed	=> -13<br>
+	 * 2. CONS.ReturnValues.HttpPostFailed	=> -14<br>
+	 * 3. CONS.ReturnValues.ServerError	=> -16<br>
+	 * 4. CONS.ReturnValues.ClientError	=> -17<br>
+	 * 5. CONS.ReturnValues.PostedButNotUpdated	=> -15<br>
+	 * <br>
+	 * Success<br>
+	 * 1. CONS.ReturnValues.OK
+	 *********************************/
+	private static int
+	_post_Loc_Each__UpdateMemo(Activity actv, Loc loc) {
+		// TODO Auto-generated method stub
+		/*********************************
+		 * JSONBody
+		 *********************************/
+		JSONObject joBody = Methods_LM
+						._post_Loc_GetJsonBody__UpdateMemo(
+								actv,
+								loc);
+		
+//		JSONObject joBody = Methods_LM._post_Loc_GetJsonBody(actv, loc);
+		
+		/*********************************
+		 * Build: HTTP object
+		 *********************************/
+		String url = CONS.HTTPData.UrlPostLM;
+		
+		HttpPost httpPost = _post_Loc_Get_HttpPost(url, joBody);
+		
+		if (httpPost == null) {
+			
+			// Log
+			Log.d("["
+					+ "Methods_LM.java : "
+					+ +Thread.currentThread().getStackTrace()[2]
+							.getLineNumber() + " : "
+							+ Thread.currentThread().getStackTrace()[2].getMethodName()
+							+ "]", "httpPost => null");
+			
+			return CONS.ReturnValues.BuildHttpPostFailed;
+			
+		}
+		
+		// Log
+		Log.d("[" + "Methods_LM.java : "
+				+ +Thread.currentThread().getStackTrace()[2].getLineNumber()
+				+ " : "
+				+ Thread.currentThread().getStackTrace()[2].getMethodName()
+				+ "]",
+				"httpPost => " + httpPost.toString()
+				+ "(" + httpPost.getURI().toString() + ")"
+				);
+		
+		
+		/***************************************
+		 * Post
+		 ***************************************/
+		int iRes = _doInBackground__4_PostData(httpPost);
+		
+		if (iRes != CONS.ReturnValues.OK) {
+			
+			return iRes;
+			
+		}
+		
+		/*********************************
+		 * Update: SI.posted_at
+		 *********************************/
+		boolean res = Methods_LM.update_LM(actv, loc);
+		
+		if (res == false) {
+			
+			return CONS.ReturnValues.PostedButNotUpdated;
+			
+		}
+		
+		return CONS.ReturnValues.OK;
+		
 	}//_post_Loc_Each(Activity actv, Loc loc)
 
 	public static boolean
@@ -510,6 +662,87 @@ public class Methods_LM {
 			return null;
 		}
 
+		return joBody;
+		
+	}//_post_Loc_GetJsonBody(Activity actv, Loc loc)
+	
+	/*********************************
+	 * Update memo
+	 * @param passValue "memo" value
+	 * @return null =>	1. Build JSONBody => Failed<br>
+	 * 					2. Add password param => Failed
+	 *********************************/
+	private static JSONObject
+	_post_Loc_GetJsonBody__UpdateMemo
+	(Activity actv, Loc loc) {
+		// TODO Auto-generated method stub
+//		"lm_mobile_id",
+//		"lm_mobile_created_at",
+//		"lm_mobile_modified_at",
+//		
+//		"lm_longitude",
+//		"lm_latitude",
+//		
+//		"lm_memo"
+		
+		Object[] values = new Object[]{
+				
+				loc.getId(),
+				loc.getModified_at(),
+				loc.getMemo()
+				
+		};
+		
+		String[] keys = {
+				
+				CONS.HTTPData.lmKeys[0],	// "lm_mobile_id"
+				CONS.HTTPData.lmKeys[2],	// "lm_mobile_modified_at"
+				CONS.HTTPData.lmKeys[5],	// "lm_memo"
+		
+		};
+//		String[] keys = CONS.HTTPData.lmKeys;
+		
+		JSONObject joBody = Methods_LM._post_Loc_Build_JsonBody_LM(keys, values);
+		
+		if (joBody == null) {
+			
+			// Log
+			String log_msg = "Build JSONBody => Failed";
+			
+			Log.d("["
+					+ "Methods_LM.java : "
+					+ +Thread.currentThread().getStackTrace()[2]
+							.getLineNumber() + " : "
+							+ Thread.currentThread().getStackTrace()[2].getMethodName()
+							+ "]", log_msg);
+			
+			return null;
+			
+		}
+		
+		try {
+			
+			joBody.put(
+					CONS.HTTPData.PASSWD_LM_Key,
+					CONS.HTTPData.PASSWD_LM_VAL_UpdateLoc);
+			
+		} catch (JSONException e) {
+			// TODO Auto-generated catch block
+			
+			// Log
+			Log.d("["
+					+ "Methods_LM.java : "
+					+ +Thread.currentThread().getStackTrace()[2]
+							.getLineNumber() + " : "
+							+ Thread.currentThread().getStackTrace()[2].getMethodName()
+							+ "]",
+							
+							"add password param => Failed"
+									+ "(" + e.getMessage() + ")");
+			
+			return null;
+		}
+		
 		return joBody;
 		
 	}//_post_Loc_GetJsonBody(Activity actv, Loc loc)
