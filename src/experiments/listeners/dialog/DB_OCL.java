@@ -5,6 +5,7 @@ import experiments.main.R;
 import experiments.tasks.Task_PostLoc;
 import experiments.utils.CONS;
 import experiments.utils.DBUtils;
+import experiments.utils.Methods;
 import experiments.utils.Tags;
 import android.app.Activity;
 import android.app.Dialog;
@@ -185,10 +186,18 @@ public class DB_OCL implements OnClickListener {
 	private void
 	_case_Dlg_EditLocs_Btn_Ok_UpdateMemo(String new_Memo) {
 		// TODO Auto-generated method stub
+		/*********************************
+		 * Update: Location data
+		 *********************************/
 		Loc loc = CONS.Main.loc_List.get(position);
 		
 		loc.setMemo(new_Memo);
+		loc.setModified_at(
+				Methods.getTimeLabel(
+						Methods.getMillSeconds_now(),
+						CONS.Others.TimeLabelTypes.Serial));
 		
+		// Notify the adapter
 		CONS.Adapters.adp_LocList.notifyDataSetChanged();
 		
 		// Log

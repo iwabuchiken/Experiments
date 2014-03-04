@@ -164,14 +164,16 @@ public class CONS {
 		
 		public static final int PostedButNotUpdated	= -15;
 		
-		public static final int ServerError		= -16;
+		public static final int ServerError			= -16;
 		
-		public static final int ClientError		= -17;
+		public static final int ClientError			= -17;
 		
 		public static final int ParamVariableNull	= -18;
 		
 		public static final int BuildLocsFailed		= -19;
 
+		public static final int NotUpdated_NotPosted	= -100;
+		
 		/*********************************
 		 * DB-related: -20 ~
 		 *********************************/
