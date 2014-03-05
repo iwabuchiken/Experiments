@@ -18,6 +18,7 @@
 	    
 	<!-- MainActv -->
 	    <string name="mainactv_list_position">Location Manager</string>
+	    <string name="mainactv_list_tweet_app">Tweet App</string>
 	
 	<!-- actv_location.xml -->
 		<string name="actv_loc_tv_longi">Longitude</string>
@@ -53,5 +54,27 @@
 		<string name="dlg_edit_locs_title">Edit Location</string>
 		<string name="dlg_edit_locs_memo_title">Memo</string>
 		<string name="dlg_edit_locs_date_title">Date</string>
-		
+
+	<!-- TweetApp -->
+		  <string
+		    name="btn_timeline">Get Timeline</string>
+		  <string
+		    name="btn_login">Login</string>
+		  <string
+		    name="tv_login_request">Please login, first..</string>
+		  <string
+		    name="btn_tweet">Tweet</string>
+		  <string
+		    name="btn_back">Back</string>
+		  <string
+		    name="dlg_get_timeline">Getting Timeline...</string>
+		  <string
+		    name="tv_charscount">Number of Characters:</string>
+		  <string
+		    name="tv_charsmax">You entered over 140 chars!</string>
+		  <string
+		    name="tv_timeline_title">TIMELINE</string>
+		  <string
+		    name="tv_tweetupdate_title">TWEET</string>
+				
 </resources>

@@ -240,9 +240,11 @@ containing a value of this type.
         public static final int ic_plusone_small_off_client=0x7f02001b;
         public static final int ic_plusone_standard_off_client=0x7f02001c;
         public static final int ic_plusone_tall_off_client=0x7f02001d;
+        public static final int icon=0x7f02001e;
+        public static final int line=0x7f02001f;
     }
     public static final class id {
-        public static final int action_settings=0x7f060024;
+        public static final int action_settings=0x7f060025;
         public static final int actv_loc_bt_get_data=0x7f06000b;
         public static final int actv_loc_bt_post_data=0x7f06000d;
         public static final int actv_loc_bt_save_data=0x7f06000c;
@@ -252,6 +254,7 @@ containing a value of this type.
         public static final int actv_loc_tv_lat_str=0x7f06000a;
         public static final int actv_loc_tv_longi_lbl=0x7f060006;
         public static final int actv_loc_tv_longi_str=0x7f060007;
+        public static final int btn_tweet=0x7f060024;
         public static final int dlg_edit_locs_btn_cancel=0x7f06001b;
         public static final int dlg_edit_locs_btn_ok=0x7f06001a;
         public static final int dlg_edit_locs_tl=0x7f060011;
@@ -273,7 +276,7 @@ containing a value of this type.
         public static final int listrow_loc_list_tv_memo=0x7f060022;
         public static final int listrow_loc_list_tv_time=0x7f06001f;
         public static final int map=0x7f060010;
-        public static final int menu_LocActv_Db=0x7f060025;
+        public static final int menu_LocActv_Db=0x7f060026;
         public static final int none=0x7f060000;
         public static final int normal=0x7f060001;
         public static final int satellite=0x7f060002;
@@ -293,6 +296,7 @@ containing a value of this type.
         public static final int list_row_loc_list=0x7f030005;
         public static final int list_row_simple_1=0x7f030006;
         public static final int pref_lm=0x7f030007;
+        public static final int tweet_app=0x7f030008;
     }
     public static final class menu {
         public static final int main_actv=0x7f0b0000;
@@ -300,14 +304,14 @@ containing a value of this type.
     }
     public static final class string {
         public static final int action_settings=0x7f07001b;
-        public static final int actv_loc_tv_get_data=0x7f070028;
-        public static final int actv_loc_tv_lat=0x7f070027;
+        public static final int actv_loc_tv_get_data=0x7f070029;
+        public static final int actv_loc_tv_lat=0x7f070028;
         /**  actv_location.xml 
          */
-        public static final int actv_loc_tv_longi=0x7f070026;
-        public static final int actv_loc_tv_post_data=0x7f07002a;
-        public static final int actv_loc_tv_save_data=0x7f070029;
-        public static final int actv_loc_tv_show_map=0x7f07002b;
+        public static final int actv_loc_tv_longi=0x7f070027;
+        public static final int actv_loc_tv_post_data=0x7f07002b;
+        public static final int actv_loc_tv_save_data=0x7f07002a;
+        public static final int actv_loc_tv_show_map=0x7f07002c;
         /**  Generics 
          */
         public static final int app_name=0x7f07001a;
@@ -334,6 +338,12 @@ containing a value of this type.
         [CHAR LIMIT=70] 
          */
         public static final int auth_client_using_bad_version_title=0x7f070014;
+        public static final int btn_back=0x7f070040;
+        public static final int btn_login=0x7f07003d;
+        /**  TweetApp 
+         */
+        public static final int btn_timeline=0x7f07003c;
+        public static final int btn_tweet=0x7f07003f;
         /**  Button in confirmation dialog to enable Google Play services.  Clicking it
         will direct user to application settings of Google Play services where they
         can enable it [CHAR LIMIT=40] 
@@ -405,11 +415,12 @@ containing a value of this type.
         /**  Long form sign-in button text [CHAR LIMIT=30] 
          */
         public static final int common_signin_button_text_long=0x7f070013;
-        public static final int dlg_edit_locs_date_title=0x7f07003a;
-        public static final int dlg_edit_locs_memo_title=0x7f070039;
+        public static final int dlg_edit_locs_date_title=0x7f07003b;
+        public static final int dlg_edit_locs_memo_title=0x7f07003a;
         /**  dlg_edit_locs.xml 
          */
-        public static final int dlg_edit_locs_title=0x7f070038;
+        public static final int dlg_edit_locs_title=0x7f070039;
+        public static final int dlg_get_timeline=0x7f070041;
         public static final int generic_bt_cancel=0x7f07001e;
         public static final int generic_bt_ok=0x7f07001d;
         public static final int generic_tv_confirm=0x7f07001f;
@@ -419,27 +430,33 @@ containing a value of this type.
         public static final int generic_tv_register=0x7f070021;
         public static final int generic_tv_upload=0x7f070024;
         public static final int hello_world=0x7f07001c;
-        public static final int intent_showmap_latitude=0x7f070037;
+        public static final int intent_showmap_latitude=0x7f070038;
         /**  Intent names 
          */
-        public static final int intent_showmap_longitude=0x7f070036;
+        public static final int intent_showmap_longitude=0x7f070037;
         /**  MainActv 
          */
         public static final int mainactv_list_position=0x7f070025;
-        public static final int menu_LocActv_Backup_Db=0x7f070031;
+        public static final int mainactv_list_tweet_app=0x7f070026;
+        public static final int menu_LocActv_Backup_Db=0x7f070032;
         /**  Menu: LocActv 
          */
-        public static final int menu_LocActv_DB_Dialog_Title=0x7f07002f;
-        public static final int menu_LocActv_DB_Menu_Title=0x7f070030;
-        public static final int menu_LocActv_Exec_Sql=0x7f070035;
-        public static final int menu_LocActv_Refresh_Db=0x7f070032;
-        public static final int menu_LocActv_Restore_Db=0x7f070033;
-        public static final int menu_LocActv_Upload_Db=0x7f070034;
-        public static final int prefKey_ShowMemoDialog=0x7f07002d;
+        public static final int menu_LocActv_DB_Dialog_Title=0x7f070030;
+        public static final int menu_LocActv_DB_Menu_Title=0x7f070031;
+        public static final int menu_LocActv_Exec_Sql=0x7f070036;
+        public static final int menu_LocActv_Refresh_Db=0x7f070033;
+        public static final int menu_LocActv_Restore_Db=0x7f070034;
+        public static final int menu_LocActv_Upload_Db=0x7f070035;
+        public static final int prefKey_ShowMemoDialog=0x7f07002e;
         /**  preferences 
          */
-        public static final int prefName=0x7f07002c;
-        public static final int prefTitle_ShowMemoDialog=0x7f07002e;
+        public static final int prefName=0x7f07002d;
+        public static final int prefTitle_ShowMemoDialog=0x7f07002f;
+        public static final int tv_charscount=0x7f070042;
+        public static final int tv_charsmax=0x7f070043;
+        public static final int tv_login_request=0x7f07003e;
+        public static final int tv_timeline_title=0x7f070044;
+        public static final int tv_tweetupdate_title=0x7f070045;
     }
     public static final class style {
         /** 

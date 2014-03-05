@@ -2,6 +2,9 @@ package experiments.main;
 
 import java.util.ArrayList;
 
+import oauth.signpost.commonshttp.CommonsHttpOAuthConsumer;
+import oauth.signpost.commonshttp.CommonsHttpOAuthProvider;
+
 import experiments.listeners.List_ILCL;
 import experiments.utils.CONS;
 import experiments.utils.Methods;
@@ -20,6 +23,11 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 public class MainActv extends ListActivity {
+
+    // OAuth認証コンシューマインスタンス
+    private CommonsHttpOAuthConsumer oauthConsumer = null;
+    // OAuth認証プロバイダインスタンス
+    private CommonsHttpOAuthProvider oauthProvider = null;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -41,9 +49,15 @@ public class MainActv extends ListActivity {
 		
 		String itemName = (String) lv.getItemAtPosition(position);
 
-		if (itemName.equals(this.getString(R.string.mainactv_list_position))) {
+		if (itemName.equals(this.getString(
+						R.string.mainactv_list_position))) {
 			
 			_onItemClick__LocationManager();
+			
+		} else if (itemName.equals(this.getString(
+				R.string.mainactv_list_tweet_app))) {//if (itemName.equals(this.getString(R.string.mainactv_list_position)))
+			
+			_onItemClick__TweetApp();
 			
 		} else {//if (itemName.equals(this.getString(R.string.mainactv_list_position)))
 
@@ -55,6 +69,23 @@ public class MainActv extends ListActivity {
 		
 		
 	}//onListItemClick(ListView l, View v, int position, long id)
+
+	private void
+	_onItemClick__TweetApp() {
+		// TODO Auto-generated method stub
+		Intent i = new Intent();
+		
+		i.setClass(this, TweetAppActv.class);
+		
+		/*********************************
+		 * 3. Start
+		 *********************************/
+		startActivity(i);
+		
+		//REF no animation http://stackoverflow.com/questions/6972295/switching-activities-without-animation answered Nov 19 '13 at 21:42
+		this.overridePendingTransition(0, 0);
+		
+	}//_onItemClick__TweetApp()
 
 	private void
 	_onItemClick__LocationManager() {
@@ -72,7 +103,7 @@ public class MainActv extends ListActivity {
 		this.overridePendingTransition(0, 0);
 		
 	}//_onItemClick__LocationManager()
-
+	
 	@Override
 	protected void onStart() {
 		// TODO Auto-generated method stub
@@ -86,6 +117,9 @@ public class MainActv extends ListActivity {
 		
 		CONS.Admin.list_MainActv.add(
 					this.getString(R.string.mainactv_list_position));
+		
+		CONS.Admin.list_MainActv.add(
+				this.getString(R.string.mainactv_list_tweet_app));
 		
 		CONS.Main.mainAdapter = new ArrayAdapter<String>(
 									this, 
