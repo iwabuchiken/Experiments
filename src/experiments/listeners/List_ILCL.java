@@ -11,6 +11,7 @@ import android.os.Vibrator;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.ListView;
 import android.widget.Toast;
 import android.widget.AdapterView.OnItemLongClickListener;
 
@@ -47,7 +48,8 @@ implements OnItemLongClickListener {
 			
 		case actv_main_lv_locs://-----------------------------
 			
-			case_Actv_main_lv_locs(parent, position);
+			case_Actv_main_lv_locs(CONS.Views.lv_Locations, position);
+//			case_Actv_main_lv_locs(parent, position);
 			
 			break;// case actv_main_lv_locs
 			
@@ -60,9 +62,24 @@ implements OnItemLongClickListener {
 	}//public boolean onItemLongClick
 
 	private void
-	case_Actv_main_lv_locs(AdapterView<?> parent, int position) {
+	case_Actv_main_lv_locs(ListView parent, int position) {
+//		case_Actv_main_lv_locs(AdapterView<?> parent, int position) {
 		// TODO Auto-generated method stub
 		Loc loc = (Loc) parent.getItemAtPosition(position);
+		
+		// Log
+		String log_msg = "loc.id="
+						+ String.valueOf(loc.getId())
+						+ "/"
+						+ "time=" + loc.getCreated_at()
+						+ "/"
+						+ "position=" + String.valueOf(position);
+
+		Log.d("[" + "List_ILCL.java : "
+				+ +Thread.currentThread().getStackTrace()[2].getLineNumber()
+				+ " : "
+				+ Thread.currentThread().getStackTrace()[2].getMethodName()
+				+ "]", log_msg);
 		
 		// Show dialog
 		boolean res = Methods_Dlg.dlg_EditLoc(actv, loc, parent, position);

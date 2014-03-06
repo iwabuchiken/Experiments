@@ -1190,6 +1190,8 @@ public class Methods_LM {
 						+ Thread.currentThread().getStackTrace()[2]
 								.getMethodName() + "]", log_msg);
 				
+				wdb.close();
+				
 				return false;
 				
 			}//if (res == true)
@@ -1211,6 +1213,8 @@ public class Methods_LM {
 						CONS.DB.tname_PostHistory,
 						CONS.DB.cols_PostHistory_Names_skimmed,
 						values);
+		
+		wdb.close();
 		
 		return res;
 		

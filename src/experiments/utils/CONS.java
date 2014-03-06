@@ -11,6 +11,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.os.Vibrator;
 import android.provider.MediaStore;
 import android.widget.ArrayAdapter;
+import android.widget.ListView;
 
 public class CONS {
 
@@ -381,4 +382,10 @@ public class CONS {
 		
 	}
 
+	public static class Views {
+		
+		public static ListView lv_Locations	= null;
+		
+	}
+	
 }//public class CONS

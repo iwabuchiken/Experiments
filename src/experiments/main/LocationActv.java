@@ -64,10 +64,31 @@ public class LocationActv extends Activity implements LocationListener {
 		CONS.Main.loc_List = Methods_LM.get_Locs_All(this);
 //		List<Loc> loc_List = Methods_LM.get_Locs_All(this);
 		
+		// Log
+		String log_msg = "get(0).created="
+					+ CONS.Main.loc_List.get(0).getCreated_at();
+
+		Log.d("[" + "LocationActv.java : "
+				+ +Thread.currentThread().getStackTrace()[2].getLineNumber()
+				+ " : "
+				+ Thread.currentThread().getStackTrace()[2].getMethodName()
+				+ "]", log_msg);
+		
+		
 		Methods_LM.sort_LocList(
 						this,
 						CONS.Main.loc_List,
 						CONS.Others.SortTypes.LocList_Time_Desc);
+		
+		// Log
+		log_msg = "get(0).created="
+				+ CONS.Main.loc_List.get(0).getCreated_at();
+		
+		Log.d("[" + "LocationActv.java : "
+				+ +Thread.currentThread().getStackTrace()[2].getLineNumber()
+				+ " : "
+				+ Thread.currentThread().getStackTrace()[2].getMethodName()
+				+ "]", log_msg);
 		
 		CONS.Adapters.adp_LocList = new Adp_Loc(
 //				Adp_Loc adp_LocList = new Adp_Loc(
@@ -80,7 +101,8 @@ public class LocationActv extends Activity implements LocationListener {
 		// Log
 		if (CONS.Main.loc_List != null) {
 			
-			String log_msg = "loc_List.size() => " + CONS.Main.loc_List.size();
+			log_msg = "loc_List.size() => " + CONS.Main.loc_List.size();
+//			String log_msg = "loc_List.size() => " + CONS.Main.loc_List.size();
 			
 			Log.d("[" + "LocationActv.java : "
 					+ +Thread.currentThread().getStackTrace()[2].getLineNumber()
@@ -90,7 +112,8 @@ public class LocationActv extends Activity implements LocationListener {
 			
 		} else {//if (locationObtained)
 			
-			String log_msg = "CONS.Main.loc_List != null";
+			log_msg = "CONS.Main.loc_List != null";
+//			String log_msg = "CONS.Main.loc_List != null";
 			
 			Log.d("[" + "LocationActv.java : "
 					+ +Thread.currentThread().getStackTrace()[2].getLineNumber()
@@ -102,12 +125,14 @@ public class LocationActv extends Activity implements LocationListener {
 		
 		
 		// Set adapter to the list view
-		ListView lv = (ListView) findViewById(R.id.actv_loc_lv);
+		CONS.Views.lv_Locations = (ListView) findViewById(R.id.actv_loc_lv);
+//		ListView lv = (ListView) findViewById(R.id.actv_loc_lv);
 		
 		if (CONS.Adapters.adp_LocList == null) {
 			
 			// Log
-			String log_msg = "CONS.Adapters.adp_LocList => null";
+			log_msg = "CONS.Adapters.adp_LocList => null";
+//			String log_msg = "CONS.Adapters.adp_LocList => null";
 
 			Log.d("["
 					+ "LocationActv.java : "
@@ -118,17 +143,28 @@ public class LocationActv extends Activity implements LocationListener {
 			
 		} else {//if (CONS.Adapters.adp_LocList == null)
 			
-			lv.setAdapter(CONS.Adapters.adp_LocList);
+			CONS.Views.lv_Locations.setAdapter(CONS.Adapters.adp_LocList);
 			
 			// Set: tag
-			lv.setTag(Tags.ListTags.actv_main_lv_locs);
+			CONS.Views.lv_Locations.setTag(Tags.ListTags.actv_main_lv_locs);
 			
 			// Set: listener => long click
-			lv.setOnItemClickListener(new List_ICL(this));
+			CONS.Views.lv_Locations.setOnItemClickListener(new List_ICL(this));
 			
 			// Set: listener => item long click
-			lv.setOnItemLongClickListener(new List_ILCL(this));
+			CONS.Views.lv_Locations.setOnItemLongClickListener(new List_ILCL(this));
 			
+//			lv.setAdapter(CONS.Adapters.adp_LocList);
+//			
+//			// Set: tag
+//			lv.setTag(Tags.ListTags.actv_main_lv_locs);
+//			
+//			// Set: listener => long click
+//			lv.setOnItemClickListener(new List_ICL(this));
+//			
+//			// Set: listener => item long click
+//			lv.setOnItemLongClickListener(new List_ILCL(this));
+//			
 		}//if (CONS.Adapters.adp_LocList == null)
 		
 	}//private void _Setup_LocList()

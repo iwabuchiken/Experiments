@@ -82,6 +82,18 @@ public class DB_OCL implements OnClickListener {
 		
 		vib = (Vibrator) actv.getSystemService(actv.VIBRATOR_SERVICE);
 		
+		// Log
+		String log_msg = "Initialized => "
+						+ "postion=" + String.valueOf(position)
+						+ "/"
+						+ "loc.time=" + loc.getCreated_at();
+
+		Log.d("[" + "DB_OCL.java : "
+				+ +Thread.currentThread().getStackTrace()[2].getLineNumber()
+				+ " : "
+				+ Thread.currentThread().getStackTrace()[2].getMethodName()
+				+ "]", log_msg);
+		
 	}
 
 	public void onClick(View v) {
@@ -174,6 +186,22 @@ public class DB_OCL implements OnClickListener {
 			
 		} else {//if (original_Memo.equals(new_Memo))
 			
+			//debug
+			Loc loc = CONS.Main.loc_List.get(position);
+			
+			// Log
+			String log_msg = "position="
+							+ String.valueOf(position)
+							+ "/"
+							+ "loc.time=" + loc.getCreated_at();
+
+			Log.d("[" + "DB_OCL.java : "
+					+ +Thread.currentThread().getStackTrace()[2].getLineNumber()
+					+ " : "
+					+ Thread.currentThread().getStackTrace()[2].getMethodName()
+					+ "]", log_msg);
+
+			
 			_case_Dlg_EditLocs_Btn_Ok_UpdateMemo(new_Memo);
 			
 		}//if (original_Memo.equals(new_Memo))
@@ -189,7 +217,27 @@ public class DB_OCL implements OnClickListener {
 		/*********************************
 		 * Update: Location data
 		 *********************************/
-		Loc loc = CONS.Main.loc_List.get(position);
+		Loc loc2 = CONS.Main.loc_List.get(position);
+		
+		// Log
+		String log_msg = "loc2::position="
+						+ String.valueOf(position)
+						+ "/"
+						+ "loc2.time=" + loc2.getCreated_at();
+		
+		Loc loc = (Loc)CONS.Views.lv_Locations.getItemAtPosition(position);
+		
+		log_msg = "loc::"
+				+ "position="
+				+ String.valueOf(position)
+				+ "/"
+				+ "loc.time=" + loc.getCreated_at();
+
+		Log.d("[" + "DB_OCL.java : "
+				+ +Thread.currentThread().getStackTrace()[2].getLineNumber()
+				+ " : "
+				+ Thread.currentThread().getStackTrace()[2].getMethodName()
+				+ "]", log_msg);
 		
 		loc.setMemo(new_Memo);
 		loc.setModified_at(
@@ -201,7 +249,8 @@ public class DB_OCL implements OnClickListener {
 		CONS.Adapters.adp_LocList.notifyDataSetChanged();
 		
 		// Log
-		String log_msg = "CONS.Adapters.adp_LocList => notified";
+		log_msg = "CONS.Adapters.adp_LocList => notified";
+//		String log_msg = "CONS.Adapters.adp_LocList => notified";
 
 		Log.d("["
 				+ "DB_OCL.java : "
