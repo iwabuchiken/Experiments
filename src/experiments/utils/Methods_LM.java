@@ -411,6 +411,12 @@ public class Methods_LM {
 			
 		}
 		
+		/*********************************
+		 * Post history
+		 *********************************/
+		res = Methods_LM.save_PostHistory(actv, loc);
+		
+		
 		return CONS.ReturnValues.OK;
 		
 	}//_post_Loc_Each(Activity actv, Loc loc)
@@ -1108,5 +1114,106 @@ public class Methods_LM {
 		});//Collections.sort(loc_List, new Comparator<Loc>(){
 		
 	}//sort_LocList
+
+	/*********************************
+	 * @return false => 1. Create table failed
+	 *********************************/
+	public static boolean
+	save_PostHistory(Activity actv, Loc loc) {
+	
+		DBUtils dbu = new DBUtils(actv, CONS.DB.dbName_LM);
+		
+		SQLiteDatabase wdb = dbu.getWritableDatabase();
+		
+		/*********************************
+		 * Table exists?
+		 *********************************/
+		boolean res = dbu.tableExists(wdb, CONS.DB.tname_PostHistory);
+		
+		if (res == false) {
+			
+//			// debug
+//			String toa_msg = "Table exists => " + CONS.DB.tname_Location;
+//			Toast.makeText(actv, toa_msg, Toast.LENGTH_SHORT).show();
+			
+			// Log
+			String log_msg = "Table doesn't exist => "
+							+ CONS.DB.tname_PostHistory;
+
+			Log.d("["
+					+ "Methods_LM.java : "
+					+ +Thread.currentThread().getStackTrace()[2]
+							.getLineNumber() + " : "
+					+ Thread.currentThread().getStackTrace()[2].getMethodName()
+					+ "]", log_msg);
+			
+			// Create table
+			// Log
+			log_msg = "Creating table...";
+
+			Log.d("["
+					+ "Methods_LM.java : "
+					+ +Thread.currentThread().getStackTrace()[2]
+							.getLineNumber() + " : "
+					+ Thread.currentThread().getStackTrace()[2].getMethodName()
+					+ "]", log_msg);
+			
+			res = Migrations
+					._Mig__20140306_081135_CreateTable_PostHistory(
+									actv,
+									CONS.DB.MigTypes.Mig_Up);
+			
+			if (res == true) {
+				
+				// Log
+				log_msg = "Table created => " + CONS.DB.tname_PostHistory;
+
+				Log.d("["
+						+ "Methods_LM.java : "
+						+ +Thread.currentThread().getStackTrace()[2]
+								.getLineNumber()
+						+ " : "
+						+ Thread.currentThread().getStackTrace()[2]
+								.getMethodName() + "]", log_msg);
+				
+			} else {//if (res == true)
+				
+				// Log
+				log_msg = "Create table => Failed: "
+							+ CONS.DB.tname_PostHistory;
+
+				Log.d("["
+						+ "Methods_LM.java : "
+						+ +Thread.currentThread().getStackTrace()[2]
+								.getLineNumber()
+						+ " : "
+						+ Thread.currentThread().getStackTrace()[2]
+								.getMethodName() + "]", log_msg);
+				
+				return false;
+				
+			}//if (res == true)
+			
+			
+		}//if (res == false)
+		
+		// Insert data
+		// Build values
+		Object[] values = {
+				
+				Methods.getTimeLabel(Methods.getMillSeconds_now()),
+				loc.getId()
+				
+		};
+		
+		res = dbu.insertData_PostHistory(
+						wdb,
+						CONS.DB.tname_PostHistory,
+						CONS.DB.cols_PostHistory_Names_skimmed,
+						values);
+		
+		return res;
+		
+	}//save_PostHistory(Activity actv, Loc loc)
 	
 }//public class Methods_LM

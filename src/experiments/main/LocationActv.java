@@ -165,8 +165,47 @@ public class LocationActv extends Activity implements LocationListener {
 
 	private void do_debugs() {
 		// TODO Auto-generated method stub
+		_Debug_D_8_v_1_0_Save_PostHistory();
+		
 //		_Debug_D_3_v_3_0__Preference();
 	}
+
+
+	private void _Debug_D_8_v_1_0_Save_PostHistory() {
+		// TODO Auto-generated method stub
+		CONS.Main.loc_List = Methods_LM.get_Locs_All(this);
+
+		if (CONS.Main.loc_List == null) {
+			
+			// Log
+			String log_msg = "CONS.Main.loc_List => null";
+
+			Log.d("["
+					+ "LocationActv.java : "
+					+ +Thread.currentThread().getStackTrace()[2]
+							.getLineNumber() + " : "
+					+ Thread.currentThread().getStackTrace()[2].getMethodName()
+					+ "]", log_msg);
+			
+			return;
+			
+		}
+		
+		// Test
+		Loc loc = CONS.Main.loc_List.get(0);
+		
+		boolean res = Methods_LM.save_PostHistory(this, loc);
+		
+		// Log
+		String log_msg = "res => " + res;
+
+		Log.d("[" + "LocationActv.java : "
+				+ +Thread.currentThread().getStackTrace()[2].getLineNumber()
+				+ " : "
+				+ Thread.currentThread().getStackTrace()[2].getMethodName()
+				+ "]", log_msg);
+		
+	}//private void _Debug_D_8_v_1_0_Save_PostHistory()
 
 
 	private void _Debug_D_3_v_3_0__Preference() {

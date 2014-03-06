@@ -78,7 +78,38 @@ public class DOI_CL implements OnItemClickListener {
 		if (item.equals(
 				actv.getString(R.string.menu_LocActv_Exec_Sql))) {
 			
-			Migrations.execSql(actv);
+			boolean res = Migrations.execSql(actv);
+			
+			if (res == true) {
+				
+				// Log
+				log_msg = "Migration => Success";
+
+				Log.d("["
+						+ "DOI_CL.java : "
+						+ +Thread.currentThread().getStackTrace()[2]
+								.getLineNumber()
+						+ " : "
+						+ Thread.currentThread().getStackTrace()[2]
+								.getMethodName() + "]", log_msg);
+				
+				dlg1.dismiss();
+				
+			} else {
+				
+				// Log
+				log_msg = "Migration => Failed";
+				
+				Log.d("["
+						+ "DOI_CL.java : "
+						+ Thread.currentThread().getStackTrace()[2]
+								.getLineNumber()
+						+ " : "
+						+ Thread.currentThread().getStackTrace()[2]
+								.getMethodName() + "]", log_msg);
+				
+			}//if (res == true)
+			
 //			Methods_LM.execSql(actv);
 			
 		} else if (item.equals(

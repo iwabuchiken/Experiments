@@ -62,9 +62,63 @@ public class CONS {
 
 	public static class DB {
 		/*********************************
+		 * Migrations: Types
+		 *********************************/
+		public static enum MigTypes {
+			
+			Mig_Up,
+			Mig_Down,
+			
+		}
+		
+		
+		/*********************************
 		 * DB names
 		 *********************************/
 		public static final String dbName_LM = "db_LM.db";
+		
+		/*********************************
+		 * Table: post_history
+		 *********************************/
+		public static final String tname_PostHistory	= "post_history";
+		
+		public static final String[] cols_PostHistory_Names	= {
+			
+				android.provider.BaseColumns._ID,	// 0
+				"created_at",						// 1
+				"modified_at",						// 2
+
+				"posted_at",						// 3
+				"loc_id",							// 4
+				
+		};
+		
+		public static final String[] cols_PostHistory_Types	= {
+			
+				"INTEGER",			// 0
+				"TEXT",			// 1
+				"TEXT",			// 2
+				
+				"TEXT",		// 3
+				"INTEGER",		// 4
+				"INTEGER"			// 5
+			
+		};
+		
+		public static final String[] cols_PostHistory_Names_skimmed	= {
+			
+				"posted_at",						// 0
+				"loc_id"							// 1
+			
+		};
+		
+		public static final String[] cols_PostHistory_Types_skimmed	= {
+			
+				"TEXT",				// 0
+				"INTEGER",			// 1
+				
+		};
+		
 		
 		/*********************************
 		 * Table: locations

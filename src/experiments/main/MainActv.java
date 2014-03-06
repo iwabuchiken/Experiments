@@ -24,11 +24,6 @@ import android.widget.Toast;
 
 public class MainActv extends ListActivity {
 
-    // OAuth認証コンシューマインスタンス
-    private CommonsHttpOAuthConsumer oauthConsumer = null;
-    // OAuth認証プロバイダインスタンス
-    private CommonsHttpOAuthProvider oauthProvider = null;
-
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -37,6 +32,15 @@ public class MainActv extends ListActivity {
 		this.setTitle(this.getClass().getName());
 		
 		Admin.vib = (Vibrator) this.getSystemService(Context.VIBRATOR_SERVICE);
+		
+		//debug
+//		do_debug();
+		
+	}
+
+	private void do_debug() {
+		// TODO Auto-generated method stub
+		
 	}
 
 	@Override

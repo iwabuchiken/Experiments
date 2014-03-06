@@ -366,6 +366,56 @@ public class DBUtils extends SQLiteOpenHelper{
 		}//try
 	}//public insertData(String tableName, String[] columnNames, String[] values)
 	
+	/*********************************
+	 * @return false => 1. Exception
+	 *********************************/
+	public boolean insertData_PostHistory
+	(SQLiteDatabase db, String tableName, 
+			String[] columnNames, Object[] values) {
+		/*----------------------------
+		 * 1. Insert data
+		----------------------------*/
+		try {
+			// Start transaction
+			db.beginTransaction();
+			
+			// ContentValues
+			ContentValues val = new ContentValues();
+			
+			// Put values
+			val.put(columnNames[0], (String)values[0]);
+			val.put(columnNames[1], ((Long)values[1]).longValue());
+			
+			val.put(CONS.DB.cols_PostHistory_Names[1],
+						Methods.getTimeLabel(Methods.getMillSeconds_now()));
+			val.put(CONS.DB.cols_PostHistory_Names[2],
+					Methods.getTimeLabel(Methods.getMillSeconds_now()));
+			
+			// Insert data
+			db.insert(tableName, null, val);
+			
+			// Set as successful
+			db.setTransactionSuccessful();
+			
+			// End transaction
+			db.endTransaction();
+			
+			// Log
+			Log.d("DBUtils.java" + "["
+					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+					+ "]", "Data inserted => " + "(" + columnNames[0] + " => " + values[0] + "), and others");
+			
+			return true;
+		} catch (Exception e) {
+			// Log
+			Log.e("DBUtils.java" + "["
+					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+					+ "]", "Exception! => " + e.toString());
+			
+			return false;
+		}//try
+	}//public insertData(String tableName, String[] columnNames, String[] values)
+	
 	public boolean deleteData(Activity actv, SQLiteDatabase db, String tableName, long file_id) {
 		/*----------------------------
 		 * Steps

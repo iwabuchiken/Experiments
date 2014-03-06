@@ -10,10 +10,17 @@ import android.widget.Toast;
 
 public class Migrations {
 
-	public static void execSql(Activity actv) {
+	public static boolean execSql(Activity actv) {
 		// TODO Auto-generated method stub
 		
-		boolean res = _Mig__20140216_080106_ChangeColTypeCreatedAt(actv);
+		return false;
+		
+//		_Mig__20140306_081135_CreateTable_PostHistory(
+//							actv, CONS.DB.MigTypes.Mig_Down);
+//		
+//		return _Mig__20140306_081135_CreateTable_PostHistory(
+//				actv, CONS.DB.MigTypes.Mig_Up);
+//		boolean res = _Mig__20140216_080106_ChangeColTypeCreatedAt(actv);
 //		boolean res = _Mig__20140214_084333_AddColUploadedAt(actv);
 //		boolean res = _Mig__20140212_101940_CreateTable(actv);
 //		String sql = _Sql__20140212_101940_CreateTable(actv);
@@ -21,6 +28,56 @@ public class Migrations {
 		
 		
 	}
+
+	public static boolean
+	_Mig__20140306_081135_CreateTable_PostHistory
+	(Activity actv, CONS.DB.MigTypes migType) {
+		
+		DBUtils dbu = new DBUtils(actv, CONS.DB.dbName_LM);
+		
+		SQLiteDatabase wdb = dbu.getWritableDatabase();
+		
+		boolean res = false;
+		
+		switch(migType) {
+		
+		case Mig_Up:
+			
+			res = dbu.createTable(
+							wdb,
+							CONS.DB.tname_PostHistory,
+							
+							CONS.DB.cols_PostHistory_Names_skimmed,
+							CONS.DB.cols_PostHistory_Types_skimmed);
+			
+			break;
+		
+		case Mig_Down:
+			
+			res = dbu.dropTable(actv, wdb, CONS.DB.tname_PostHistory);
+			
+			break;
+			
+		default:
+			break;
+			
+		}
+		
+		// Log
+		String log_msg = "res => " + res;
+
+		Log.d("[" + "Migrations.java : "
+				+ +Thread.currentThread().getStackTrace()[2].getLineNumber()
+				+ " : "
+				+ Thread.currentThread().getStackTrace()[2].getMethodName()
+				+ "]", log_msg);
+
+		
+		wdb.close();
+		
+		return res;
+		
+	}//_Mig__20140306_081135_CreateTable_PostHistory
 
 	private static boolean
 	_Mig__20140216_080106_ChangeColTypeCreatedAt
@@ -61,7 +118,7 @@ public class Migrations {
 		// Log
 		String log_msg = "sql=" + sql;
 
-		Log.d("[" + "Methods_LM.java : "
+		Log.d("[" + "Migrations.java : "
 				+ +Thread.currentThread().getStackTrace()[2].getLineNumber()
 				+ " : "
 				+ Thread.currentThread().getStackTrace()[2].getMethodName()
@@ -78,7 +135,7 @@ public class Migrations {
 			log_msg = "sql => done";
 
 			Log.d("["
-					+ "Methods_LM.java : "
+					+ "Migrations.java : "
 					+ +Thread.currentThread().getStackTrace()[2]
 							.getLineNumber() + " : "
 					+ Thread.currentThread().getStackTrace()[2].getMethodName()
@@ -89,7 +146,7 @@ public class Migrations {
 			log_msg = e.toString();
 
 			Log.d("["
-					+ "Methods_LM.java : "
+					+ "Migrations.java : "
 					+ +Thread.currentThread().getStackTrace()[2]
 							.getLineNumber() + " : "
 					+ Thread.currentThread().getStackTrace()[2].getMethodName()
@@ -127,7 +184,7 @@ public class Migrations {
 		// Log
 		String log_msg = "sql=" + sql;
 
-		Log.d("[" + "Methods_LM.java : "
+		Log.d("[" + "Migrations.java : "
 				+ +Thread.currentThread().getStackTrace()[2].getLineNumber()
 				+ " : "
 				+ Thread.currentThread().getStackTrace()[2].getMethodName()
@@ -144,7 +201,7 @@ public class Migrations {
 			log_msg = "sql => done";
 
 			Log.d("["
-					+ "Methods_LM.java : "
+					+ "Migrations.java : "
 					+ +Thread.currentThread().getStackTrace()[2]
 							.getLineNumber() + " : "
 					+ Thread.currentThread().getStackTrace()[2].getMethodName()
@@ -155,7 +212,7 @@ public class Migrations {
 			log_msg = e.toString();
 
 			Log.d("["
-					+ "Methods_LM.java : "
+					+ "Migrations.java : "
 					+ +Thread.currentThread().getStackTrace()[2]
 							.getLineNumber() + " : "
 					+ Thread.currentThread().getStackTrace()[2].getMethodName()
@@ -254,7 +311,7 @@ public class Migrations {
 		// Log
 		String log_msg = "res => " + res;
 
-		Log.d("[" + "Methods_LM.java : "
+		Log.d("[" + "Migrations.java : "
 				+ +Thread.currentThread().getStackTrace()[2].getLineNumber()
 				+ " : "
 				+ Thread.currentThread().getStackTrace()[2].getMethodName()
@@ -308,7 +365,7 @@ public class Migrations {
 			String log_msg = "Table exists => " + CONS.DB.tname_Location;
 
 			Log.d("["
-					+ "Methods_LM.java : "
+					+ "Migrations.java : "
 					+ +Thread.currentThread().getStackTrace()[2]
 							.getLineNumber() + " : "
 					+ Thread.currentThread().getStackTrace()[2].getMethodName()
@@ -326,7 +383,7 @@ public class Migrations {
 			String log_msg = e.toString();
 
 			Log.d("["
-					+ "Methods_LM.java : "
+					+ "Migrations.java : "
 					+ +Thread.currentThread().getStackTrace()[2]
 							.getLineNumber() + " : "
 					+ Thread.currentThread().getStackTrace()[2].getMethodName()
