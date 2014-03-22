@@ -1,5 +1,6 @@
-package experiments.main;
+package experiments.main.tweetapp;
 
+import experiments.main.R;
 import experiments.main.tweetapp.TimeLineActv;
 import experiments.main.tweetapp.TweetUpdateActv;
 import experiments.tweetapp.commons.AppConstants;
