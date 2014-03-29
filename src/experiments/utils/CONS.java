@@ -8,10 +8,14 @@ import experiments.adapters.Adp_Loc;
 import experiments.items.Loc;
 
 import android.database.sqlite.SQLiteDatabase;
+import android.hardware.Sensor;
+import android.hardware.SensorEventListener;
+import android.hardware.SensorManager;
 import android.os.Vibrator;
 import android.provider.MediaStore;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.TextView;
 
 public class CONS {
 
@@ -388,4 +392,20 @@ public class CONS {
 		
 	}
 	
+	public static class PM {
+		
+		public static SensorManager sensorManager;
+		
+		public static List<Sensor> accelerometerSensors;
+		
+		public static SensorEventListener sensorEventListener;
+		
+		/*********************************
+		 * UIs
+		 *********************************/
+		public static TextView tv_X;
+		public static TextView tv_Y;
+		public static TextView tv_Z;
+		
+	}
 }//public class CONS

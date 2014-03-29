@@ -12,6 +12,7 @@ import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.net.SocketException;
 import java.nio.channels.FileChannel;
+import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -353,6 +354,27 @@ public class Methods {
 		
 	}//public static void start_Settings(Activity actv)
 
+	/*********************************
+	 * @param pattern see => http://docs.oracle.com/javase/tutorial/i18n/format/decimalFormat.html<br>
+	 * 		e.g. pattern="##.000000", digits=6
+	 * @return e.g. "1.423000"
+	 *********************************/
+	public static String
+	conv_Float2String
+	(Activity actv, float f, String pattern, int digits) {
+
+//		Float fl = new Float(f);
+		Float fl = Float.valueOf(f);
+		
+		//REF http://stackoverflow.com/questions/17464675/convert-string-to-decimal-number-with-2-decimal-places-in-java 
+		DecimalFormat df = new DecimalFormat(pattern);
+		
+		df.setMaximumFractionDigits(digits);
+//		stringLitersOfPetrol = df.format(litersOfPetrol);
+		
+		return df.format(fl);
+		
+	}//conv_Float2String(Activity actv, float f, String format)
 	
 }//public class Methods
 
