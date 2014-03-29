@@ -52,6 +52,7 @@
 		    android:value="AIzaSyBR2qKgS09SSD3qH1ZbTPEabccR8m2GKbw"/>
         <activity android:name=".ShowMapActv"></activity>
         <activity android:name=".TweetAppActv"></activity>
+        <activity android:name=".PMActv"></activity>
         
     </application>
 

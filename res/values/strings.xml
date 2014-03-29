@@ -19,6 +19,7 @@
 	<!-- MainActv -->
 	    <string name="mainactv_list_position">Location Manager</string>
 	    <string name="mainactv_list_tweet_app">Tweet App</string>
+	    <string name="mainactv_list_pm">Position Manager</string>
 	
 	<!-- actv_location.xml -->
 		<string name="actv_loc_tv_longi">Longitude</string>
@@ -76,5 +77,10 @@
 		    name="tv_timeline_title">TIMELINE</string>
 		  <string
 		    name="tv_tweetupdate_title">TWEET</string>
-				
+
+	<!-- actv_pm.xml -->
+		<string name="actv_pm_x">X</string>
+		<string name="actv_pm_y">Y</string>
+		<string name="actv_pm_z">Z</string>
+
 </resources>

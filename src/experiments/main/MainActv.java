@@ -65,6 +65,11 @@ public class MainActv extends ListActivity {
 			
 			_onItemClick__TweetApp();
 			
+		} else if (itemName.equals(this.getString(
+				R.string.mainactv_list_pm))) {//if (itemName.equals(this.getString(R.string.mainactv_list_position)))
+			
+			_onItemClick__PM();
+			
 		} else {//if (itemName.equals(this.getString(R.string.mainactv_list_position)))
 
 			// debug
@@ -75,6 +80,13 @@ public class MainActv extends ListActivity {
 		
 		
 	}//onListItemClick(ListView l, View v, int position, long id)
+
+	private void _onItemClick__PM() {
+		// TODO Auto-generated method stub
+		
+		Methods.start_Activity(this, "experiments.main.PMActv");
+		
+	}
 
 	private void
 	_onItemClick__TweetApp() {
@@ -125,7 +137,10 @@ public class MainActv extends ListActivity {
 					this.getString(R.string.mainactv_list_position));
 		
 		CONS.Admin.list_MainActv.add(
-				this.getString(R.string.mainactv_list_tweet_app));
+				this.getString(R.string.mainactv_list_pm));
+		
+//		CONS.Admin.list_MainActv.add(
+//				this.getString(R.string.mainactv_list_tweet_app));
 		
 		CONS.Main.mainAdapter = new ArrayAdapter<String>(
 									this, 
@@ -138,11 +153,11 @@ public class MainActv extends ListActivity {
 		/*********************************
 		 * Set: Listener
 		 *********************************/
-		set_listener_to_list();
+		set_LongClickListener();
 		
 	}
 
-	private void set_listener_to_list() {
+	private void set_LongClickListener() {
 		/*********************************
 		 * 1. Long click
 		 * 
